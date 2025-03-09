@@ -293,3 +293,10 @@ INFO 2025-03-09 00:37:10,364 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
 INFO 2025-03-09 00:37:16,382 basehttp "GET /admin/emails/sentemail/ HTTP/1.1" 200 11694
 INFO 2025-03-09 00:37:16,393 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
 INFO 2025-03-09 00:37:45,387 basehttp - Broken pipe from ('127.0.0.1', 54654)
+INFO 2025-03-09 00:56:26,796 autoreload Watching for file changes with StatReloader
+INFO 2025-03-09 00:56:43,927 autoreload Watching for file changes with StatReloader
+INFO 2025-03-09 00:56:53,752 basehttp "GET / HTTP/1.1" 200 8025
+INFO 2025-03-09 00:56:53,770 basehttp "GET /static/css/style.css HTTP/1.1" 304 0
+INFO 2025-03-09 00:56:53,773 basehttp "GET /static/js/api.js HTTP/1.1" 200 7999
+WARNING 2025-03-09 00:57:01,705 log Unauthorized: /emails/templates/
+WARNING 2025-03-09 00:57:01,705 basehttp "GET /emails/templates/ HTTP/1.1" 401 5221
