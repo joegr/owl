@@ -1,0 +1,335 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Email CRM{% endblock %}
+
+{% block extra_css %}
+<style>
+    .stat-card {
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+    .stat-card:hover {
+        transform: translateY(-5px);
+    }
+    .stat-card .number {
+        font-size: 2rem;
+        font-weight: bold;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+    .stat-card .label {
+        color: #6c757d;
+        font-size: 0.9rem;
+    }
+    .table-container {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    #api-error {
+        display: none;
+        margin-bottom: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-6">
+        <h2>Dashboard</h2>
+    </div>
+    <div class="col-md-6 text-end">
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-outline-primary" id="refresh-btn">
+                <i class="bi bi-arrow-clockwise"></i> Refresh
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- API Error Alert -->
+<div id="api-error" class="alert alert-danger">
+    <h5><i class="bi bi-exclamation-triangle"></i> API Connection Error</h5>
+    <p id="api-error-message">Unable to connect to the API. Please check your connection and try again.</p>
+    <div id="api-error-details" class="mt-2 small"></div>
+</div>
+
+<!-- Stats Cards Row -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card stat-card">
+            <div class="card-body">
+                <span class="number" id="contact-count">0</span>
+                <div class="label">Total Contacts</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card">
+            <div class="card-body">
+                <span class="number" id="emails-sent">0</span>
+                <div class="label">Emails Sent</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card">
+            <div class="card-body">
+                <span class="number" id="open-rate">0%</span>
+                <div class="label">Open Rate</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card">
+            <div class="card-body">
+                <span class="number" id="emails-today">0</span>
+                <div class="label">Emails Sent Today</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Recent Emails -->
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Recent Emails</h5>
+                <a href="/emails/" class="btn btn-sm btn-outline-primary">View All</a>
+            </div>
+            <div class="card-body">
+                <div class="table-container">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Recipient</th>
+                                <th>Subject</th>
+                                <th>Sent</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-emails">
+                            <tr>
+                                <td colspan="4" class="text-center">Loading...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Recent Activities -->
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header">
+                <h5 class="mb-0">Recent Activities</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group" id="recent-activities">
+                    <li class="list-group-item text-center">Loading...</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Quick Links -->
+    <div class="col-md-12 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Quick Actions</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <a href="/contacts/add/" class="btn btn-outline-primary w-100 p-3">
+                            <i class="bi bi-person-plus-fill"></i><br>
+                            Add Contact
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="/emails/templates/add/" class="btn btn-outline-success w-100 p-3">
+                            <i class="bi bi-file-earmark-plus"></i><br>
+                            Create Template
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="/emails/send/" class="btn btn-outline-info w-100 p-3">
+                            <i class="bi bi-envelope"></i><br>
+                            Send Email
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="/emails/analytics/" class="btn btn-outline-secondary w-100 p-3">
+                            <i class="bi bi-graph-up"></i><br>
+                            View Analytics
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Dashboard page loaded');
+    
+    // Load dashboard data
+    loadDashboardData();
+    
+    // Refresh button
+    document.getElementById('refresh-btn').addEventListener('click', function() {
+        loadDashboardData();
+    });
+    
+    async function loadDashboardData() {
+        try {
+            console.log('Fetching dashboard data...');
+            const result = await API.dashboard.getSummary();
+            
+            // Hide any previous error
+            document.getElementById('api-error').style.display = 'none';
+            
+            // Check for errors
+            if (result.error) {
+                showApiError('Error loading dashboard data', result);
+                return;
+            }
+            
+            const data = result.data;
+            console.log('Dashboard data received:', data);
+            
+            if (data) {
+                // Update stats
+                document.getElementById('contact-count').textContent = data.contact_count;
+                document.getElementById('emails-sent').textContent = data.total_emails_sent;
+                document.getElementById('open-rate').textContent = data.open_rate + '%';
+                document.getElementById('emails-today').textContent = data.emails_today;
+                
+                // Update recent emails
+                updateRecentEmails(data.recent_emails);
+                
+                // Update recent activities
+                updateRecentActivities(data.recent_activities);
+            }
+        } catch (error) {
+            console.error('Error loading dashboard data:', error);
+            showApiError('Error loading dashboard data', { error: error.message });
+        }
+    }
+    
+    function showApiError(message, details) {
+        const errorElement = document.getElementById('api-error');
+        const errorMessage = document.getElementById('api-error-message');
+        const errorDetails = document.getElementById('api-error-details');
+        
+        errorMessage.textContent = message;
+        errorElement.style.display = 'block';
+        
+        if (details) {
+            errorDetails.innerHTML = `
+                <strong>Details:</strong><br>
+                ${JSON.stringify(details, null, 2)}
+            `;
+        }
+    }
+    
+    // Function to update recent emails table
+    function updateRecentEmails(emails) {
+        const emailsContainer = document.getElementById('recent-emails');
+        
+        if (!emails || emails.length === 0) {
+            emailsContainer.innerHTML = '<tr><td colspan="4" class="text-center">No recent emails</td></tr>';
+            return;
+        }
+        
+        emailsContainer.innerHTML = '';
+        
+        emails.forEach(email => {
+            const row = document.createElement('tr');
+            
+            // Format date
+            const sentDate = new Date(email.sent_at);
+            const formattedDate = sentDate.toLocaleDateString() + ' ' + 
+                                 sentDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            
+            // Email status
+            let statusBadge = '<span class="badge bg-secondary">Sent</span>';
+            if (email.opened) {
+                statusBadge = '<span class="badge bg-success">Opened</span>';
+            }
+            if (email.clicked) {
+                statusBadge = '<span class="badge bg-primary">Clicked</span>';
+            }
+            
+            row.innerHTML = `
+                <td>${email.contact_name}</td>
+                <td>${email.subject}</td>
+                <td>${formattedDate}</td>
+                <td>${statusBadge}</td>
+            `;
+            
+            emailsContainer.appendChild(row);
+        });
+    }
+    
+    // Function to update recent activities list
+    function updateRecentActivities(activities) {
+        const activitiesContainer = document.getElementById('recent-activities');
+        
+        if (!activities || activities.length === 0) {
+            activitiesContainer.innerHTML = '<li class="list-group-item text-center">No recent activities</li>';
+            return;
+        }
+        
+        activitiesContainer.innerHTML = '';
+        
+        activities.forEach(activity => {
+            const item = document.createElement('li');
+            item.className = 'list-group-item';
+            
+            // Format date
+            const activityDate = new Date(activity.timestamp);
+            const formattedDate = activityDate.toLocaleDateString() + ' ' + 
+                                 activityDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            
+            // Activity type icon
+            let icon = 'bi-activity';
+            switch (activity.activity_type) {
+                case 'contact_created':
+                    icon = 'bi-person-plus';
+                    break;
+                case 'contact_updated':
+                    icon = 'bi-person-gear';
+                    break;
+                case 'email_sent':
+                    icon = 'bi-envelope';
+                    break;
+                case 'template_created':
+                case 'template_updated':
+                    icon = 'bi-file-earmark-text';
+                    break;
+            }
+            
+            item.innerHTML = `
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <i class="bi ${icon} me-2"></i>
+                        ${activity.description}
+                    </div>
+                    <small class="text-muted">${formattedDate}</small>
+                </div>
+            `;
+            
+            activitiesContainer.appendChild(item);
+        });
+    }
+});
+</script>
+{% endblock %} 

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Login - Email CRM{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">Login</h4>
+            </div>
+            <div class="card-body">
+                <form id="login-form" class="form-container" method="post" action="{% url 'accounts:login-jwt' %}">
+                    {% csrf_token %}
+                    <div class="alert alert-danger d-none" id="login-error"></div>
+                    
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    
+                    <!-- Hidden field to redirect after login -->
+                    <input type="hidden" name="next" value="/dashboard/">
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                </form>
+                
+                <div class="mt-3 text-center">
+                    <p>Don't have an account? <a href="{% url 'accounts:register' %}">Register</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('login-form');
+    const loginError = document.getElementById('login-error');
+
+    loginForm.addEventListener('submit', function(e) {
+        // Regular form submission - no JS needed for basic functionality
+        // We'll keep this for any client-side validation we might want to add later
+    });
+});
+</script>
+{% endblock %} 

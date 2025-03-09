@@ -1,0 +1,295 @@
+INFO 2025-03-08 21:08:12,257 autoreload Watching for file changes with StatReloader
+INFO 2025-03-08 21:08:19,760 basehttp "GET /accounts/register-form/ HTTP/1.1" 200 8982
+INFO 2025-03-08 21:08:19,786 basehttp "GET /static/js/api.js HTTP/1.1" 304 0
+INFO 2025-03-08 21:08:52,483 basehttp "POST /accounts/register/ HTTP/1.1" 302 0
+INFO 2025-03-08 21:08:52,492 basehttp "GET /accounts/register-form/ HTTP/1.1" 200 8982
+INFO 2025-03-08 21:09:41,274 autoreload /Users/jg/owl/email_crm/accounts/views.py changed, reloading.
+INFO 2025-03-08 21:09:41,660 autoreload Watching for file changes with StatReloader
+INFO 2025-03-08 21:09:43,324 autoreload Watching for file changes with StatReloader
+INFO 2025-03-08 21:10:03,174 autoreload Watching for file changes with StatReloader
+INFO 2025-03-08 21:10:14,851 basehttp "GET /accounts/register-form/ HTTP/1.1" 200 8982
+INFO 2025-03-08 21:10:14,871 basehttp "GET /static/css/style.css HTTP/1.1" 304 0
+INFO 2025-03-08 21:10:14,872 basehttp "GET /static/js/api.js HTTP/1.1" 304 0
+INFO 2025-03-08 21:10:40,750 basehttp "POST /accounts/register/ HTTP/1.1" 302 0
+INFO 2025-03-08 21:10:40,758 basehttp "GET /accounts/register-form/ HTTP/1.1" 200 8982
+INFO 2025-03-08 21:14:25,133 autoreload /Users/jg/owl/email_crm/accounts/views.py changed, reloading.
+INFO 2025-03-08 21:14:25,505 autoreload Watching for file changes with StatReloader
+INFO 2025-03-08 21:14:27,669 autoreload /Users/jg/owl/email_crm/accounts/views.py changed, reloading.
+INFO 2025-03-08 21:14:27,959 autoreload Watching for file changes with StatReloader
+INFO 2025-03-08 21:15:08,837 autoreload /Users/jg/owl/email_crm/accounts/views.py changed, reloading.
+INFO 2025-03-08 21:15:09,122 autoreload Watching for file changes with StatReloader
+INFO 2025-03-08 21:15:28,693 autoreload /Users/jg/owl/email_crm/accounts/urls.py changed, reloading.
+INFO 2025-03-08 21:15:29,000 autoreload Watching for file changes with StatReloader
+INFO 2025-03-08 21:15:49,482 autoreload /Users/jg/owl/email_crm/accounts/views.py changed, reloading.
+INFO 2025-03-08 21:15:49,787 autoreload Watching for file changes with StatReloader
+INFO 2025-03-08 21:16:09,932 autoreload Watching for file changes with StatReloader
+INFO 2025-03-08 21:17:25,584 autoreload Watching for file changes with StatReloader
+INFO 2025-03-08 21:17:50,188 basehttp "GET / HTTP/1.1" 200 3458
+INFO 2025-03-08 21:17:51,836 basehttp "GET /admin/login/ HTTP/1.1" 302 0
+INFO 2025-03-08 21:17:51,855 basehttp "GET /admin/ HTTP/1.1" 200 8667
+WARNING 2025-03-08 21:18:00,921 log Not Found: /crm/
+WARNING 2025-03-08 21:18:00,922 basehttp "GET /crm/ HTTP/1.1" 404 3306
+INFO 2025-03-08 21:18:06,862 basehttp "GET /dashboard/ HTTP/1.1" 200 12157
+INFO 2025-03-08 21:18:06,874 basehttp "GET /static/js/api.js HTTP/1.1" 304 0
+INFO 2025-03-08 21:18:06,874 basehttp "GET /static/css/style.css HTTP/1.1" 304 0
+WARNING 2025-03-08 21:18:06,889 log Unauthorized: /dashboard/data/
+WARNING 2025-03-08 21:18:06,889 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-08 21:18:06,903 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-08 21:18:06,929 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-08 21:18:06,931 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-08 21:18:06,933 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-08 21:18:06,936 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-08 21:18:06,938 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-08 21:18:06,940 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-08 21:18:06,942 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-08 21:18:06,944 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-08 21:18:06,945 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-08 21:18:06,947 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-08 21:18:06,948 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-08 21:18:06,951 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-08 21:18:06,953 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-08 21:18:06,954 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-08 21:18:06,956 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-08 21:18:06,957 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-08 21:18:06,959 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-08 21:18:06,960 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-08 21:18:06,962 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-08 21:18:06,963 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-08 21:18:19,414 basehttp "GET /accounts/register-form/ HTTP/1.1" 200 6754
+WARNING 2025-03-08 21:18:23,667 log Unauthorized: /accounts/profile/
+WARNING 2025-03-08 21:18:23,668 basehttp "GET /accounts/profile/ HTTP/1.1" 401 5136
+INFO 2025-03-08 21:18:23,680 basehttp "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+INFO 2025-03-08 21:18:23,680 basehttp "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3385
+INFO 2025-03-08 21:18:23,683 basehttp "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2025-03-08 21:18:23,685 basehttp "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3597
+INFO 2025-03-08 21:18:23,686 basehttp "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1719
+INFO 2025-03-08 21:18:23,687 basehttp "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+INFO 2025-03-08 21:18:23,687 basehttp "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2025-03-08 21:18:23,687 basehttp "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+INFO 2025-03-08 21:18:23,688 basehttp "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+INFO 2025-03-08 21:18:23,688 basehttp "GET /static/rest_framework/js/jquery-3.5.1.min.js HTTP/1.1" 200 89476
+INFO 2025-03-08 21:18:23,710 basehttp "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+WARNING 2025-03-08 21:18:37,842 base Method Not Allowed (GET): /accounts/logout/
+WARNING 2025-03-08 21:18:37,842 log Method Not Allowed: /accounts/logout/
+WARNING 2025-03-08 21:18:37,843 basehttp "GET /accounts/logout/ HTTP/1.1" 405 0
+INFO 2025-03-08 21:18:45,092 basehttp "GET /accounts/register-form/ HTTP/1.1" 200 6754
+INFO 2025-03-08 21:19:14,107 basehttp - Broken pipe from ('127.0.0.1', 53662)
+INFO 2025-03-08 21:19:16,353 basehttp "POST /accounts/register/ HTTP/1.1" 302 0
+INFO 2025-03-08 21:19:16,455 basehttp "GET /accounts/register-form/ HTTP/1.1" 200 6754
+INFO 2025-03-08 21:20:27,819 autoreload /Users/jg/owl/email_crm/email_crm/settings.py changed, reloading.
+INFO 2025-03-08 21:20:28,224 autoreload Watching for file changes with StatReloader
+INFO 2025-03-08 21:21:02,008 autoreload /Users/jg/owl/email_crm/accounts/views.py changed, reloading.
+INFO 2025-03-08 21:21:02,289 autoreload Watching for file changes with StatReloader
+INFO 2025-03-08 21:22:40,489 autoreload Watching for file changes with StatReloader
+INFO 2025-03-08 21:22:52,858 autoreload Watching for file changes with StatReloader
+INFO 2025-03-08 21:22:59,453 autoreload Watching for file changes with StatReloader
+INFO 2025-03-09 00:19:26,160 autoreload /Users/jg/owl/email_crm/accounts/views.py changed, reloading.
+INFO 2025-03-09 00:19:27,628 autoreload Watching for file changes with StatReloader
+INFO 2025-03-09 00:22:20,372 autoreload Watching for file changes with StatReloader
+INFO 2025-03-09 00:22:23,899 basehttp "GET /accounts/register-form/ HTTP/1.1" 200 6738
+INFO 2025-03-09 00:22:23,979 basehttp "GET /static/css/style.css HTTP/1.1" 304 0
+INFO 2025-03-09 00:22:23,980 basehttp "GET /static/js/api.js HTTP/1.1" 304 0
+INFO 2025-03-09 00:22:54,504 basehttp "POST /accounts/register/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:22:54,606 basehttp "GET /accounts/register-form/ HTTP/1.1" 200 6738
+INFO 2025-03-09 00:22:58,237 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:22:58,242 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:22:58,248 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:22:58,251 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:22:58,255 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:22:58,257 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:22:58,259 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:22:58,261 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:22:58,264 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:22:58,266 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:22:58,267 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:22:58,269 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:22:58,271 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:22:58,273 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:22:58,275 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:22:58,276 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:22:58,278 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:22:58,280 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:22:58,282 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:22:58,284 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:22:58,285 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:23:00,531 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:23:00,536 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:23:00,539 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:23:00,542 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:23:00,544 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:23:00,546 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:23:00,548 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:23:00,550 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:23:00,552 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:23:00,555 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:23:00,558 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:23:00,560 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:23:00,561 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:23:00,562 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:23:00,564 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:23:00,567 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:23:00,570 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:23:00,571 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:23:00,573 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:23:00,574 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:23:00,576 basehttp "GET /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:25:00,186 autoreload /Users/jg/owl/email_crm/email_crm/urls.py changed, reloading.
+INFO 2025-03-09 00:25:00,478 autoreload Watching for file changes with StatReloader
+INFO 2025-03-09 00:25:12,842 autoreload /Users/jg/owl/email_crm/accounts/views.py changed, reloading.
+INFO 2025-03-09 00:25:13,123 autoreload Watching for file changes with StatReloader
+INFO 2025-03-09 00:26:27,751 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+WARNING 2025-03-09 00:26:29,894 log Unauthorized: /emails/templates/
+WARNING 2025-03-09 00:26:29,895 basehttp "GET /emails/templates/ HTTP/1.1" 401 5221
+INFO 2025-03-09 00:26:29,904 basehttp "GET /static/rest_framework/css/prettify.css HTTP/1.1" 304 0
+INFO 2025-03-09 00:26:29,910 basehttp "GET /static/rest_framework/css/default.css HTTP/1.1" 304 0
+INFO 2025-03-09 00:26:29,911 basehttp "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 304 0
+INFO 2025-03-09 00:26:29,911 basehttp "GET /static/rest_framework/js/csrf.js HTTP/1.1" 304 0
+INFO 2025-03-09 00:26:29,911 basehttp "GET /static/rest_framework/js/jquery-3.5.1.min.js HTTP/1.1" 304 0
+INFO 2025-03-09 00:26:29,912 basehttp "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 304 0
+INFO 2025-03-09 00:26:29,912 basehttp "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 304 0
+INFO 2025-03-09 00:26:29,915 basehttp "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 304 0
+INFO 2025-03-09 00:26:29,915 basehttp "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 304 0
+INFO 2025-03-09 00:26:29,916 basehttp "GET /static/rest_framework/js/default.js HTTP/1.1" 304 0
+INFO 2025-03-09 00:26:29,937 basehttp "GET /static/rest_framework/img/grid.png HTTP/1.1" 304 0
+WARNING 2025-03-09 00:26:34,314 log Unauthorized: /emails/templates/
+WARNING 2025-03-09 00:26:34,315 basehttp "GET /emails/templates/?format=api HTTP/1.1" 401 5254
+WARNING 2025-03-09 00:26:37,091 log Unauthorized: /emails/templates/
+WARNING 2025-03-09 00:26:37,091 basehttp "GET /emails/templates/?format=api HTTP/1.1" 401 5254
+INFO 2025-03-09 00:26:37,094 autoreload /Users/jg/owl/email_crm/accounts/views.py changed, reloading.
+INFO 2025-03-09 00:26:37,392 autoreload Watching for file changes with StatReloader
+WARNING 2025-03-09 00:26:42,071 log Unauthorized: /emails/templates/
+WARNING 2025-03-09 00:26:42,071 basehttp "GET /emails/templates/?format=api HTTP/1.1" 401 5254
+WARNING 2025-03-09 00:26:42,937 log Unauthorized: /emails/templates/
+WARNING 2025-03-09 00:26:42,937 basehttp "GET /emails/templates/ HTTP/1.1" 401 5221
+INFO 2025-03-09 00:26:44,689 autoreload /Users/jg/owl/email_crm/accounts/urls.py changed, reloading.
+INFO 2025-03-09 00:26:45,041 autoreload Watching for file changes with StatReloader
+INFO 2025-03-09 00:26:52,505 basehttp "POST /accounts/login-jwt/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:26:52,516 basehttp "GET /accounts/login/ HTTP/1.1" 200 5473
+INFO 2025-03-09 00:27:03,082 basehttp "POST /accounts/login-jwt/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:27:03,095 basehttp "GET /accounts/login/ HTTP/1.1" 200 5473
+INFO 2025-03-09 00:27:33,784 autoreload Watching for file changes with StatReloader
+INFO 2025-03-09 00:27:42,290 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-09 00:27:45,524 basehttp "GET /dashboard/ HTTP/1.1" 200 12175
+WARNING 2025-03-09 00:27:45,542 log Unauthorized: /dashboard/data/
+WARNING 2025-03-09 00:27:45,542 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-09 00:27:45,560 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-09 00:27:46,971 basehttp "GET / HTTP/1.1" 200 8025
+INFO 2025-03-09 00:28:02,862 basehttp "GET /dashboard/ HTTP/1.1" 200 12175
+WARNING 2025-03-09 00:28:02,881 log Unauthorized: /dashboard/data/
+WARNING 2025-03-09 00:28:02,882 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-09 00:28:02,897 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-09 00:28:06,105 basehttp "GET /accounts/register-form/ HTTP/1.1" 200 6738
+INFO 2025-03-09 00:28:17,929 views Registration request received: {'csrfmiddlewaretoken': 'DDtG0O7lEb4E81RGV1T5gEKBPri5dh2wdKLZzuVwIkAl6dB9D2BPsZ71y9Fk6utA', 'username': 'Jog', 'email': '0.nulls-handbag@icloud.com', 'first_name': 'JOE', 'last_name': 'G', 'password': 'fubko2-dImcux-wumveq', 'password2': 'fubko2-dImcux-wumveq'}
+INFO 2025-03-09 00:28:18,205 views User registered successfully: Jog
+INFO 2025-03-09 00:28:18,206 views Redirecting to registration success page
+INFO 2025-03-09 00:28:18,206 basehttp "POST /accounts/register/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:28:18,301 basehttp "GET /accounts/registration-success/Jog/ HTTP/1.1" 200 5105
+INFO 2025-03-09 00:28:23,340 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-09 00:28:30,136 basehttp "POST /accounts/login-jwt/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:28:30,146 basehttp "GET /dashboard/ HTTP/1.1" 200 12666
+WARNING 2025-03-09 00:28:30,170 log Unauthorized: /dashboard/data/
+WARNING 2025-03-09 00:28:30,170 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-09 00:28:30,183 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+WARNING 2025-03-09 00:28:45,994 log Unauthorized: /contacts/
+WARNING 2025-03-09 00:28:45,995 basehttp "GET /contacts/ HTTP/1.1" 401 5139
+INFO 2025-03-09 00:28:53,893 basehttp "GET /dashboard/ HTTP/1.1" 200 12175
+WARNING 2025-03-09 00:28:53,910 log Unauthorized: /dashboard/data/
+WARNING 2025-03-09 00:28:53,910 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-09 00:28:53,929 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+WARNING 2025-03-09 00:28:57,563 log Unauthorized: /accounts/profile/
+WARNING 2025-03-09 00:28:57,564 basehttp "GET /accounts/profile/ HTTP/1.1" 401 5136
+INFO 2025-03-09 00:31:21,420 autoreload /Users/jg/owl/email_crm/accounts/views.py changed, reloading.
+INFO 2025-03-09 00:31:21,792 autoreload Watching for file changes with StatReloader
+INFO 2025-03-09 00:31:37,164 autoreload /Users/jg/owl/email_crm/dashboard/views.py changed, reloading.
+INFO 2025-03-09 00:31:37,534 autoreload Watching for file changes with StatReloader
+INFO 2025-03-09 00:32:42,195 autoreload Watching for file changes with StatReloader
+INFO 2025-03-09 00:32:51,605 basehttp "GET / HTTP/1.1" 200 8025
+WARNING 2025-03-09 00:32:56,051 log Unauthorized: /emails/templates/
+WARNING 2025-03-09 00:32:56,052 basehttp "GET /emails/templates/ HTTP/1.1" 401 5221
+WARNING 2025-03-09 00:33:04,073 log Unauthorized: /accounts/profile/
+WARNING 2025-03-09 00:33:04,073 basehttp "GET /accounts/profile/ HTTP/1.1" 401 5136
+WARNING 2025-03-09 00:33:09,471 base Method Not Allowed (GET): /accounts/logout/
+WARNING 2025-03-09 00:33:09,472 log Method Not Allowed: /accounts/logout/
+WARNING 2025-03-09 00:33:09,473 basehttp "GET /accounts/logout/ HTTP/1.1" 405 0
+INFO 2025-03-09 00:33:16,285 basehttp "GET /accounts/register-form/ HTTP/1.1" 200 6738
+INFO 2025-03-09 00:33:30,565 views Registration request received: {'csrfmiddlewaretoken': 'DLtm0jDOETGPUWU8g7M57sole2s49Nl2dSLFzZrZI2cwS8EBY8uPjNLLXKPj20M6', 'username': 'JOG', 'email': '0.nulls-handbag@icloud.com', 'first_name': 'JOE', 'last_name': 'G', 'password': 'wuqmas-deknaN-wosfa5', 'password2': 'wuqmas-deknaN-wosfa5'}
+INFO 2025-03-09 00:33:30,844 views User registered successfully: JOG
+INFO 2025-03-09 00:33:30,845 views Redirecting to registration success page
+INFO 2025-03-09 00:33:30,846 basehttp "POST /accounts/register/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:33:30,960 basehttp "GET /accounts/registration-success/JOG/ HTTP/1.1" 200 5105
+INFO 2025-03-09 00:33:34,277 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-09 00:33:39,316 views Login attempt for user: JOG
+INFO 2025-03-09 00:33:39,593 views Login successful for user: JOG
+INFO 2025-03-09 00:33:39,593 basehttp "POST /accounts/login-jwt/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:33:39,606 basehttp "GET /dashboard/ HTTP/1.1" 200 14727
+WARNING 2025-03-09 00:33:39,629 log Unauthorized: /dashboard/data/
+WARNING 2025-03-09 00:33:39,629 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-09 00:33:39,647 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-09 00:33:42,429 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-09 00:33:42,457 log Unauthorized: /dashboard/data/
+WARNING 2025-03-09 00:33:42,458 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-09 00:33:42,470 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-09 00:33:43,091 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-09 00:33:43,135 log Unauthorized: /dashboard/data/
+WARNING 2025-03-09 00:33:43,136 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-09 00:33:43,202 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-09 00:33:43,825 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-09 00:33:43,843 log Unauthorized: /dashboard/data/
+WARNING 2025-03-09 00:33:43,844 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-09 00:33:43,859 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-09 00:33:44,952 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-09 00:33:44,995 log Unauthorized: /dashboard/data/
+WARNING 2025-03-09 00:33:44,995 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-09 00:33:45,064 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+WARNING 2025-03-09 00:33:48,990 log Unauthorized: /contacts/
+WARNING 2025-03-09 00:33:48,990 basehttp "GET /contacts/ HTTP/1.1" 401 5139
+INFO 2025-03-09 00:35:36,759 basehttp "GET / HTTP/1.1" 200 8025
+INFO 2025-03-09 00:35:39,003 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-09 00:35:39,023 log Unauthorized: /dashboard/data/
+WARNING 2025-03-09 00:35:39,023 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-09 00:35:39,036 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+WARNING 2025-03-09 00:35:40,851 log Unauthorized: /contacts/
+WARNING 2025-03-09 00:35:40,851 basehttp "GET /contacts/ HTTP/1.1" 401 5139
+INFO 2025-03-09 00:35:46,060 basehttp "GET /admin/ HTTP/1.1" 200 8667
+INFO 2025-03-09 00:35:46,071 basehttp "GET /static/admin/css/base.css HTTP/1.1" 304 0
+INFO 2025-03-09 00:35:46,075 basehttp "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+INFO 2025-03-09 00:35:46,076 basehttp "GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+INFO 2025-03-09 00:35:46,076 basehttp "GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+INFO 2025-03-09 00:35:46,076 basehttp "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+INFO 2025-03-09 00:35:46,076 basehttp "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+INFO 2025-03-09 00:35:46,076 basehttp "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+INFO 2025-03-09 00:35:46,089 basehttp "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+INFO 2025-03-09 00:35:46,089 basehttp "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+INFO 2025-03-09 00:35:49,403 basehttp "GET /admin/contacts/contact/ HTTP/1.1" 200 10802
+INFO 2025-03-09 00:35:49,417 basehttp "GET /static/admin/css/changelists.css HTTP/1.1" 200 6811
+INFO 2025-03-09 00:35:49,417 basehttp "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+INFO 2025-03-09 00:35:49,418 basehttp "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+INFO 2025-03-09 00:35:49,418 basehttp "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2025-03-09 00:35:49,418 basehttp "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO 2025-03-09 00:35:49,422 basehttp "GET /static/admin/js/core.js HTTP/1.1" 304 0
+INFO 2025-03-09 00:35:49,422 basehttp "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+INFO 2025-03-09 00:35:49,423 basehttp "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+INFO 2025-03-09 00:35:49,424 basehttp "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+INFO 2025-03-09 00:35:49,424 basehttp "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+INFO 2025-03-09 00:35:49,426 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-03-09 00:35:49,427 basehttp "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+INFO 2025-03-09 00:35:49,454 basehttp "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 304 0
+INFO 2025-03-09 00:35:49,455 basehttp "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+INFO 2025-03-09 00:35:54,106 basehttp "GET /admin/contacts/contact/add/ HTTP/1.1" 200 14885
+INFO 2025-03-09 00:35:54,115 basehttp "GET /static/admin/css/forms.css HTTP/1.1" 304 0
+INFO 2025-03-09 00:35:54,115 basehttp "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 304 0
+INFO 2025-03-09 00:35:54,115 basehttp "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2025-03-09 00:35:54,118 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-03-09 00:35:54,118 basehttp "GET /static/admin/css/widgets.css HTTP/1.1" 200 11800
+INFO 2025-03-09 00:37:06,133 basehttp "POST /admin/contacts/contact/add/ HTTP/1.1" 302 0
+INFO 2025-03-09 00:37:06,151 basehttp "GET /admin/contacts/contact/ HTTP/1.1" 200 13090
+INFO 2025-03-09 00:37:06,160 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-03-09 00:37:06,175 basehttp "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+INFO 2025-03-09 00:37:06,175 basehttp "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+INFO 2025-03-09 00:37:07,863 basehttp "GET /admin/emails/emailtemplate/ HTTP/1.1" 200 11184
+INFO 2025-03-09 00:37:07,878 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-03-09 00:37:10,348 basehttp "GET /admin/emails/emailtemplate/add/ HTTP/1.1" 200 13144
+INFO 2025-03-09 00:37:10,364 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-03-09 00:37:16,382 basehttp "GET /admin/emails/sentemail/ HTTP/1.1" 200 11694
+INFO 2025-03-09 00:37:16,393 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-03-09 00:37:45,387 basehttp - Broken pipe from ('127.0.0.1', 54654)

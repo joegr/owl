@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+
+{% block title %}Email CRM - Your Simple Email Marketing Solution{% endblock %}
+
+{% block extra_css %}
+<style>
+    .hero {
+        background-color: #ecf0f1;
+        padding: 3rem;
+        text-align: center;
+        margin-bottom: 2rem;
+        border-radius: 8px;
+    }
+    .features {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+    }
+    .feature {
+        flex: 0 0 30%;
+        background-color: #f9f9f9;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+    .feature:hover {
+        transform: translateY(-5px);
+    }
+    .feature-icon {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: #3498db;
+    }
+    .cta-section {
+        text-align: center;
+        margin: 3rem 0;
+    }
+    .btn-cta {
+        padding: 12px 30px;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+    .app-section {
+        text-align: center;
+        margin-top: 3rem;
+    }
+    .app-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 2rem;
+    }
+    .app-link-card {
+        flex: 0 0 200px;
+        padding: 1.5rem;
+        border-radius: 8px;
+        background-color: #f5f5f5;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+    .app-link-card:hover {
+        transform: translateY(-5px);
+        background-color: #3498db;
+        color: white;
+    }
+    .app-link-card:hover a {
+        color: white;
+    }
+    .app-link-card i {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #3498db;
+    }
+    .app-link-card:hover i {
+        color: white;
+    }
+    .app-link-card a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 600;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Your Simple Email Marketing Solution</h1>
+    <p class="lead">Manage your contacts and send emails with ease</p>
+    {% if user.is_authenticated %}
+    <a href="/dashboard/" class="btn btn-primary btn-lg mt-3">Go to Dashboard</a>
+    {% else %}
+    <div>
+        <a href="/accounts/login/" class="btn btn-primary btn-lg mt-3 me-2">Log In</a>
+        <a href="/accounts/register-form/" class="btn btn-outline-primary btn-lg mt-3">Sign Up</a>
+    </div>
+    {% endif %}
+</section>
+
+<section class="features">
+    <div class="feature">
+        <div class="feature-icon">
+            <i class="bi bi-people"></i>
+        </div>
+        <h3>Contact Management</h3>
+        <p>Easily add, organize, and manage your contacts in one place.</p>
+    </div>
+    <div class="feature">
+        <div class="feature-icon">
+            <i class="bi bi-envelope"></i>
+        </div>
+        <h3>Email Templates</h3>
+        <p>Create reusable email templates to save time and maintain consistency.</p>
+    </div>
+    <div class="feature">
+        <div class="feature-icon">
+            <i class="bi bi-graph-up"></i>
+        </div>
+        <h3>Email Analytics</h3>
+        <p>Track open rates and click-through rates to optimize your communications.</p>
+    </div>
+    <div class="feature">
+        <div class="feature-icon">
+            <i class="bi bi-speedometer2"></i>
+        </div>
+        <h3>Dashboard</h3>
+        <p>Get insights into your email marketing performance at a glance.</p>
+    </div>
+    <div class="feature">
+        <div class="feature-icon">
+            <i class="bi bi-send"></i>
+        </div>
+        <h3>Bulk Email</h3>
+        <p>Send emails to multiple contacts at once to save time.</p>
+    </div>
+    <div class="feature">
+        <div class="feature-icon">
+            <i class="bi bi-ui-checks"></i>
+        </div>
+        <h3>Simple Interface</h3>
+        <p>Intuitive design makes it easy to get started without a learning curve.</p>
+    </div>
+</section>
+
+{% if user.is_authenticated %}
+<section class="app-section">
+    <h2>Quick Access</h2>
+    <p>Navigate to different sections of the application</p>
+    
+    <div class="app-links">
+        <div class="app-link-card">
+            <i class="bi bi-speedometer2"></i>
+            <h4>Dashboard</h4>
+            <p>View your activity and analytics</p>
+            <a href="/dashboard/">Go to Dashboard</a>
+        </div>
+        
+        <div class="app-link-card">
+            <i class="bi bi-people"></i>
+            <h4>Contacts</h4>
+            <p>Manage your contact list</p>
+            <a href="/contacts/">Manage Contacts</a>
+        </div>
+        
+        <div class="app-link-card">
+            <i class="bi bi-envelope"></i>
+            <h4>Email Templates</h4>
+            <p>Create and manage templates</p>
+            <a href="/emails/templates/">Email Templates</a>
+        </div>
+        
+        <div class="app-link-card">
+            <i class="bi bi-send"></i>
+            <h4>Send Emails</h4>
+            <p>Compose and send emails</p>
+            <a href="/emails/bulk-send/">Send Emails</a>
+        </div>
+        
+        <div class="app-link-card">
+            <i class="bi bi-graph-up"></i>
+            <h4>Analytics</h4>
+            <p>View email performance metrics</p>
+            <a href="/emails/analytics/">Email Analytics</a>
+        </div>
+        
+        <div class="app-link-card">
+            <i class="bi bi-person"></i>
+            <h4>Profile</h4>
+            <p>Manage your account</p>
+            <a href="/accounts/profile/">Your Profile</a>
+        </div>
+    </div>
+</section>
+{% else %}
+<section class="cta-section">
+    <h2>Ready to get started?</h2>
+    <p>Sign up now and start optimizing your email marketing today!</p>
+    <a href="/accounts/register-form/" class="btn btn-primary btn-lg btn-cta">Create Your Account</a>
+</section>
+{% endif %}
+{% endblock %} 

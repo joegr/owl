@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}Register - Email CRM{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">Register</h4>
+            </div>
+            <div class="card-body">
+                <form id="register-form" class="form-container" method="post" action="/accounts/register/">
+                    {% csrf_token %}
+                    <div class="alert alert-danger d-none" id="register-error"></div>
+                    <div class="alert alert-success d-none" id="register-success">
+                        Registration successful! Redirecting to login page...
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="first_name" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name">
+                        </div>
+                        <div class="col">
+                            <label for="last_name" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="password2" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="password2" name="password2" required>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </div>
+                </form>
+                
+                <div class="mt-3 text-center">
+                    <p>Already have an account? <a href="/accounts/login/">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const registerForm = document.getElementById('register-form');
+    const registerError = document.getElementById('register-error');
+    const registerSuccess = document.getElementById('register-success');
+
+    // Only add password match validation
+    registerForm.addEventListener('submit', function(e) {
+        const password = document.getElementById('password').value;
+        const password2 = document.getElementById('password2').value;
+        
+        registerError.classList.add('d-none');
+        
+        // Client-side validation for password matching
+        if (password !== password2) {
+            e.preventDefault(); // Stop form submission
+            registerError.textContent = 'Passwords do not match';
+            registerError.classList.remove('d-none');
+            return false;
+        }
+        
+        // If we get here, let the form submit normally (not using AJAX)
+        return true;
+    });
+});
+</script>
+{% endblock %} 

@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile - Email CRM{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <h2>Profile</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">Edit Profile</h4>
+            </div>
+            <div class="card-body">
+                <form id="profile-form" class="form-container">
+                    <div class="alert alert-danger d-none" id="profile-error"></div>
+                    <div class="alert alert-success d-none" id="profile-success">
+                        Profile updated successfully!
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="first_name" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="last_name" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name">
+                        </div>
+                    </div>
+                    
+                    <h5 class="mt-4 mb-3">Company Information</h5>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="company_name" class="form-label">Company Name</label>
+                            <input type="text" class="form-control" id="company_name" name="company_name">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="position" class="form-label">Position</label>
+                            <input type="text" class="form-control" id="position" name="position">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input type="tel" class="form-control" id="phone" name="phone">
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">Account Information</h4>
+            </div>
+            <div class="card-body">
+                <p><strong>Member since:</strong> <span id="member-since"></span></p>
+                <p><strong>Last login:</strong> <span id="last-login"></span></p>
+                
+                <hr>
+                
+                <h5 class="mb-3">Change Password</h5>
+                <p class="text-muted small">To change your password, please log out and use the password reset feature from the login page.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', async function() {
+    const profileForm = document.getElementById('profile-form');
+    const profileError = document.getElementById('profile-error');
+    const profileSuccess = document.getElementById('profile-success');
+    
+    // Fetch user profile data
+    try {
+        const { data } = await API.request('/accounts/profile/');
+        
+        if (data) {
+            // Fill the form with user data
+            document.getElementById('username').value = data.username || '';
+            document.getElementById('email').value = data.email || '';
+            document.getElementById('first_name').value = data.first_name || '';
+            document.getElementById('last_name').value = data.last_name || '';
+            
+            // Fill profile data if available
+            if (data.profile) {
+                document.getElementById('company_name').value = data.profile.company_name || '';
+                document.getElementById('position').value = data.profile.position || '';
+                document.getElementById('phone').value = data.profile.phone || '';
+            }
+        }
+    } catch (error) {
+        console.error('Error fetching profile data:', error);
+    }
+    
+    // Handle form submission
+    profileForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        profileError.classList.add('d-none');
+        profileSuccess.classList.add('d-none');
+        
+        const userData = {
+            email: document.getElementById('email').value,
+            first_name: document.getElementById('first_name').value,
+            last_name: document.getElementById('last_name').value,
+            profile: {
+                company_name: document.getElementById('company_name').value,
+                position: document.getElementById('position').value,
+                phone: document.getElementById('phone').value
+            }
+        };
+        
+        try {
+            const { response, data } = await API.request('/accounts/profile/', {
+                method: 'PUT',
+                body: JSON.stringify(userData)
+            });
+            
+            if (response.ok) {
+                profileSuccess.classList.remove('d-none');
+                // Scroll to top to show success message
+                window.scrollTo(0, 0);
+            } else {
+                let errorMessage = 'Update failed. Please check your information.';
+                
+                // Display specific error messages if available
+                if (data) {
+                    const errors = [];
+                    for (const field in data) {
+                        errors.push(`${field}: ${data[field]}`);
+                    }
+                    if (errors.length > 0) {
+                        errorMessage = errors.join('<br>');
+                    }
+                }
+                
+                profileError.innerHTML = errorMessage;
+                profileError.classList.remove('d-none');
+            }
+        } catch (error) {
+            profileError.textContent = 'An error occurred. Please try again.';
+            profileError.classList.remove('d-none');
+            console.error('Profile update error:', error);
+        }
+    });
+});
+</script>
+{% endblock %} 
