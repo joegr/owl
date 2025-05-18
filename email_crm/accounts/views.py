@@ -4,15 +4,14 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.contrib import messages
 from .models import Profile
 from .serializers import UserSerializer, ProfileSerializer, RegisterSerializer
-from django.contrib.auth import authenticate
 from django.views.decorators.http import require_http_methods
-from rest_framework_simplejwt.tokens import RefreshToken
 import json
 import logging
 from django.urls import reverse
@@ -120,10 +119,10 @@ class UserProfileView(APIView):
         
         return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# Form-based login with JWT
+# Form-based login with Django session authentication
 @require_http_methods(["POST"])
 def login_jwt(request):
-    """Handle form-based login and set JWT tokens in cookies."""
+    """Handle form-based login using Django's session authentication."""
     username = request.POST.get('username')
     password = request.POST.get('password')
     next_url = request.POST.get('next', '/dashboard/')
@@ -134,10 +133,8 @@ def login_jwt(request):
     user = authenticate(username=username, password=password)
     
     if user is not None:
-        # Generate tokens
-        refresh = RefreshToken.for_user(user)
-        access_token = str(refresh.access_token)
-        refresh_token = str(refresh)
+        # Use Django's login function to create a session
+        login(request, user)
         
         # Log successful login
         logger.info(f"Login successful for user: {username}")
@@ -145,35 +142,7 @@ def login_jwt(request):
         # Add success message
         messages.success(request, f"Welcome back, {user.username}!")
         
-        # Set cookies
-        response = redirect(next_url)
-        
-        # Set cookies with proper settings
-        response.set_cookie(
-            'access_token', 
-            access_token, 
-            httponly=True, 
-            samesite='Lax',
-            max_age=60*60*24  # 1 day
-        )
-        response.set_cookie(
-            'refresh_token', 
-            refresh_token, 
-            httponly=True, 
-            samesite='Lax',
-            max_age=60*60*24*7  # 7 days
-        )
-        
-        # Also set in localStorage via JavaScript for API.js compatibility
-        response.set_cookie(
-            'token', 
-            access_token, 
-            httponly=False,  # Accessible from JavaScript
-            samesite='Lax',
-            max_age=60*60*24  # 1 day
-        )
-        
-        return response
+        return redirect(next_url)
     else:
         # Log failed login
         logger.warning(f"Login failed for user: {username}")
@@ -198,3 +167,11 @@ def registration_success_view(request, username):
 def profile_view(request):
     """Render the user profile page template."""
     return render(request, 'accounts/profile.html')
+
+@login_required
+def logout_view(request):
+    """Handle user logout."""
+    # Use Django's built-in logout functionality
+    logout(request)
+    messages.success(request, "You have been successfully logged out.")
+    return redirect('accounts:login')

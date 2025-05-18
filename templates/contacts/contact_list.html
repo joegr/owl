@@ -1,0 +1,539 @@
+{% extends 'base.html' %}
+
+{% block title %}My Contacts - Email CRM{% endblock %}
+
+{% block extra_css %}
+<style>
+    .contact-card {
+        transition: transform 0.2s ease;
+    }
+    .contact-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .search-container {
+        position: relative;
+    }
+    .search-icon {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        color: #6c757d;
+    }
+    .search-input {
+        padding-left: 35px;
+    }
+    .filter-dropdown {
+        min-width: 220px;
+    }
+    .contact-select-checkbox {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+    .bulk-actions {
+        display: none;
+    }
+    .contact-card.selected {
+        border: 2px solid #0d6efd;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h2>My Contacts</h2>
+            <p class="text-muted">Manage your contact list</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+            <a href="{% url 'contacts:add' %}" class="btn btn-primary">
+                <i class="bi bi-person-plus"></i> Add New Contact
+            </a>
+            <a href="{% url 'emails:select_contact' %}" class="btn btn-outline-info ms-2">
+                <i class="bi bi-envelope"></i> Compose Email
+            </a>
+        </div>
+    </div>
+
+    <!-- Bulk Actions -->
+    <div id="bulk-actions" class="bulk-actions mb-3">
+        <div class="card">
+            <div class="card-body d-flex align-items-center">
+                <span class="me-3"><span id="selected-count">0</span> contacts selected</span>
+                <button id="send-bulk-email" class="btn btn-primary me-2">
+                    <i class="bi bi-envelope"></i> Email Selected Contacts
+                </button>
+                <button id="cancel-selection" class="btn btn-outline-secondary">
+                    <i class="bi bi-x"></i> Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search and Filters -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <div class="search-container">
+                <span class="search-icon">
+                    <i class="bi bi-search"></i>
+                </span>
+                <input type="text" id="contact-search" class="form-control search-input" placeholder="Search contacts...">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="dropdown">
+                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-funnel"></i> Filter
+                </button>
+                <div class="dropdown-menu filter-dropdown" aria-labelledby="filterDropdown">
+                    <div class="px-3 py-2">
+                        <div class="mb-3">
+                            <label class="form-label">Company</label>
+                            <select id="company-filter" class="form-select form-select-sm">
+                                <option value="">All Companies</option>
+                                <!-- Will be populated dynamically -->
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Position</label>
+                            <select id="position-filter" class="form-select form-select-sm">
+                                <option value="">All Positions</option>
+                                <!-- Will be populated dynamically -->
+                            </select>
+                        </div>
+                        <div class="d-grid">
+                            <button id="clear-filters" class="btn btn-sm btn-outline-secondary">Clear Filters</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message alerts -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Contacts List -->
+    <div id="contacts-container">
+        <div class="row g-3" id="contacts-list">
+            <!-- Loading placeholder -->
+            <div class="col-12 text-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-2">Loading contacts...</p>
+            </div>
+        </div>
+        
+        <!-- Empty state -->
+        <div id="empty-state" class="text-center py-5 d-none">
+            <i class="bi bi-people" style="font-size: 3rem; color: #dee2e6;"></i>
+            <h5 class="mt-3">No contacts found</h5>
+            <p class="text-muted">Start by adding your first contact</p>
+            <a href="{% url 'contacts:add' %}" class="btn btn-primary mt-2">
+                <i class="bi bi-person-plus"></i> Add Contact
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Card Template -->
+<template id="contact-card-template">
+    <div class="col-md-6 col-lg-4 contact-item">
+        <div class="card contact-card h-100 position-relative">
+            <input type="checkbox" class="form-check-input contact-select-checkbox" data-id="">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <h5 class="card-title contact-name mb-0"></h5>
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-link text-muted" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item view-contact" href="#"><i class="bi bi-eye me-2"></i>View</a></li>
+                            <li><a class="dropdown-item edit-contact" href="#"><i class="bi bi-pencil me-2"></i>Edit</a></li>
+                            <li><a class="dropdown-item compose-email" href="#"><i class="bi bi-envelope me-2"></i>Email</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item delete-contact text-danger" href="#"><i class="bi bi-trash me-2"></i>Delete</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="card-text text-muted contact-email"></p>
+                <div class="mb-2 contact-company-wrapper">
+                    <small class="text-muted">
+                        <i class="bi bi-building me-1"></i>
+                        <span class="contact-company"></span>
+                    </small>
+                </div>
+                <div class="mb-2 contact-position-wrapper">
+                    <small class="text-muted">
+                        <i class="bi bi-briefcase me-1"></i>
+                        <span class="contact-position"></span>
+                    </small>
+                </div>
+                <div class="mt-3">
+                    <a href="#" class="btn btn-sm btn-outline-primary compose-email-btn">
+                        <i class="bi bi-envelope"></i> Email
+                    </a>
+                    <a href="#" class="btn btn-sm btn-outline-secondary view-contact-btn">
+                        <i class="bi bi-eye"></i> View
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Load contacts
+    loadContacts();
+    
+    // Check if we should show bulk selection (from dashboard redirect)
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('action') === 'bulk_select') {
+        // Show a message prompting the user to select contacts
+        const alertDiv = document.createElement('div');
+        alertDiv.className = 'alert alert-info alert-dismissible fade show mb-4';
+        alertDiv.innerHTML = `
+            <h5><i class="bi bi-info-circle"></i> Select contacts for bulk email</h5>
+            <p>Select the contacts you want to email, then click "Email Selected Contacts".</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        `;
+        
+        // Insert after the search row
+        const searchRow = document.querySelector('.row.mb-4');
+        searchRow.parentNode.insertBefore(alertDiv, searchRow.nextSibling);
+    }
+    
+    // Set up search functionality
+    const searchInput = document.getElementById('contact-search');
+    searchInput.addEventListener('input', debounce(function() {
+        filterContacts();
+    }, 300));
+    
+    // Set up filter functionality
+    const companyFilter = document.getElementById('company-filter');
+    const positionFilter = document.getElementById('position-filter');
+    
+    companyFilter.addEventListener('change', filterContacts);
+    positionFilter.addEventListener('change', filterContacts);
+    
+    document.getElementById('clear-filters').addEventListener('click', function() {
+        companyFilter.value = '';
+        positionFilter.value = '';
+        searchInput.value = '';
+        filterContacts();
+    });
+
+    // Set up bulk selection
+    document.addEventListener('change', function(e) {
+        if (e.target.classList.contains('contact-select-checkbox')) {
+            const contactCard = e.target.closest('.contact-card');
+            if (e.target.checked) {
+                contactCard.classList.add('selected');
+            } else {
+                contactCard.classList.remove('selected');
+            }
+            updateSelectedCount();
+        }
+    });
+
+    // Setup bulk action buttons
+    document.getElementById('send-bulk-email').addEventListener('click', function() {
+        const selectedIds = getSelectedContactIds();
+        
+        // Use POST request with form to transfer contact IDs
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '{% url "emails:bulk_compose" %}';
+        
+        // Add CSRF token
+        const csrfTokenInput = document.createElement('input');
+        csrfTokenInput.type = 'hidden';
+        csrfTokenInput.name = 'csrfmiddlewaretoken';
+        csrfTokenInput.value = '{{ csrf_token }}';
+        form.appendChild(csrfTokenInput);
+        
+        // Add selected contact IDs
+        const contactIdsInput = document.createElement('input');
+        contactIdsInput.type = 'hidden';
+        contactIdsInput.name = 'contact_ids';
+        contactIdsInput.value = selectedIds.join(',');
+        form.appendChild(contactIdsInput);
+        
+        // Add the form to the document and submit it
+        document.body.appendChild(form);
+        form.submit();
+    });
+
+    document.getElementById('cancel-selection').addEventListener('click', function() {
+        clearSelection();
+    });
+    
+    // Load contacts from API
+    async function loadContacts() {
+        try {
+            console.log('Fetching contacts from API...');
+            const response = await fetch('/api/contacts/');
+            
+            if (!response.ok) {
+                throw new Error(`Failed to load contacts: ${response.status} ${response.statusText}`);
+            }
+            
+            const data = await response.json();
+            console.log(`Loaded ${data.length} contacts from API`);
+            
+            // Populate filter dropdowns
+            populateFilterOptions(data);
+            
+            // Render contacts
+            renderContacts(data);
+        } catch (error) {
+            console.error('Error loading contacts:', error);
+            document.getElementById('contacts-list').innerHTML = `
+                <div class="col-12 text-center py-5">
+                    <i class="bi bi-exclamation-triangle text-warning" style="font-size: 2rem;"></i>
+                    <h5 class="mt-3">Error loading contacts</h5>
+                    <p>${error.message}</p>
+                    <button class="btn btn-primary mt-2" onclick="location.reload()">
+                        <i class="bi bi-arrow-repeat"></i> Try Again
+                    </button>
+                </div>
+            `;
+        }
+    }
+    
+    // Populate filter dropdowns with unique values
+    function populateFilterOptions(contacts) {
+        // Skip if no contacts
+        if (!contacts || contacts.length === 0) return;
+        
+        const companies = new Set();
+        const positions = new Set();
+        
+        contacts.forEach(contact => {
+            if (contact.company) companies.add(contact.company);
+            if (contact.position) positions.add(contact.position);
+        });
+        
+        // Populate company filter
+        companies.forEach(company => {
+            const option = document.createElement('option');
+            option.value = company;
+            option.textContent = company;
+            companyFilter.appendChild(option);
+        });
+        
+        // Populate position filter
+        positions.forEach(position => {
+            const option = document.createElement('option');
+            option.value = position;
+            option.textContent = position;
+            positionFilter.appendChild(option);
+        });
+    }
+    
+    // Render contact cards
+    function renderContacts(contacts) {
+        const contactsList = document.getElementById('contacts-list');
+        const emptyState = document.getElementById('empty-state');
+        const template = document.getElementById('contact-card-template');
+        
+        // Clear loading indicator
+        contactsList.innerHTML = '';
+        
+        // Show empty state if no contacts
+        if (!contacts || contacts.length === 0) {
+            emptyState.classList.remove('d-none');
+            emptyState.querySelector('h5').textContent = "No contacts found";
+            emptyState.querySelector('p').textContent = "Start by adding your first contact";
+            return;
+        }
+        
+        // Hide empty state
+        emptyState.classList.add('d-none');
+        
+        // Render each contact
+        contacts.forEach(contact => {
+            const contactCard = template.content.cloneNode(true);
+            
+            // Set contact data
+            contactCard.querySelector('.contact-name').textContent = contact.name;
+            contactCard.querySelector('.contact-email').textContent = contact.email;
+            
+            // Set checkbox data-id
+            contactCard.querySelector('.contact-select-checkbox').dataset.id = contact.id;
+            
+            // Company
+            if (contact.company) {
+                contactCard.querySelector('.contact-company').textContent = contact.company;
+            } else {
+                contactCard.querySelector('.contact-company-wrapper').style.display = 'none';
+            }
+            
+            // Position
+            if (contact.position) {
+                contactCard.querySelector('.contact-position').textContent = contact.position;
+            } else {
+                contactCard.querySelector('.contact-position-wrapper').style.display = 'none';
+            }
+            
+            // Set links
+            const viewLinks = contactCard.querySelectorAll('.view-contact, .view-contact-btn');
+            viewLinks.forEach(link => {
+                link.href = `/contacts/view/${contact.id}/`;
+            });
+            
+            const editLinks = contactCard.querySelectorAll('.edit-contact');
+            editLinks.forEach(link => {
+                link.href = `/contacts/edit/${contact.id}/`;
+            });
+            
+            const emailLinks = contactCard.querySelectorAll('.compose-email, .compose-email-btn');
+            emailLinks.forEach(link => {
+                link.href = `/emails/compose/${contact.id}/`;
+            });
+            
+            const deleteLinks = contactCard.querySelectorAll('.delete-contact');
+            deleteLinks.forEach(link => {
+                link.href = `/contacts/delete/${contact.id}/`;
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (confirm(`Are you sure you want to delete ${contact.name}?`)) {
+                        window.location.href = this.href;
+                    }
+                });
+            });
+            
+            // Add click event to card for selection
+            const card = contactCard.querySelector('.contact-card');
+            card.addEventListener('click', function(e) {
+                // Skip if the click was on a link or the checkbox
+                if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || 
+                    e.target.tagName === 'INPUT' || e.target.closest('a') || 
+                    e.target.closest('button')) {
+                    return;
+                }
+                
+                // Toggle checkbox
+                const checkbox = this.querySelector('.contact-select-checkbox');
+                checkbox.checked = !checkbox.checked;
+                
+                // Toggle selected class
+                if (checkbox.checked) {
+                    this.classList.add('selected');
+                } else {
+                    this.classList.remove('selected');
+                }
+                
+                updateSelectedCount();
+                e.preventDefault();
+            });
+            
+            // Add the completed card to the list
+            contactsList.appendChild(contactCard);
+        });
+    }
+    
+    // Filter contacts based on search and filter values
+    function filterContacts() {
+        const searchValue = searchInput.value.toLowerCase();
+        const companyValue = companyFilter.value;
+        const positionValue = positionFilter.value;
+        
+        // Get all contact items
+        const contactItems = document.querySelectorAll('.contact-item');
+        
+        let visibleCount = 0;
+        
+        contactItems.forEach(item => {
+            const name = item.querySelector('.contact-name').textContent.toLowerCase();
+            const email = item.querySelector('.contact-email').textContent.toLowerCase();
+            
+            // Handle case where these elements might not exist
+            const companyEl = item.querySelector('.contact-company');
+            const positionEl = item.querySelector('.contact-position');
+            
+            const company = companyEl ? companyEl.textContent : '';
+            const position = positionEl ? positionEl.textContent : '';
+            
+            // Check if contact matches all filters
+            const matchesSearch = name.includes(searchValue) || email.includes(searchValue);
+            const matchesCompany = !companyValue || company === companyValue;
+            const matchesPosition = !positionValue || position === positionValue;
+            
+            // Show or hide based on filter match
+            if (matchesSearch && matchesCompany && matchesPosition) {
+                item.style.display = '';
+                visibleCount++;
+            } else {
+                item.style.display = 'none';
+            }
+        });
+        
+        // Show/hide empty state
+        const emptyState = document.getElementById('empty-state');
+        if (visibleCount === 0) {
+            emptyState.classList.remove('d-none');
+            emptyState.querySelector('h5').textContent = "No contacts match your filters";
+            emptyState.querySelector('p').textContent = "Try changing your search or filter criteria";
+        } else {
+            emptyState.classList.add('d-none');
+        }
+        
+        console.log(`Filtered contacts: ${visibleCount} visible out of ${contactItems.length} total`);
+    }
+    
+    // Functions for contact selection
+    function updateSelectedCount() {
+        const selectedCount = document.querySelectorAll('.contact-select-checkbox:checked').length;
+        document.getElementById('selected-count').textContent = selectedCount;
+        
+        // Show/hide bulk actions section
+        if (selectedCount > 0) {
+            document.getElementById('bulk-actions').style.display = 'block';
+        } else {
+            document.getElementById('bulk-actions').style.display = 'none';
+        }
+    }
+    
+    function getSelectedContactIds() {
+        const checkboxes = document.querySelectorAll('.contact-select-checkbox:checked');
+        return Array.from(checkboxes).map(checkbox => checkbox.dataset.id);
+    }
+    
+    function clearSelection() {
+        document.querySelectorAll('.contact-select-checkbox').forEach(checkbox => {
+            checkbox.checked = false;
+        });
+        document.querySelectorAll('.contact-card').forEach(card => {
+            card.classList.remove('selected');
+        });
+        updateSelectedCount();
+    }
+    
+    // Debounce function for search input
+    function debounce(func, delay) {
+        let timeout;
+        return function() {
+            const context = this;
+            const args = arguments;
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(context, args), delay);
+        };
+    }
+});
+</script>
+{% endblock %} 

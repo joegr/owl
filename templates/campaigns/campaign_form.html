@@ -1,0 +1,583 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if form.instance.id %}Edit Campaign{% else %}Create Campaign{% endif %} - Email CRM{% endblock %}
+
+{% block extra_css %}
+<style>
+    .form-section {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .recipient-info {
+        background-color: #e9ecef;
+        border-radius: 6px;
+        padding: 10px 15px;
+        margin-bottom: 15px;
+    }
+    .ck-editor__editable {
+        min-height: 300px;
+    }
+    .schedule-options {
+        display: none;
+    }
+    .schedule-options.active {
+        display: block;
+    }
+    .preview-pane {
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 20px;
+        min-height: 200px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h2>{% if form.instance.id %}Edit Campaign{% else %}Create Campaign{% endif %}</h2>
+            <p class="text-muted">Configure your email campaign</p>
+        </div>
+        <div class="col-md-4 text-md-end">
+            <a href="{% url 'campaigns:list' %}" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i> Back to Campaigns
+            </a>
+        </div>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data" id="campaign-form">
+        {% csrf_token %}
+        
+        <!-- Step navigation -->
+        <ul class="nav nav-tabs mb-4" id="campaignSteps" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab" aria-controls="details" aria-selected="true">
+                    1. Campaign Details
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="content-tab" data-bs-toggle="tab" data-bs-target="#content" type="button" role="tab" aria-controls="content" aria-selected="false">
+                    2. Email Content
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="recipients-tab" data-bs-toggle="tab" data-bs-target="#recipients" type="button" role="tab" aria-controls="recipients" aria-selected="false">
+                    3. Recipients
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="schedule-tab" data-bs-toggle="tab" data-bs-target="#schedule" type="button" role="tab" aria-controls="schedule" aria-selected="false">
+                    4. Schedule
+                </button>
+            </li>
+        </ul>
+        
+        <div class="tab-content" id="campaignStepsContent">
+            <!-- Step 1: Campaign Details -->
+            <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
+                <div class="form-section">
+                    <div class="row mb-3">
+                        <div class="col-md-8">
+                            <label for="{{ form.name.id_for_label }}" class="form-label">Campaign Name*</label>
+                            {{ form.name }}
+                            {% if form.name.errors %}
+                                <div class="invalid-feedback d-block">{{ form.name.errors }}</div>
+                            {% endif %}
+                            <div class="form-text">A descriptive name to identify this campaign</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label for="{{ form.description.id_for_label }}" class="form-label">Description</label>
+                            {{ form.description }}
+                            {% if form.description.errors %}
+                                <div class="invalid-feedback d-block">{{ form.description.errors }}</div>
+                            {% endif %}
+                            <div class="form-text">Optional notes about the purpose of this campaign</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="{{ form.from_name.id_for_label }}" class="form-label">From Name*</label>
+                            {{ form.from_name }}
+                            {% if form.from_name.errors %}
+                                <div class="invalid-feedback d-block">{{ form.from_name.errors }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="{{ form.from_email.id_for_label }}" class="form-label">From Email*</label>
+                            {{ form.from_email }}
+                            {% if form.from_email.errors %}
+                                <div class="invalid-feedback d-block">{{ form.from_email.errors }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <button type="button" class="btn btn-primary next-step">Continue to Email Content</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 2: Email Content -->
+            <div class="tab-pane fade" id="content" role="tabpanel" aria-labelledby="content-tab">
+                <div class="form-section">
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label for="{{ form.subject.id_for_label }}" class="form-label">Email Subject*</label>
+                            {{ form.subject }}
+                            {% if form.subject.errors %}
+                                <div class="invalid-feedback d-block">{{ form.subject.errors }}</div>
+                            {% endif %}
+                            <div class="form-text">Use personalization tags like {{first_name}} if needed</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <label for="{{ form.content.id_for_label }}" class="form-label">Email Content*</label>
+                            {{ form.content }}
+                            {% if form.content.errors %}
+                                <div class="invalid-feedback d-block">{{ form.content.errors }}</div>
+                            {% endif %}
+                            <div class="form-text mt-2">
+                                Available personalization tags: {{first_name}}, {{last_name}}, {{email}}, {{company}}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" id="showPreview">
+                                <label class="form-check-label" for="showPreview">Show Preview</label>
+                            </div>
+                            <div class="preview-pane" id="emailPreview" style="display: none;">
+                                <h5 id="previewSubject"></h5>
+                                <hr>
+                                <div id="previewContent"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 d-flex justify-content-between">
+                        <button type="button" class="btn btn-outline-secondary prev-step">Back</button>
+                        <button type="button" class="btn btn-primary next-step">Continue to Recipients</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 3: Recipients -->
+            <div class="tab-pane fade" id="recipients" role="tabpanel" aria-labelledby="recipients-tab">
+                <div class="form-section">
+                    <div class="mb-4">
+                        <label class="form-label">Select Recipients*</label>
+                        
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input recipient-type" type="radio" name="recipient_type" id="list_option" value="list" {% if recipient_type == 'list' %}checked{% endif %}>
+                                <label class="form-check-label" for="list_option">
+                                    Send to a contact list
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input recipient-type" type="radio" name="recipient_type" id="filter_option" value="filter" {% if recipient_type == 'filter' %}checked{% endif %}>
+                                <label class="form-check-label" for="filter_option">
+                                    Filter contacts
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div id="list_selection" class="recipient-selection" {% if recipient_type == 'filter' %}style="display: none;"{% endif %}>
+                            <label for="{{ form.contact_list.id_for_label }}" class="form-label">Select Contact List</label>
+                            {{ form.contact_list }}
+                            {% if form.contact_list.errors %}
+                                <div class="invalid-feedback d-block">{{ form.contact_list.errors }}</div>
+                            {% endif %}
+                            <div id="list-count" class="recipient-info mt-2" style="display: none;">
+                                <i class="bi bi-people"></i> <span id="list-recipient-count">0</span> contacts in this list
+                            </div>
+                        </div>
+                        
+                        <div id="filter_selection" class="recipient-selection" {% if recipient_type == 'list' %}style="display: none;"{% endif %}>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="{{ form.companies.id_for_label }}" class="form-label">By Company</label>
+                                    {{ form.companies }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="{{ form.positions.id_for_label }}" class="form-label">By Position</label>
+                                    {{ form.positions }}
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-outline-secondary btn-sm" id="preview-filter">
+                                <i class="bi bi-eye"></i> Preview Matching Contacts
+                            </button>
+                            <div id="filter-count" class="recipient-info mt-2" style="display: none;">
+                                <i class="bi bi-people"></i> <span id="filter-recipient-count">0</span> contacts match these filters
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 d-flex justify-content-between">
+                        <button type="button" class="btn btn-outline-secondary prev-step">Back</button>
+                        <button type="button" class="btn btn-primary next-step">Continue to Schedule</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 4: Schedule -->
+            <div class="tab-pane fade" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
+                <div class="form-section">
+                    <div class="mb-4">
+                        <label class="form-label">When to send this campaign?</label>
+                        
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input schedule-type" type="radio" name="schedule_type" id="send_now" value="now" checked>
+                                <label class="form-check-label" for="send_now">
+                                    Send immediately
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input schedule-type" type="radio" name="schedule_type" id="schedule_later" value="later">
+                                <label class="form-check-label" for="schedule_later">
+                                    Schedule for later
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input schedule-type" type="radio" name="schedule_type" id="save_draft" value="draft">
+                                <label class="form-check-label" for="save_draft">
+                                    Save as draft
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div id="schedule_options" class="schedule-options">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="{{ form.scheduled_at.id_for_label }}" class="form-label">Send Date & Time</label>
+                                    {{ form.scheduled_at }}
+                                    {% if form.scheduled_at.errors %}
+                                        <div class="invalid-feedback d-block">{{ form.scheduled_at.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-info mt-3">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-info-circle-fill me-2"></i>
+                                <div>
+                                    <strong id="schedule-summary">Campaign will be sent immediately after submission.</strong>
+                                    <div id="recipient-summary" class="small">
+                                        Sending to <span id="final-recipient-count">0</span> contacts.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 d-flex justify-content-between">
+                        <button type="button" class="btn btn-outline-secondary prev-step">Back</button>
+                        <button type="submit" class="btn btn-success" id="submit-button">
+                            <i class="bi bi-send"></i> Create Campaign
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize CKEditor for the content field
+    ClassicEditor
+        .create(document.querySelector('#{{ form.content.id_for_label }}'))
+        .then(editor => {
+            window.editor = editor;
+            
+            // Handle preview toggling
+            document.getElementById('showPreview').addEventListener('change', function() {
+                const previewPane = document.getElementById('emailPreview');
+                if (this.checked) {
+                    previewPane.style.display = 'block';
+                    updatePreview();
+                } else {
+                    previewPane.style.display = 'none';
+                }
+            });
+            
+            // Update preview when content changes
+            editor.model.document.on('change:data', updatePreview);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    
+    // Update preview when subject changes
+    document.getElementById('{{ form.subject.id_for_label }}').addEventListener('input', updatePreview);
+    
+    function updatePreview() {
+        if (document.getElementById('showPreview').checked) {
+            const subject = document.getElementById('{{ form.subject.id_for_label }}').value || '(No subject)';
+            document.getElementById('previewSubject').textContent = subject;
+            
+            const content = window.editor.getData();
+            document.getElementById('previewContent').innerHTML = content;
+        }
+    }
+    
+    // Tab navigation
+    const nextButtons = document.querySelectorAll('.next-step');
+    const prevButtons = document.querySelectorAll('.prev-step');
+    const tabList = ['details-tab', 'content-tab', 'recipients-tab', 'schedule-tab'];
+    
+    nextButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const currentTab = document.querySelector('.nav-link.active');
+            const currentIndex = tabList.indexOf(currentTab.id);
+            if (currentIndex < tabList.length - 1) {
+                // Save form data to session storage before moving to next tab
+                saveFormDataToSession();
+                document.getElementById(tabList[currentIndex + 1]).click();
+            }
+        });
+    });
+    
+    prevButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const currentTab = document.querySelector('.nav-link.active');
+            const currentIndex = tabList.indexOf(currentTab.id);
+            if (currentIndex > 0) {
+                document.getElementById(tabList[currentIndex - 1]).click();
+            }
+        });
+    });
+    
+    // Save form data to session storage
+    function saveFormDataToSession() {
+        // Get all form fields
+        const formData = {};
+        
+        // Get regular form fields
+        const form = document.getElementById('campaign-form');
+        const formElements = form.elements;
+        
+        for (let i = 0; i < formElements.length; i++) {
+            const element = formElements[i];
+            if (element.name && element.name !== 'csrfmiddlewaretoken' && element.name !== '') {
+                if (element.type === 'checkbox') {
+                    formData[element.name] = element.checked;
+                } else if (element.type !== 'button' && element.type !== 'submit') {
+                    formData[element.name] = element.value;
+                }
+            }
+        }
+        
+        // Get recipient type
+        const recipientType = document.querySelector('input[name="recipient_type"]:checked').value;
+        formData['recipient_type'] = recipientType;
+        
+        // Get content from CKEditor
+        if (window.editor) {
+            formData['content'] = window.editor.getData();
+        }
+        
+        // Store in session storage
+        sessionStorage.setItem('campaign_form_data', JSON.stringify(formData));
+    }
+    
+    // Restore form data from session storage
+    function restoreFormDataFromSession() {
+        const savedData = sessionStorage.getItem('campaign_form_data');
+        if (savedData) {
+            const formData = JSON.parse(savedData);
+            const form = document.getElementById('campaign-form');
+            const formElements = form.elements;
+            
+            // Restore values
+            for (let i = 0; i < formElements.length; i++) {
+                const element = formElements[i];
+                if (element.name && formData[element.name] !== undefined) {
+                    if (element.type === 'checkbox') {
+                        element.checked = formData[element.name];
+                    } else if (element.type !== 'button' && element.type !== 'submit') {
+                        element.value = formData[element.name];
+                    }
+                }
+            }
+            
+            // Restore content for CKEditor when it's ready
+            if (window.editor && formData['content']) {
+                window.editor.setData(formData['content']);
+            }
+            
+            // Restore recipient type
+            if (formData['recipient_type']) {
+                document.querySelectorAll('.recipient-type').forEach(radio => {
+                    if (radio.value === formData['recipient_type']) {
+                        radio.checked = true;
+                        // Trigger change event to show correct selection panel
+                        radio.dispatchEvent(new Event('change'));
+                    }
+                });
+            }
+        }
+    }
+    
+    // Save form data when leaving or refreshing the page
+    window.addEventListener('beforeunload', function() {
+        saveFormDataToSession();
+    });
+    
+    // Restore form data when the page loads
+    restoreFormDataFromSession();
+    
+    // Clear session storage when the form is submitted
+    document.getElementById('campaign-form').addEventListener('submit', function() {
+        sessionStorage.removeItem('campaign_form_data');
+    });
+    
+    // Recipient type selection
+    const recipientTypes = document.querySelectorAll('.recipient-type');
+    recipientTypes.forEach(type => {
+        type.addEventListener('change', function() {
+            document.querySelectorAll('.recipient-selection').forEach(el => {
+                el.style.display = 'none';
+            });
+            
+            if (this.value === 'list') {
+                document.getElementById('list_selection').style.display = 'block';
+                // Save to session storage
+                sessionStorage.setItem('recipient_type', 'list');
+            } else {
+                document.getElementById('filter_selection').style.display = 'block';
+                // Save to session storage
+                sessionStorage.setItem('recipient_type', 'filter');
+            }
+        });
+    });
+    
+    // Initialize recipient type from session storage or Django context
+    const savedRecipientType = sessionStorage.getItem('recipient_type') || '{{ recipient_type }}';
+    if (savedRecipientType) {
+        document.querySelectorAll('.recipient-type').forEach(radio => {
+            if (radio.value === savedRecipientType) {
+                radio.checked = true;
+                // Trigger change event to show correct selection panel
+                radio.dispatchEvent(new Event('change'));
+            }
+        });
+    }
+    
+    // Contact list selection
+    const contactListSelect = document.getElementById('{{ form.contact_list.id_for_label }}');
+    contactListSelect.addEventListener('change', function() {
+        if (this.value) {
+            // Make AJAX call to get actual count
+            fetch(`/campaigns/api/list-contacts/?list_id=${this.value}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('list-count').style.display = 'block';
+                    document.getElementById('list-recipient-count').textContent = data.count;
+                    document.getElementById('final-recipient-count').textContent = data.count;
+                })
+                .catch(error => {
+                    console.error('Error fetching contact count:', error);
+                    document.getElementById('list-count').style.display = 'block';
+                    document.getElementById('list-recipient-count').textContent = '?';
+                });
+        } else {
+            document.getElementById('list-count').style.display = 'none';
+        }
+    });
+    
+    // Trigger change event on page load to fetch contact count if a list is selected
+    if (contactListSelect.value) {
+        contactListSelect.dispatchEvent(new Event('change'));
+    }
+    
+    // Filter preview
+    document.getElementById('preview-filter').addEventListener('click', function() {
+        // Get selected companies and positions
+        const companies = Array.from(document.getElementById('{{ form.companies.id_for_label }}').selectedOptions).map(opt => opt.value);
+        const positions = Array.from(document.getElementById('{{ form.positions.id_for_label }}').selectedOptions).map(opt => opt.value);
+        
+        // Make AJAX call to get actual count
+        fetch('/campaigns/api/filter-contacts/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: JSON.stringify({
+                companies: companies,
+                positions: positions
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('filter-count').style.display = 'block';
+            document.getElementById('filter-recipient-count').textContent = data.count;
+            document.getElementById('final-recipient-count').textContent = data.count;
+        })
+        .catch(error => {
+            console.error('Error fetching filtered contacts:', error);
+            document.getElementById('filter-count').style.display = 'block';
+            document.getElementById('filter-recipient-count').textContent = '?';
+        });
+    });
+    
+    // If companies and positions are pre-selected, trigger preview on load
+    const companiesSelect = document.getElementById('{{ form.companies.id_for_label }}');
+    const positionsSelect = document.getElementById('{{ form.positions.id_for_label }}');
+    
+    if ((companiesSelect && companiesSelect.selectedOptions.length > 0) || 
+        (positionsSelect && positionsSelect.selectedOptions.length > 0)) {
+        // Trigger preview if filter selection is active
+        if (document.querySelector('input[name="recipient_type"]:checked').value === 'filter') {
+            document.getElementById('preview-filter').click();
+        }
+    }
+    
+    // Schedule type selection
+    const scheduleTypes = document.querySelectorAll('.schedule-type');
+    scheduleTypes.forEach(type => {
+        type.addEventListener('change', function() {
+            document.getElementById('schedule_options').classList.remove('active');
+            
+            if (this.value === 'later') {
+                document.getElementById('schedule_options').classList.add('active');
+                document.getElementById('schedule-summary').textContent = 'Campaign will be scheduled for sending at the specified time.';
+                document.getElementById('submit-button').innerHTML = '<i class="bi bi-calendar-check"></i> Schedule Campaign';
+            } else if (this.value === 'draft') {
+                document.getElementById('schedule-summary').textContent = 'Campaign will be saved as a draft for later use.';
+                document.getElementById('submit-button').innerHTML = '<i class="bi bi-save"></i> Save as Draft';
+            } else {
+                document.getElementById('schedule-summary').textContent = 'Campaign will be sent immediately after submission.';
+                document.getElementById('submit-button').innerHTML = '<i class="bi bi-send"></i> Send Campaign';
+            }
+        });
+    });
+});
+</script>
+{% endblock %} 

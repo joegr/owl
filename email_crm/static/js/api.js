@@ -8,32 +8,22 @@ const API = {
     baseUrl: '',  // Empty string since our endpoints are already absolute
 
     /**
-     * Get the stored token - check cookies first, then localStorage as fallback
+     * Get the CSRF token from cookie
      */
-    getToken() {
-        // Try to get from cookie first
-        const token = this.getCookie('access_token');
-        if (token) return token;
-        
-        // Fall back to localStorage
-        return localStorage.getItem('token');
-    },
-
-    /**
-     * Set the token in local storage
-     */
-    setToken(token) {
-        localStorage.setItem('token', token);
-    },
-
-    /**
-     * Clear the token (for logout)
-     */
-    clearToken() {
-        localStorage.removeItem('token');
-        // Also clear cookies by setting expiration in the past
-        document.cookie = 'access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-        document.cookie = 'refresh_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
     },
 
     /**
@@ -48,30 +38,32 @@ const API = {
             ...options.headers
         };
         
-        // Add auth token if available
-        const token = this.getToken();
-        if (token) {
-            headers['Authorization'] = `Bearer ${token}`;
-        }
-        
-        // Add CSRF token from cookie if available
-        const csrftoken = this.getCookie('csrftoken');
-        if (csrftoken) {
-            headers['X-CSRFToken'] = csrftoken;
+        // Add CSRF token from cookie for POST/PUT/DELETE/PATCH requests
+        if (['POST', 'PUT', 'DELETE', 'PATCH'].includes(options.method?.toUpperCase())) {
+            const csrftoken = this.getCookie('csrftoken');
+            if (csrftoken) {
+                console.log('Adding CSRF token to request');
+                headers['X-CSRFToken'] = csrftoken;
+            } else {
+                console.warn('No CSRF token found');
+            }
         }
         
         try {
             console.log(`Making API request to: ${url}`);
+            console.log('Request headers:', JSON.stringify(headers));
+            
             const response = await fetch(url, {
                 ...options,
                 headers,
-                credentials: 'include'  // Include cookies in the request
+                credentials: 'include'  // Include cookies in the request (important for session auth)
             });
             
-            // Handle 401 Unauthorized (token expired)
-            if (response.status === 401) {
-                console.error('Authentication failed (401). Redirecting to login.');
-                this.clearToken();
+            console.log(`Response status: ${response.status} ${response.statusText}`);
+            
+            // Handle 401 Unauthorized or 403 Forbidden (not authenticated)
+            if (response.status === 401 || response.status === 403) {
+                console.error(`Authentication failed (${response.status}). Redirecting to login.`);
                 window.location.href = '/accounts/login/';
                 return null;
             }
@@ -96,46 +88,14 @@ const API = {
     },
 
     /**
-     * Get CSRF token from cookie
-     */
-    getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
-                // Does this cookie string begin with the name we want?
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
-        return cookieValue;
-    },
-
-    /**
      * Auth methods
      */
     auth: {
         async login(username, password, csrfToken) {
-            const headers = {};
-            if (csrfToken) {
-                headers['X-CSRFToken'] = csrfToken;
-            }
-            
-            const { response, data } = await API.request('/api/token/', {
-                method: 'POST',
-                headers,
-                body: JSON.stringify({ username, password })
-            });
-            
-            if (response.ok) {
-                API.setToken(data.access);
-                localStorage.setItem('refresh_token', data.refresh);
-            }
-            
-            return { success: response.ok, data };
+            // We'll use the form-based login instead of API login
+            // This is just a redirect method now
+            window.location.href = '/accounts/login/';
+            return { success: true };
         },
         
         async register(userData) {
@@ -153,9 +113,8 @@ const API = {
         },
         
         logout() {
-            API.clearToken();
-            localStorage.removeItem('refresh_token');
-            window.location.href = '/';
+            // Redirect to the logout URL - Django will handle the session cleanup
+            window.location.href = '/accounts/logout/';
         }
     },
 
@@ -248,7 +207,42 @@ const API = {
         },
         
         async getAnalytics() {
-            return await API.request('/emails/analytics/');
+            try {
+                console.log('API.emails.getAnalytics called');
+                const result = await API.request('/emails/analytics/');
+                console.log('Raw API result:', result);
+                
+                if (!result || result.error) {
+                    console.error('Error fetching analytics:', result?.error);
+                    return { 
+                        error: true, 
+                        message: 'Failed to fetch analytics data',
+                        details: result?.data 
+                    };
+                }
+                
+                // If the result is directly the data (no data property)
+                if (!result.data) {
+                    console.log('API response has no data property, returning raw result');
+                    return result;
+                }
+                
+                // Process and return the formatted data for charts
+                return {
+                    data: {
+                        total_sent: result.data.total_sent || 0,
+                        total_opened: result.data.total_opened || 0,
+                        total_clicked: result.data.total_clicked || 0,
+                        open_rate: result.data.open_rate || 0,
+                        click_rate: result.data.click_rate || 0,
+                        template_stats: result.data.template_stats || [],
+                        recent_emails: result.data.recent_emails || []
+                    }
+                };
+            } catch (error) {
+                console.error('Exception in getAnalytics:', error);
+                return { error: true, message: error.message };
+            }
         }
     },
 
@@ -266,6 +260,43 @@ const API = {
         
         async getRecentActivities() {
             return await API.request('/dashboard/recent-activities/');
+        }
+    },
+    
+    /**
+     * Campaigns methods
+     */
+    campaigns: {
+        async getAll() {
+            return await API.request('/campaigns/api/');
+        },
+        
+        async get(id) {
+            return await API.request(`/campaigns/api/${id}/`);
+        },
+        
+        async create(campaignData) {
+            return await API.request('/campaigns/api/', {
+                method: 'POST',
+                body: JSON.stringify(campaignData)
+            });
+        },
+        
+        async update(id, campaignData) {
+            return await API.request(`/campaigns/api/${id}/`, {
+                method: 'PUT',
+                body: JSON.stringify(campaignData)
+            });
+        },
+        
+        async delete(id) {
+            return await API.request(`/campaigns/api/${id}/`, {
+                method: 'DELETE'
+            });
+        },
+        
+        async getRecent() {
+            return await API.request('/campaigns/api/recent/');
         }
     }
 };

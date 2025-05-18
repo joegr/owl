@@ -1,0 +1,219 @@
+{% extends 'base.html' %}
+
+{% block title %}Campaigns - Email CRM{% endblock %}
+
+{% block extra_css %}
+<style>
+    .campaign-card {
+        transition: transform 0.2s ease;
+    }
+    .campaign-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .search-container {
+        position: relative;
+    }
+    .search-icon {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        color: #6c757d;
+    }
+    .search-input {
+        padding-left: 35px;
+    }
+    .badge-scheduled {
+        background-color: #17a2b8;
+        color: white;
+    }
+    .badge-sent {
+        background-color: #28a745;
+        color: white;
+    }
+    .badge-draft {
+        background-color: #6c757d;
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h2>Campaigns</h2>
+            <p class="text-muted">Manage your email campaigns</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+            <a href="{% url 'campaigns:create' %}" class="btn btn-primary">
+                <i class="bi bi-plus-lg"></i> Create Campaign
+            </a>
+            <a href="{% url 'campaigns:list_list' %}" class="btn btn-outline-secondary ms-2">
+                <i class="bi bi-people"></i> Contact Lists
+            </a>
+        </div>
+    </div>
+
+    <!-- Search and Filter -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <div class="search-container">
+                <span class="search-icon">
+                    <i class="bi bi-search"></i>
+                </span>
+                <input type="text" id="campaign-search" class="form-control search-input" placeholder="Search campaigns...">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <select id="status-filter" class="form-select">
+                <option value="all">All Campaigns</option>
+                <option value="draft">Drafts</option>
+                <option value="scheduled">Scheduled</option>
+                <option value="sent">Sent</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Message alerts -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Campaigns List -->
+    {% if campaigns %}
+        <div class="row">
+            {% for campaign in campaigns %}
+                <div class="col-md-6 col-lg-4 mb-4 campaign-item" 
+                     data-status="{% if campaign.is_sent %}sent{% elif campaign.scheduled_at %}scheduled{% else %}draft{% endif %}">
+                    <div class="card campaign-card h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <h5 class="card-title mb-0">{{ campaign.name }}</h5>
+                                <div class="dropdown">
+                                    <button class="btn btn-sm btn-link text-muted" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li><a class="dropdown-item" href="{% url 'campaigns:detail' campaign.id %}"><i class="bi bi-eye me-2"></i>View</a></li>
+                                        {% if not campaign.is_sent %}
+                                        <li><a class="dropdown-item" href="{% url 'campaigns:edit' campaign.id %}"><i class="bi bi-pencil me-2"></i>Edit</a></li>
+                                        {% endif %}
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            <a class="dropdown-item text-danger" href="{% url 'campaigns:delete' campaign.id %}">
+                                                <i class="bi bi-trash me-2"></i>Delete
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <p class="card-text text-muted mb-2">
+                                {% if campaign.description %}
+                                    {{ campaign.description|truncatechars:100 }}
+                                {% else %}
+                                    <em>No description</em>
+                                {% endif %}
+                            </p>
+
+                            <div class="d-flex mb-3">
+                                <div class="me-3">
+                                    <small class="text-muted d-block">Contacts</small>
+                                    <strong>{{ campaign.contact_count }}</strong>
+                                </div>
+                                
+                                {% if campaign.is_sent %}
+                                <div class="me-3">
+                                    <small class="text-muted d-block">Opens</small>
+                                    <strong>{{ campaign.opened_count }} ({{ campaign.open_rate|floatformat:1 }}%)</strong>
+                                </div>
+                                <div>
+                                    <small class="text-muted d-block">Clicks</small>
+                                    <strong>{{ campaign.clicked_count }} ({{ campaign.click_rate|floatformat:1 }}%)</strong>
+                                </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    {% if campaign.is_sent %}
+                                        <span class="badge badge-sent">Sent</span>
+                                        <small class="text-muted ms-1">{{ campaign.sent_at|date:"M d, Y" }}</small>
+                                    {% elif campaign.scheduled_at %}
+                                        <span class="badge badge-scheduled">Scheduled</span>
+                                        <small class="text-muted ms-1">{{ campaign.scheduled_at|date:"M d, Y H:i" }}</small>
+                                    {% else %}
+                                        <span class="badge badge-draft">Draft</span>
+                                    {% endif %}
+                                </div>
+                                
+                                <a href="{% url 'campaigns:detail' campaign.id %}" class="btn btn-sm btn-outline-primary">
+                                    <i class="bi bi-eye"></i> View
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="text-center py-5">
+            <i class="bi bi-megaphone" style="font-size: 3rem; color: #dee2e6;"></i>
+            <h5 class="mt-3">No campaigns found</h5>
+            <p class="text-muted">Start by creating your first campaign</p>
+            <a href="{% url 'campaigns:create' %}" class="btn btn-primary mt-2">
+                <i class="bi bi-plus-lg"></i> Create Campaign
+            </a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Set up search functionality
+    const searchInput = document.getElementById('campaign-search');
+    searchInput.addEventListener('input', filterCampaigns);
+    
+    // Set up status filter
+    const statusFilter = document.getElementById('status-filter');
+    statusFilter.addEventListener('change', filterCampaigns);
+    
+    // Check URL for status filter
+    const urlParams = new URLSearchParams(window.location.search);
+    const statusParam = urlParams.get('status');
+    if (statusParam) {
+        statusFilter.value = statusParam;
+        filterCampaigns();
+    }
+    
+    function filterCampaigns() {
+        const searchValue = searchInput.value.toLowerCase();
+        const statusValue = statusFilter.value;
+        
+        // Get all campaign items
+        const campaignItems = document.querySelectorAll('.campaign-item');
+        
+        campaignItems.forEach(item => {
+            const name = item.querySelector('.card-title').textContent.toLowerCase();
+            const description = item.querySelector('.card-text').textContent.toLowerCase();
+            const status = item.dataset.status;
+            
+            // Check if campaign matches search and filter
+            const matchesSearch = name.includes(searchValue) || description.includes(searchValue);
+            const matchesStatus = statusValue === 'all' || status === statusValue;
+            
+            // Show or hide based on filter match
+            item.style.display = matchesSearch && matchesStatus ? '' : 'none';
+        });
+    }
+});
+</script>
+{% endblock %} 

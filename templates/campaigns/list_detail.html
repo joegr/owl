@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ contact_list.name }} - Contact List Details{% endblock %}
+
+{% block extra_css %}
+<style>
+    .contact-card {
+        transition: transform 0.2s ease;
+    }
+    .contact-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+    .list-details {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .search-container {
+        position: relative;
+    }
+    .search-icon {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        color: #6c757d;
+    }
+    .search-input {
+        padding-left: 35px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h2>{{ contact_list.name }}</h2>
+            <p class="text-muted">Contact List Details</p>
+        </div>
+        <div class="col-md-4 text-md-end">
+            <a href="{% url 'campaigns:list_edit' contact_list.id %}" class="btn btn-primary">
+                <i class="bi bi-pencil"></i> Edit List
+            </a>
+            <a href="{% url 'campaigns:list_list' %}" class="btn btn-outline-secondary ms-2">
+                <i class="bi bi-arrow-left"></i> Back to Lists
+            </a>
+        </div>
+    </div>
+
+    <!-- List Details -->
+    <div class="list-details">
+        <div class="row">
+            <div class="col-md-8">
+                <h5>Description</h5>
+                <p>
+                    {% if contact_list.description %}
+                        {{ contact_list.description }}
+                    {% else %}
+                        <em>No description provided</em>
+                    {% endif %}
+                </p>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">List Information</h6>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Created:</span>
+                            <span>{{ contact_list.created_at|date:"M d, Y" }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Last Updated:</span>
+                            <span>{{ contact_list.updated_at|date:"M d, Y" }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span>Contacts:</span>
+                            <span>{{ contacts|length }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-3">
+            <a href="{% url 'campaigns:create' %}?list_id={{ contact_list.id }}" class="btn btn-success">
+                <i class="bi bi-envelope"></i> Create Campaign with this List
+            </a>
+            <a href="{% url 'campaigns:list_delete' contact_list.id %}" class="btn btn-danger ms-2">
+                <i class="bi bi-trash"></i> Delete List
+            </a>
+        </div>
+    </div>
+
+    <!-- Contacts Search and Filter -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="search-container">
+                <span class="search-icon">
+                    <i class="bi bi-search"></i>
+                </span>
+                <input type="text" id="contact-search" class="form-control search-input" placeholder="Search contacts...">
+            </div>
+        </div>
+    </div>
+
+    <!-- Contacts in List -->
+    <h3 class="mb-3">Contacts in this List</h3>
+    
+    {% if contacts %}
+        <div class="row">
+            {% for contact in contacts %}
+                <div class="col-md-6 col-lg-4 mb-4 contact-item">
+                    <div class="card contact-card h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <h5 class="card-title mb-0">{{ contact.name }}</h5>
+                                <a href="{% url 'contacts:view' contact.id %}" class="btn btn-sm btn-outline-primary">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                            </div>
+                            
+                            <p class="text-muted mb-2">
+                                <i class="bi bi-envelope"></i> {{ contact.email }}
+                            </p>
+                            
+                            {% if contact.phone %}
+                                <p class="text-muted mb-2">
+                                    <i class="bi bi-telephone"></i> {{ contact.phone }}
+                                </p>
+                            {% endif %}
+                            
+                            {% if contact.company %}
+                                <p class="text-muted mb-2">
+                                    <i class="bi bi-building"></i> {{ contact.company }}
+                                    {% if contact.position %} - {{ contact.position }}{% endif %}
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            <i class="bi bi-info-circle-fill me-2"></i>
+            This list doesn't have any contacts yet. 
+            <a href="{% url 'campaigns:list_edit' contact_list.id %}" class="alert-link">Add contacts to this list</a>.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Set up search functionality
+    const searchInput = document.getElementById('contact-search');
+    
+    searchInput.addEventListener('input', function() {
+        const searchValue = this.value.toLowerCase();
+        
+        // Get all contact items
+        const contactItems = document.querySelectorAll('.contact-item');
+        
+        contactItems.forEach(item => {
+            const name = item.querySelector('.card-title').textContent.toLowerCase();
+            const email = item.querySelector('.text-muted').textContent.toLowerCase();
+            const otherInfo = Array.from(item.querySelectorAll('.text-muted')).map(el => el.textContent.toLowerCase()).join(' ');
+            
+            // Show or hide based on search match
+            if (name.includes(searchValue) || email.includes(searchValue) || otherInfo.includes(searchValue)) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+{% endblock %} 

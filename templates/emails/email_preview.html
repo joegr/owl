@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Preview Email - Email CRM{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col">
+            <h2>Preview Email</h2>
+            <p class="text-muted">Review your email before sending to {{ contact.name }} ({{ contact.email }})</p>
+        </div>
+    </div>
+    
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-light">
+            <strong>Email Preview</strong>
+        </div>
+        <div class="card-body">
+            <div class="mb-3">
+                <label class="form-label text-muted">To:</label>
+                <div>{{ contact.name }} &lt;{{ contact.email }}&gt;</div>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label text-muted">Subject:</label>
+                <div>{{ email_data.subject }}</div>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label text-muted">Message:</label>
+                <div class="border p-3 bg-light rounded">
+                    {{ email_data.body|linebreaks }}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <form method="post" action="{% url 'emails:send_email' contact.id %}">
+        {% csrf_token %}
+        
+        <!-- Hidden fields to carry the data -->
+        <input type="hidden" name="subject" value="{{ email_data.subject }}">
+        <input type="hidden" name="body" value="{{ email_data.body }}">
+        {% if email_data.template_id %}
+        <input type="hidden" name="template_id" value="{{ email_data.template_id }}">
+        {% endif %}
+        
+        <div class="d-flex justify-content-between">
+            <a href="{% url 'emails:compose_email' contact.id %}" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i> Edit Email
+            </a>
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-envelope"></i> Send Email
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %} 

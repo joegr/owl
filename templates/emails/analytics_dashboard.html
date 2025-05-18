@@ -1,0 +1,636 @@
+{% extends 'base.html' %}
+
+{% block title %}Email Analytics Dashboard - Email CRM{% endblock %}
+
+{% block extra_css %}
+<style>
+    .chart-container {
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        position: relative;
+        height: 400px; /* Fixed height */
+        max-height: 400px; /* Max height constraint */
+        overflow: hidden; /* Prevent overflow */
+    }
+    .stat-box {
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        background-color: #f8f9fa;
+        text-align: center;
+    }
+    .stat-box h4 {
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+    .stat-box p {
+        font-size: 1.1rem;
+        color: #6c757d;
+    }
+    canvas {
+        max-height: 350px !important; /* Force reasonable height on canvas */
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row mb-4">
+        <div class="col">
+            <h2>Email Analytics Dashboard</h2>
+            <p class="text-muted">Visual overview of your email campaign performance.</p>
+        </div>
+        <div class="col text-end">
+            <div class="btn-group">
+                <button id="refresh-analytics-btn" class="btn btn-outline-primary">
+                    <i class="bi bi-arrow-clockwise"></i> Refresh Data
+                </button>
+                <button id="toggle-debug-btn" class="btn btn-outline-secondary">
+                    <i class="bi bi-bug"></i> Toggle Debug
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Key Stats -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="stat-box shadow-sm">
+                <h4 id="total-sent">0</h4>
+                <p>Total Emails Sent</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-box shadow-sm">
+                <h4 id="total-opened">0</h4>
+                <p>Total Opens</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-box shadow-sm">
+                <h4 id="open-rate">0%</h4>
+                <p>Open Rate</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-box shadow-sm">
+                <h4 id="click-rate">0%</h4>
+                <p>Click-through Rate</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="chart-container">
+                <h5>Email Engagement Overview</h5>
+                <canvas id="engagementChart" width="400" height="300"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="chart-container">
+                <h5>Performance by Template</h5>
+                <canvas id="templatePerformanceChart" width="400" height="300"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Email Timeline Chart -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="chart-container">
+                <h5>Email Activity Timeline</h5>
+                <canvas id="timelineChart" width="400" height="300"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="chart-container">
+                <h5>Recent Emails Activity (Last 10)</h5>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Recipient</th>
+                            <th>Subject</th>
+                            <th>Sent At</th>
+                            <th>Opened</th>
+                            <th>Clicked</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recent-emails-table-body">
+                        <tr><td colspan="5" class="text-center">Loading data...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    console.log('Analytics dashboard loaded');
+    
+    const totalSentEl = document.getElementById('total-sent');
+    const totalOpenedEl = document.getElementById('total-opened');
+    const openRateEl = document.getElementById('open-rate');
+    const clickRateEl = document.getElementById('click-rate');
+    const recentEmailsTableBodyEl = document.getElementById('recent-emails-table-body');
+
+    let engagementChartInstance = null;
+    let templatePerformanceChartInstance = null;
+    let timelineChartInstance = null;
+
+    // Debug div to show raw response
+    const debugContainer = document.createElement('div');
+    debugContainer.style.display = 'block'; // Make visible by default
+    debugContainer.className = 'card p-3 mt-4 bg-light';
+    debugContainer.innerHTML = '<h5>Debug Info</h5><pre id="debug-output" style="max-height: 300px; overflow: auto;"></pre>';
+    document.querySelector('.container-fluid').appendChild(debugContainer);
+    
+    const debugOutput = document.getElementById('debug-output');
+    debugOutput.textContent = 'Loading analytics data...';
+    
+    async function fetchAnalyticsData() {
+        try {
+            console.log('Fetching analytics data...');
+            
+            // Direct API call to see raw structure
+            const directResponse = await fetch('/emails/analytics/');
+            const responseData = await directResponse.json();
+            console.log('Direct API response:', responseData);
+            
+            debugOutput.textContent = 'Raw API Response (direct):\n' + JSON.stringify(responseData, null, 2);
+            
+            // Check if we have any data
+            if (!responseData || 
+                (responseData.total_sent === 0 && 
+                responseData.total_opened === 0 && 
+                responseData.total_clicked === 0 && 
+                (!responseData.template_stats || responseData.template_stats.length === 0) && 
+                (!responseData.recent_emails || responseData.recent_emails.length === 0))) {
+                
+                console.warn('No analytics data available');
+                document.querySelector('.container-fluid').innerHTML += `
+                    <div class="alert alert-info mt-4">
+                        <h4><i class="bi bi-info-circle"></i> No Email Data Available</h4>
+                        <p>It looks like you haven't sent any emails yet. Once you start sending emails, analytics data will appear here.</p>
+                        <a href="{% url 'emails:select_contact' %}" class="btn btn-primary">
+                            <i class="bi bi-envelope"></i> Compose Your First Email
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Process the data we got directly
+            const analyticsData = responseData;
+            console.log('Using analytics data:', analyticsData);
+            
+            // Update Key Stats
+            totalSentEl.textContent = analyticsData.total_sent || '0';
+            totalOpenedEl.textContent = analyticsData.total_opened || '0';
+            openRateEl.textContent = (analyticsData.open_rate || '0') + '%';
+            clickRateEl.textContent = (analyticsData.click_rate || '0') + '%';
+
+            // Update Engagement Chart
+            const engagementCanvas = document.getElementById('engagementChart');
+            if (engagementCanvas) {
+                const engagementCtx = engagementCanvas.getContext('2d');
+                if (engagementChartInstance) {
+                    engagementChartInstance.destroy();
+                }
+                
+                // Calculate not-opened emails (total sent minus opened)
+                const notOpenedCount = analyticsData.total_sent - analyticsData.total_opened;
+                
+                engagementChartInstance = new Chart(engagementCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Opened', 'Clicked', 'Not Opened'],
+                        datasets: [{
+                            label: 'Email Engagement',
+                            data: [
+                                analyticsData.total_opened || 0,
+                                analyticsData.total_clicked || 0,
+                                notOpenedCount > 0 ? notOpenedCount : 0
+                            ],
+                            backgroundColor: [
+                                'rgba(75, 192, 192, 0.7)', // Opened
+                                'rgba(54, 162, 235, 0.7)', // Clicked
+                                'rgba(255, 99, 132, 0.7)'  // Not opened
+                            ],
+                            borderColor: [
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 99, 132, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        aspectRatio: 2,  // Width:height ratio
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        const value = context.raw;
+                                        const total = context.dataset.data.reduce((acc, val) => acc + val, 0);
+                                        const percentage = Math.round((value / total) * 100);
+                                        return `${context.label}: ${value} (${percentage}%)`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            } else {
+                console.error('Engagement chart canvas element not found');
+            }
+
+            // Update Template Performance Chart
+            const templateCanvas = document.getElementById('templatePerformanceChart');
+            if (templateCanvas) {
+                const templateCtx = templateCanvas.getContext('2d');
+                if (templatePerformanceChartInstance) {
+                    templatePerformanceChartInstance.destroy();
+                }
+                
+                if (analyticsData.template_stats && analyticsData.template_stats.length > 0) {
+                    console.log('Template stats:', analyticsData.template_stats);
+                    
+                    // Check template_stats data structure is as expected
+                    const validTemplateStats = analyticsData.template_stats.filter(
+                        t => t && typeof t === 'object' && 'template__name' in t
+                    );
+                    
+                    if (validTemplateStats.length > 0) {
+                        const templateLabels = validTemplateStats.map(t => t.template__name || 'Unnamed Template');
+                        const templateSentData = validTemplateStats.map(t => t.sent_count || 0);
+                        const templateOpenedData = validTemplateStats.map(t => t.opened_count || 0);
+                        const templateClickedData = validTemplateStats.map(t => t.clicked_count || 0);
+                        
+                        templatePerformanceChartInstance = new Chart(templateCtx, {
+                            type: 'bar',
+                            data: {
+                                labels: templateLabels,
+                                datasets: [
+                                    {
+                                        label: 'Emails Sent',
+                                        data: templateSentData,
+                                        backgroundColor: 'rgba(255, 159, 64, 0.7)',
+                                        borderColor: 'rgba(255, 159, 64, 1)',
+                                        borderWidth: 1
+                                    },
+                                    {
+                                        label: 'Emails Opened',
+                                        data: templateOpenedData,
+                                        backgroundColor: 'rgba(75, 192, 192, 0.7)',
+                                        borderColor: 'rgba(75, 192, 192, 1)',
+                                        borderWidth: 1
+                                    },
+                                    {
+                                        label: 'Links Clicked',
+                                        data: templateClickedData,
+                                        backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                                        borderColor: 'rgba(54, 162, 235, 1)',
+                                        borderWidth: 1
+                                    }
+                                ]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: true,
+                                aspectRatio: 2,
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        title: {
+                                            display: true,
+                                            text: 'Number of Emails'
+                                        }
+                                    },
+                                    x: {
+                                        title: {
+                                            display: true,
+                                            text: 'Email Templates'
+                                        }
+                                    }
+                                },
+                                plugins: {
+                                    legend: {
+                                        position: 'top',
+                                    },
+                                    tooltip: {
+                                        callbacks: {
+                                            afterTitle: function(context) {
+                                                const idx = context[0].dataIndex;
+                                                return 'Template: ' + templateLabels[idx];
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    } else {
+                        console.warn('Template stats has invalid structure:', analyticsData.template_stats);
+                        templateCanvas.parentNode.innerHTML = 
+                            '<div class="text-center p-5 text-muted">Invalid template data structure</div>';
+                    }
+                } else {
+                    // No template data
+                    templateCanvas.parentNode.innerHTML = 
+                        '<div class="text-center p-5 text-muted">No template data available</div>';
+                }
+            } else {
+                console.error('Template performance chart canvas element not found');
+            }
+
+            // Update Recent Emails Table
+            recentEmailsTableBodyEl.innerHTML = ''; // Clear previous data
+            if (analyticsData.recent_emails && analyticsData.recent_emails.length > 0) {
+                analyticsData.recent_emails.forEach(email => {
+                    const row = recentEmailsTableBodyEl.insertRow();
+                    
+                    // Format the recipient (contact) name
+                    const contactName = email.contact_name || 
+                                       (email.contact ? email.contact.name : 'Unknown Contact');
+                    
+                    // Format date for better readability
+                    const sentDate = new Date(email.sent_at);
+                    const formattedDate = sentDate.toLocaleDateString() + ' ' + 
+                                         sentDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                    
+                    row.insertCell().textContent = contactName;
+                    row.insertCell().textContent = email.subject;
+                    row.insertCell().textContent = formattedDate;
+                    
+                    // Visual indicators for opened/clicked status
+                    row.insertCell().innerHTML = email.opened ? 
+                        '<i class="bi bi-check-circle-fill text-success"></i>' : 
+                        '<i class="bi bi-x-circle text-secondary"></i>';
+                    
+                    row.insertCell().innerHTML = email.clicked ? 
+                        '<i class="bi bi-check-circle-fill text-success"></i>' : 
+                        '<i class="bi bi-x-circle text-secondary"></i>';
+                });
+            } else {
+                recentEmailsTableBodyEl.innerHTML = '<tr><td colspan="5" class="text-center">No recent email activity.</td></tr>';
+            }
+
+            // Create Timeline Chart
+            createTimelineChart(analyticsData.recent_emails);
+
+        } catch (error) {
+            console.error("Failed to load and render analytics data:", error);
+            recentEmailsTableBodyEl.innerHTML = '<tr><td colspan="5" class="text-center text-danger">Error loading analytics data.</td></tr>';
+            alert("An error occurred while fetching or displaying analytics data. See console for details.");
+        }
+    }
+
+    // Function to create the timeline chart
+    function createTimelineChart(emails) {
+        try {
+            console.log('Creating timeline chart with emails:', emails);
+            
+            const timelineCanvas = document.getElementById('timelineChart');
+            if (!timelineCanvas) {
+                console.error('Timeline chart canvas element not found');
+                return;
+            }
+            
+            if (!emails || !Array.isArray(emails) || emails.length === 0) {
+                console.warn('No email data for timeline chart');
+                timelineCanvas.parentNode.innerHTML = 
+                    '<div class="text-center p-5 text-muted">No email data available for timeline</div>';
+                return;
+            }
+
+            // Sort emails by sent date
+            emails.sort((a, b) => new Date(a.sent_at) - new Date(b.sent_at));
+
+            // Group emails by date (YYYY-MM-DD)
+            const emailsByDate = {};
+            const openedByDate = {};
+            const clickedByDate = {};
+
+            emails.forEach(email => {
+                const date = new Date(email.sent_at).toISOString().split('T')[0];
+                
+                // Initialize if not exists
+                if (!emailsByDate[date]) {
+                    emailsByDate[date] = 0;
+                    openedByDate[date] = 0;
+                    clickedByDate[date] = 0;
+                }
+                
+                // Count
+                emailsByDate[date]++;
+                if (email.opened) openedByDate[date]++;
+                if (email.clicked) clickedByDate[date]++;
+            });
+
+            // Get all dates in range
+            const dates = Object.keys(emailsByDate).sort();
+            
+            // Make sure we have at least some dates (add dates in between if sparse)
+            if (dates.length > 1) {
+                const startDate = new Date(dates[0]);
+                const endDate = new Date(dates[dates.length - 1]);
+                
+                const allDates = [];
+                const currentDate = new Date(startDate);
+                
+                while (currentDate <= endDate) {
+                    const dateStr = currentDate.toISOString().split('T')[0];
+                    allDates.push(dateStr);
+                    
+                    // Initialize if not exists
+                    if (!emailsByDate[dateStr]) {
+                        emailsByDate[dateStr] = 0;
+                        openedByDate[dateStr] = 0;
+                        clickedByDate[dateStr] = 0;
+                    }
+                    
+                    // Move to next day
+                    currentDate.setDate(currentDate.getDate() + 1);
+                }
+                
+                // Prepare datasets
+                const sentData = allDates.map(date => emailsByDate[date] || 0);
+                const openedData = allDates.map(date => openedByDate[date] || 0);
+                const clickedData = allDates.map(date => clickedByDate[date] || 0);
+                
+                // Format dates for display
+                const formattedDates = allDates.map(date => {
+                    const d = new Date(date);
+                    return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+                });
+
+                // Create/update the timeline chart
+                const timelineCtx = timelineCanvas.getContext('2d');
+                
+                if (timelineChartInstance) {
+                    timelineChartInstance.destroy();
+                }
+                
+                timelineChartInstance = new Chart(timelineCtx, {
+                    type: 'line',
+                    data: {
+                        labels: formattedDates,
+                        datasets: [
+                            {
+                                label: 'Emails Sent',
+                                data: sentData,
+                                borderColor: 'rgba(255, 159, 64, 1)',
+                                backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                                fill: true,
+                                tension: 0.1
+                            },
+                            {
+                                label: 'Emails Opened',
+                                data: openedData,
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                fill: true,
+                                tension: 0.1
+                            },
+                            {
+                                label: 'Links Clicked',
+                                data: clickedData,
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                fill: true,
+                                tension: 0.1
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        aspectRatio: 2.5,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Count'
+                                },
+                                stacked: false
+                            },
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Date'
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top'
+                            },
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false
+                            }
+                        },
+                        interaction: {
+                            mode: 'nearest',
+                            intersect: false,
+                            axis: 'x'
+                        }
+                    }
+                });
+            } else {
+                // Not enough data for timeline
+                timelineCanvas.parentNode.innerHTML = 
+                    '<div class="text-center p-5 text-muted">Not enough data for timeline chart. Need at least 2 dates.</div>';
+            }
+        } catch (error) {
+            console.error('Error creating timeline chart:', error);
+            const timelineCanvas = document.getElementById('timelineChart');
+            if (timelineCanvas) {
+                timelineCanvas.parentNode.innerHTML = 
+                    '<div class="text-center p-5 text-danger">Error creating timeline chart</div>';
+            }
+        }
+    }
+
+    // Initial load
+    fetchAnalyticsData();
+
+    // Refresh button
+    const refreshButton = document.getElementById('refresh-analytics-btn');
+    if (refreshButton) {
+        refreshButton.addEventListener('click', fetchAnalyticsData);
+    }
+
+    // Toggle debug button
+    const toggleDebugBtn = document.getElementById('toggle-debug-btn');
+    if (toggleDebugBtn) {
+        toggleDebugBtn.addEventListener('click', function() {
+            if (debugContainer.style.display === 'none') {
+                debugContainer.style.display = 'block';
+            } else {
+                debugContainer.style.display = 'none';
+            }
+        });
+    }
+    
+    // Fallback direct API call if nothing is showing
+    setTimeout(async function() {
+        // Check if any canvas elements exist
+        const canvasExists = document.getElementById('engagementChart') || 
+                            document.getElementById('templatePerformanceChart') ||
+                            document.getElementById('timelineChart');
+                            
+        // Check if any charts are rendered
+        const chartRendered = document.querySelector('.chart-container canvas') && 
+                           !document.querySelector('.chart-container:empty');
+                       
+        if (!canvasExists || !chartRendered) {
+            console.log('Canvas elements missing or no charts rendered - trying direct API call');
+            try {
+                const directResponse = await fetch('/emails/analytics/');
+                const directData = await directResponse.text();
+                
+                debugOutput.textContent += '\n\nDirect API Response:\n' + directData;
+                debugContainer.style.display = 'block';
+                
+                // Try to show a helpful message
+                document.querySelector('.container-fluid').innerHTML += `
+                    <div class="alert alert-warning mt-4">
+                        <h4><i class="bi bi-exclamation-triangle"></i> Canvas Element Issue</h4>
+                        <p>We encountered an issue with the chart canvas elements. This could be because:</p>
+                        <ul>
+                            <li>The chart canvas elements are missing from the DOM</li>
+                            <li>There was an error rendering the charts</li>
+                            <li>There's no email data to display</li>
+                        </ul>
+                        <p>Try refreshing the page or <a href="{% url 'emails:select_contact' %}" class="alert-link">sending some emails</a> first.</p>
+                    </div>
+                `;
+            } catch (e) {
+                console.error('Fallback API call also failed:', e);
+            }
+        }
+    }, 3000); // Wait 3 seconds after page load
+});
+</script>
+{% endblock %} 

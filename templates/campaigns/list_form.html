@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if action == 'Edit' %}Edit{% else %}Create{% endif %} Contact List - Email CRM{% endblock %}
+
+{% block extra_css %}
+<style>
+    .form-section {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .contact-selection {
+        max-height: 500px;
+        overflow-y: auto;
+        padding: 15px;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+    }
+    .search-container {
+        position: relative;
+    }
+    .search-icon {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        color: #6c757d;
+    }
+    .search-input {
+        padding-left: 35px;
+    }
+    .contact-item {
+        padding: 10px;
+        border-radius: 4px;
+        transition: background-color 0.2s;
+    }
+    .contact-item:hover {
+        background-color: #f8f9fa;
+    }
+    .contact-count {
+        background-color: #e9ecef;
+        border-radius: 6px;
+        padding: 10px 15px;
+        margin-bottom: 15px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h2>{% if action == 'Edit' %}Edit{% else %}Create{% endif %} Contact List</h2>
+            <p class="text-muted">
+                {% if action == 'Edit' %}
+                    Update details and contacts for "{{ contact_list.name }}"
+                {% else %}
+                    Create a new list to organize your contacts for campaigns
+                {% endif %}
+            </p>
+        </div>
+        <div class="col-md-4 text-md-end">
+            <a href="{% url 'campaigns:list_list' %}" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i> Back to Lists
+            </a>
+        </div>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post" id="list-form">
+        {% csrf_token %}
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-section">
+                    <h5 class="mb-3">List Details</h5>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="{{ form.name.id_for_label }}" class="form-label">List Name*</label>
+                            {{ form.name }}
+                            {% if form.name.errors %}
+                                <div class="invalid-feedback d-block">{{ form.name.errors }}</div>
+                            {% endif %}
+                            <div class="form-text">A descriptive name to identify this list</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label for="{{ form.description.id_for_label }}" class="form-label">Description</label>
+                            {{ form.description }}
+                            {% if form.description.errors %}
+                                <div class="invalid-feedback d-block">{{ form.description.errors }}</div>
+                            {% endif %}
+                            <div class="form-text">Optional notes about this contact list</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-section">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="mb-0">Select Contacts</h5>
+                        <div class="search-container">
+                            <span class="search-icon">
+                                <i class="bi bi-search"></i>
+                            </span>
+                            <input type="text" id="contact-search" class="form-control search-input" placeholder="Search contacts...">
+                        </div>
+                    </div>
+                    
+                    <div class="contact-count mb-3" id="contact-count">
+                        <i class="bi bi-people"></i> <span id="selected-count">0</span> contacts selected
+                    </div>
+                    
+                    <div class="contact-selection">
+                        {{ form.contacts }}
+                        {% if form.contacts.errors %}
+                            <div class="invalid-feedback d-block">{{ form.contacts.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12 text-end mt-3">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-save"></i> 
+                    {% if action == 'Edit' %}
+                        Update Contact List
+                    {% else %}
+                        Create Contact List
+                    {% endif %}
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Style the contact checkboxes
+    const checkboxes = document.querySelectorAll('#{{ form.contacts.id_for_label }} input[type="checkbox"]');
+    const contactItems = document.querySelectorAll('#{{ form.contacts.id_for_label }} li');
+    
+    // Add classes to contact items
+    contactItems.forEach(item => {
+        item.classList.add('contact-item');
+    });
+    
+    // Update selected count
+    function updateSelectedCount() {
+        const selectedCount = document.querySelectorAll('#{{ form.contacts.id_for_label }} input[type="checkbox"]:checked').length;
+        document.getElementById('selected-count').textContent = selectedCount;
+    }
+    
+    // Add change event to checkboxes
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateSelectedCount);
+    });
+    
+    // Update initial count
+    updateSelectedCount();
+    
+    // Search functionality
+    const searchInput = document.getElementById('contact-search');
+    
+    searchInput.addEventListener('input', function() {
+        const searchValue = this.value.toLowerCase();
+        
+        contactItems.forEach(item => {
+            const text = item.textContent.toLowerCase();
+            
+            if (text.includes(searchValue)) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+{% endblock %} 

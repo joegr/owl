@@ -1,0 +1,351 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ campaign.name }} - Campaign Details{% endblock %}
+
+{% block extra_css %}
+<style>
+    .stats-card {
+        transition: transform 0.2s ease;
+    }
+    .stats-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .campaign-details {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .status-badge-sent {
+        background-color: #28a745;
+        color: white;
+    }
+    .status-badge-scheduled {
+        background-color: #17a2b8;
+        color: white;
+    }
+    .status-badge-draft {
+        background-color: #6c757d;
+        color: white;
+    }
+    .progress {
+        height: 8px;
+    }
+    .progress-bar-open {
+        width: {{ open_rate }}%;
+    }
+    .progress-bar-click {
+        width: {{ click_rate }}%;
+    }
+    .search-container {
+        position: relative;
+    }
+    .search-icon {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        color: #6c757d;
+    }
+    .search-input {
+        padding-left: 35px;
+    }
+    .recipient-card {
+        transition: transform 0.2s ease;
+    }
+    .recipient-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h2>{{ campaign.name }}</h2>
+            <p class="text-muted">Campaign Details</p>
+        </div>
+        <div class="col-md-4 text-md-end">
+            {% if not campaign.is_sent %}
+            <a href="{% url 'campaigns:edit' campaign.id %}" class="btn btn-primary">
+                <i class="bi bi-pencil"></i> Edit Campaign
+            </a>
+            {% endif %}
+            <a href="{% url 'campaigns:list' %}" class="btn btn-outline-secondary ms-2">
+                <i class="bi bi-arrow-left"></i> Back to Campaigns
+            </a>
+        </div>
+    </div>
+
+    <!-- Campaign Details -->
+    <div class="campaign-details">
+        <div class="d-flex justify-content-between align-items-start mb-3">
+            <h5>Campaign Information</h5>
+            <span class="badge status-badge-{{ campaign.status }}">
+                {% if campaign.is_sent %}
+                    Sent
+                {% elif campaign.scheduled_at %}
+                    Scheduled
+                {% else %}
+                    Draft
+                {% endif %}
+            </span>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8">
+                <p class="mb-3">
+                    <strong>Description:</strong> 
+                    {% if campaign.description %}
+                        {{ campaign.description }}
+                    {% else %}
+                        <em>No description</em>
+                    {% endif %}
+                </p>
+                
+                <p class="mb-3">
+                    <strong>From:</strong> {{ campaign.from_name }} &lt;{{ campaign.from_email }}&gt;
+                </p>
+                
+                <p class="mb-3">
+                    <strong>Subject:</strong> {{ campaign.subject }}
+                </p>
+                
+                {% if campaign.email_template %}
+                <p class="mb-3">
+                    <strong>Template:</strong> {{ campaign.email_template.name }}
+                </p>
+                {% endif %}
+                
+                <p class="mb-3">
+                    <strong>Created:</strong> {{ campaign.created_at|date:"M d, Y H:i" }}
+                </p>
+                
+                {% if campaign.scheduled_at %}
+                <p class="mb-3">
+                    <strong>Scheduled for:</strong> {{ campaign.scheduled_at|date:"M d, Y H:i" }}
+                </p>
+                {% endif %}
+                
+                {% if campaign.is_sent %}
+                <p class="mb-3">
+                    <strong>Sent on:</strong> {{ campaign.sent_at|date:"M d, Y H:i" }}
+                </p>
+                {% endif %}
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">Campaign Stats</h6>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Total Recipients:</span>
+                            <span>{{ total_contacts }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Emails Sent:</span>
+                            <span>{{ sent_count }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Opened:</span>
+                            <span>{{ opened_count }} ({{ open_rate|floatformat:1 }}%)</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span>Clicked:</span>
+                            <span>{{ clicked_count }} ({{ click_rate|floatformat:1 }}%)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-3">
+            {% if not campaign.is_sent %}
+                <a href="{% url 'emails:bulk_send_email' %}?campaign_id={{ campaign.id }}" class="btn btn-success me-2">
+                    <i class="bi bi-send"></i> Send Now
+                </a>
+            {% endif %}
+            
+            <a href="{% url 'campaigns:delete' campaign.id %}" class="btn btn-danger">
+                <i class="bi bi-trash"></i> Delete Campaign
+            </a>
+            
+            {% if campaign.is_sent %}
+                <a href="{% url 'campaigns:create' %}?clone={{ campaign.id }}" class="btn btn-outline-primary ms-2">
+                    <i class="bi bi-arrow-repeat"></i> Clone Campaign
+                </a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Campaign Stats -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card stats-card h-100">
+                <div class="card-body text-center">
+                    <h1 class="display-4">{{ total_contacts }}</h1>
+                    <p class="text-muted">Total Recipients</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card stats-card h-100">
+                <div class="card-body text-center">
+                    <h1 class="display-4">{{ sent_count }}</h1>
+                    <p class="text-muted">Emails Sent</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card stats-card h-100">
+                <div class="card-body text-center">
+                    <h1 class="display-4">{{ open_rate|floatformat:1 }}%</h1>
+                    <p class="text-muted">Open Rate</p>
+                    <div class="progress">
+                        <div class="progress-bar bg-info progress-bar-open" role="progressbar" aria-valuenow="{{ open_rate }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card stats-card h-100">
+                <div class="card-body text-center">
+                    <h1 class="display-4">{{ click_rate|floatformat:1 }}%</h1>
+                    <p class="text-muted">Click Rate</p>
+                    <div class="progress">
+                        <div class="progress-bar bg-success progress-bar-click" role="progressbar" aria-valuenow="{{ click_rate }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Email Preview -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Email Preview</h5>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ campaign.subject }}</h5>
+                    <hr>
+                    <div class="mt-3">
+                        {{ campaign.content|safe }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recipients List -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5>Campaign Recipients</h5>
+                <div class="search-container">
+                    <span class="search-icon">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text" id="recipient-search" class="form-control search-input" placeholder="Search recipients...">
+                </div>
+            </div>
+            
+            {% if campaign_contacts %}
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Status</th>
+                                <th>Opened</th>
+                                <th>Clicked</th>
+                                <th>Timestamp</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cc in campaign_contacts %}
+                                <tr class="recipient-item">
+                                    <td>{{ cc.contact.name }}</td>
+                                    <td>{{ cc.contact.email }}</td>
+                                    <td>
+                                        {% if cc.is_sent %}
+                                            <span class="badge bg-success">Sent</span>
+                                        {% else %}
+                                            <span class="badge bg-secondary">Pending</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if cc.opened %}
+                                            <span class="badge bg-info"><i class="bi bi-check-lg"></i> Yes</span>
+                                        {% else %}
+                                            <span class="badge bg-light text-dark">No</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if cc.clicked %}
+                                            <span class="badge bg-primary"><i class="bi bi-check-lg"></i> Yes</span>
+                                        {% else %}
+                                            <span class="badge bg-light text-dark">No</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if cc.is_sent and cc.sent_at %}
+                                            {{ cc.sent_at|date:"M d, Y H:i" }}
+                                        {% else %}
+                                            -
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle-fill me-2"></i>
+                    No recipients have been added to this campaign yet.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Set up search functionality
+    const searchInput = document.getElementById('recipient-search');
+    
+    searchInput.addEventListener('input', function() {
+        const searchValue = this.value.toLowerCase();
+        
+        // Get all recipient items
+        const recipientItems = document.querySelectorAll('.recipient-item');
+        
+        recipientItems.forEach(item => {
+            const columns = item.querySelectorAll('td');
+            let match = false;
+            
+            // Check each column
+            columns.forEach(column => {
+                if (column.textContent.toLowerCase().includes(searchValue)) {
+                    match = true;
+                }
+            });
+            
+            // Show or hide based on search match
+            if (match) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+{% endblock %} 

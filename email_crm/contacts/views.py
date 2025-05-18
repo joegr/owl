@@ -1,10 +1,17 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from rest_framework import generics, filters, status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth.decorators import login_required
 from .models import Contact
 from .serializers import ContactSerializer
 from django.db.models import Q
+from emails.models import SentEmail
+from rest_framework.decorators import api_view, permission_classes
+from django.contrib import messages
+from django.urls import reverse
+from django.shortcuts import redirect
+from .forms import ContactForm
 
 # Create your views here.
 
@@ -93,3 +100,84 @@ class ContactSearchView(generics.ListAPIView):
             queryset = queryset.filter(position=position)
         
         return queryset
+
+# Template Views
+@login_required
+def contact_detail_view(request, contact_id):
+    """View to display the contact details page."""
+    contact = get_object_or_404(Contact, id=contact_id, user=request.user)
+    emails = SentEmail.objects.filter(contact=contact, user=request.user).order_by('-sent_at')[:10]
+    return render(request, 'contacts/contact_detail.html', {'contact': contact, 'emails': emails})
+
+@login_required
+def contact_edit_view(request, contact_id):
+    """View to display and process the contact edit form."""
+    contact = get_object_or_404(Contact, id=contact_id, user=request.user)
+    
+    if request.method == 'POST':
+        form = ContactForm(request.POST, instance=contact)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Contact updated successfully!")
+            return redirect('contacts:view', contact_id=contact.id)
+        else:
+            messages.error(request, "Please correct the errors below.")
+    else:
+        form = ContactForm(instance=contact)
+    
+    return render(request, 'contacts/contact_form.html', {'form': form, 'contact': contact, 'action': 'Edit'})
+
+@login_required
+def contact_add_view(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            contact = form.save(commit=False)
+            contact.user = request.user
+            contact.save()
+            messages.success(request, "Contact added successfully!")
+            return redirect('contacts:view', contact_id=contact.id)
+        else:
+            messages.error(request, "Please correct the errors below.")
+    else:
+        form = ContactForm()
+    
+    return render(request, 'contacts/contact_form.html', {'form': form, 'action': 'Add'})
+
+@login_required
+def contact_list_view(request):
+    """View to display all contacts with filtering options."""
+    return render(request, 'contacts/contact_list.html')
+
+@login_required
+def contact_delete_view(request, contact_id):
+    """View to confirm and process contact deletion."""
+    contact = get_object_or_404(Contact, id=contact_id, user=request.user)
+    
+    if request.method == 'POST':
+        contact_name = contact.name
+        contact.delete()
+        messages.success(request, f"Contact '{contact_name}' has been deleted.")
+        return redirect('contacts:list')
+    
+    return render(request, 'contacts/contact_delete.html', {'contact': contact})
+
+# API View for contact's emails
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def contact_emails_view(request, contact_id):
+    """API view to get emails sent to a specific contact."""
+    contact = get_object_or_404(Contact, id=contact_id, user=request.user)
+    emails = SentEmail.objects.filter(contact=contact, user=request.user).order_by('-sent_at')[:10]
+    
+    email_data = []
+    for email in emails:
+        email_data.append({
+            'id': email.id,
+            'subject': email.subject,
+            'sent_at': email.sent_at,
+            'opened': email.opened,
+            'clicked': email.clicked
+        })
+    
+    return Response({'emails': email_data})

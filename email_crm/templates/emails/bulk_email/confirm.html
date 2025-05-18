@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+
+{% block title %}Confirm Bulk Email - Email CRM{% endblock %}
+
+{% block extra_css %}
+<style>
+    .recipient-list {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    
+    .preview-email {
+        border: 1px solid #dee2e6;
+        border-radius: 0.25rem;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        background-color: #f8f9fa;
+    }
+    
+    .preview-subject {
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    .preview-body {
+        white-space: pre-wrap;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h2>Confirm Bulk Email</h2>
+            <p class="text-muted">Review and confirm before sending to {{ contact_count }} contacts</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+            <button type="button" class="btn btn-outline-secondary" onclick="history.back()">
+                <i class="bi bi-arrow-left"></i> Back to Compose
+            </button>
+        </div>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Email Preview</h5>
+                </div>
+                <div class="card-body">
+                    <div class="preview-email">
+                        <div class="preview-subject">{{ subject }}</div>
+                        <div class="preview-body">{{ body }}</div>
+                    </div>
+                    
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle-fill me-2"></i>
+                        This email will be personalized for each recipient with their specific information.
+                    </div>
+                    
+                    {% if campaign %}
+                        <div class="alert alert-success">
+                            <i class="bi bi-check-circle-fill me-2"></i>
+                            This email will be tracked as part of the campaign: <strong>{{ campaign.name }}</strong>
+                        </div>
+                    {% endif %}
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-between mt-4">
+                            <a href="{% url 'contacts:list' %}" class="btn btn-outline-secondary">
+                                <i class="bi bi-x-circle"></i> Cancel
+                            </a>
+                            
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-envelope"></i> Send to {{ contact_count }} Contacts
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Recipients ({{ contact_count }})</h5>
+                    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#recipientsModal">
+                        <i class="bi bi-eye"></i> View All
+                    </button>
+                </div>
+                <div class="card-body recipient-list">
+                    <ul class="list-group list-group-flush">
+                        {% for contact in contacts|slice:":5" %}
+                            <li class="list-group-item px-0">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="fw-bold">{{ contact.name }}</span>
+                                        <br>
+                                        <small class="text-muted">{{ contact.email }}</small>
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                        
+                        {% if contact_count > 5 %}
+                            <li class="list-group-item px-0 text-center">
+                                <button type="button" class="btn btn-sm btn-link" data-bs-toggle="modal" data-bs-target="#recipientsModal">
+                                    View all {{ contact_count }} recipients
+                                </button>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Email Details</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <strong>Email Status:</strong>
+                        <span class="badge bg-warning text-dark">Pending</span>
+                    </div>
+                    
+                    {% if template %}
+                        <div class="mb-3">
+                            <strong>Template:</strong>
+                            <span>{{ template.name }}</span>
+                        </div>
+                    {% endif %}
+                    
+                    <div class="mb-3">
+                        <strong>Created:</strong>
+                        <span>{{ now|date:"F j, Y, g:i a" }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recipients Modal -->
+<div class="modal fade" id="recipientsModal" tabindex="-1" aria-labelledby="recipientsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="recipientsModalLabel">Email Recipients ({{ contact_count }})</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Company</th>
+                                <th>Position</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for contact in contacts %}
+                                <tr>
+                                    <td>{{ contact.name }}</td>
+                                    <td>{{ contact.email }}</td>
+                                    <td>{{ contact.company|default:"-" }}</td>
+                                    <td>{{ contact.position|default:"-" }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+{% load form_filters %}
+
+{% block title %}
+{{ action }} Contact - Email CRM
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col">
+            <h2>{{ action }} Contact</h2>
+            <p class="text-muted">
+                {% if action == 'Edit' %}
+                    Update contact information
+                {% else %}
+                    Add a new contact to your CRM
+                {% endif %}
+            </p>
+        </div>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Contact Information</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" class="mt-2">
+                        {% csrf_token %}
+                        
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="{{ form.name.id_for_label }}" class="form-label">Name *</label>
+                                    {{ form.name|add_class:"form-control" }}
+                                    {% if form.name.errors %}
+                                        <div class="invalid-feedback d-block">
+                                            {{ form.name.errors }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="{{ form.email.id_for_label }}" class="form-label">Email *</label>
+                                    {{ form.email|add_class:"form-control" }}
+                                    {% if form.email.errors %}
+                                        <div class="invalid-feedback d-block">
+                                            {{ form.email.errors }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="{{ form.phone.id_for_label }}" class="form-label">Phone</label>
+                                    {{ form.phone|add_class:"form-control" }}
+                                    {% if form.phone.errors %}
+                                        <div class="invalid-feedback d-block">
+                                            {{ form.phone.errors }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="{{ form.company.id_for_label }}" class="form-label">Company</label>
+                                    {{ form.company|add_class:"form-control" }}
+                                    {% if form.company.errors %}
+                                        <div class="invalid-feedback d-block">
+                                            {{ form.company.errors }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="{{ form.position.id_for_label }}" class="form-label">Position</label>
+                                    {{ form.position|add_class:"form-control" }}
+                                    {% if form.position.errors %}
+                                        <div class="invalid-feedback d-block">
+                                            {{ form.position.errors }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label for="{{ form.notes.id_for_label }}" class="form-label">Notes</label>
+                            {{ form.notes|add_class:"form-control" }}
+                            {% if form.notes.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.notes.errors }}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">Add any additional information about this contact.</div>
+                        </div>
+                        
+                        <div class="mt-4 d-flex justify-content-between">
+                            {% if action == 'Edit' and contact %}
+                                <a href="{% url 'contacts:view' contact.id %}" class="btn btn-outline-secondary">
+                                    <i class="bi bi-x-circle"></i> Cancel
+                                </a>
+                            {% else %}
+                                <a href="{% url 'contacts:list' %}" class="btn btn-outline-secondary">
+                                    <i class="bi bi-x-circle"></i> Cancel
+                                </a>
+                            {% endif %}
+                            
+                            <button type="submit" class="btn btn-primary">
+                                {% if action == 'Edit' %}
+                                    <i class="bi bi-save"></i> Save Changes
+                                {% else %}
+                                    <i class="bi bi-person-plus"></i> Add Contact
+                                {% endif %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Quick Actions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'contacts:list' %}" class="btn btn-outline-primary">
+                            <i class="bi bi-people"></i> All Contacts
+                        </a>
+                        {% if action == 'Edit' and contact %}
+                            <a href="{% url 'contacts:view' contact.id %}" class="btn btn-outline-secondary">
+                                <i class="bi bi-eye"></i> View Contact
+                            </a>
+                            <a href="{% url 'emails:compose_email' contact.id %}" class="btn btn-outline-info">
+                                <i class="bi bi-envelope"></i> Send Email
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card shadow-sm mt-3">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Help</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text small">
+                        <i class="bi bi-info-circle text-primary me-2"></i>
+                        <strong>Required fields:</strong> Name and Email are required.
+                    </p>
+                    <p class="card-text small">
+                        <i class="bi bi-lightbulb text-warning me-2"></i>
+                        <strong>Tip:</strong> Adding a company and position helps with filtering contacts later.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Focus the name field on page load
+        const nameField = document.getElementById('{{ form.name.id_for_label }}');
+        if (nameField) {
+            nameField.focus();
+        }
+    });
+</script>
+{% endblock %} 

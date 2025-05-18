@@ -304,3 +304,1703 @@ INFO 2025-03-09 05:29:33,420 autoreload Watching for file changes with StatReloa
 INFO 2025-03-09 05:29:37,363 basehttp "GET / HTTP/1.1" 200 8025
 INFO 2025-03-09 05:29:37,436 basehttp "GET /static/css/style.css HTTP/1.1" 304 0
 INFO 2025-03-09 05:29:37,440 basehttp "GET /static/js/api.js HTTP/1.1" 200 7999
+INFO 2025-03-15 19:35:31,052 autoreload Watching for file changes with StatReloader
+INFO 2025-03-15 19:35:41,514 basehttp "GET / HTTP/1.1" 200 8025
+INFO 2025-03-15 19:35:41,584 basehttp "GET /static/js/api.js HTTP/1.1" 200 7999
+INFO 2025-03-15 19:35:41,584 basehttp "GET /static/css/style.css HTTP/1.1" 200 1149
+WARNING 2025-03-15 19:35:41,732 log Not Found: /apple-touch-icon-precomposed.png
+WARNING 2025-03-15 19:35:41,733 log Not Found: /favicon.ico
+WARNING 2025-03-15 19:35:41,733 basehttp "GET /favicon.ico HTTP/1.1" 404 3063
+WARNING 2025-03-15 19:35:41,734 basehttp "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3126
+WARNING 2025-03-15 19:35:41,738 log Not Found: /apple-touch-icon.png
+WARNING 2025-03-15 19:35:41,738 basehttp "GET /apple-touch-icon.png HTTP/1.1" 404 3090
+INFO 2025-03-15 19:35:45,073 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:35:45,091 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:35:45,092 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:35:45,116 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:35:49,981 basehttp "GET /accounts/register-form/ HTTP/1.1" 200 6738
+INFO 2025-03-15 19:36:03,212 views Registration request received: {'csrfmiddlewaretoken': 'I0svuR2Q9Etzu7E9Epd1wM1uOZODOilIi7KO3xQ1dNZgsjoCmqVLI7oUxHbSHvMM', 'username': 'jog', 'email': '0.nulls-handbag@icloud.com', 'first_name': 'j', 'last_name': 'g', 'password': 'mownuj-henqym-kaChi6', 'password2': 'mownuj-henqym-kaChi6'}
+INFO 2025-03-15 19:36:03,484 views User registered successfully: jog
+INFO 2025-03-15 19:36:03,485 views Redirecting to registration success page
+INFO 2025-03-15 19:36:03,486 basehttp "POST /accounts/register/ HTTP/1.1" 302 0
+INFO 2025-03-15 19:36:03,495 basehttp "GET /accounts/registration-success/jog/ HTTP/1.1" 200 5105
+INFO 2025-03-15 19:36:05,291 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:36:14,049 views Login attempt for user: jog
+INFO 2025-03-15 19:36:14,320 views Login successful for user: jog
+INFO 2025-03-15 19:36:14,321 basehttp "POST /accounts/login-jwt/ HTTP/1.1" 302 0
+INFO 2025-03-15 19:36:14,329 basehttp "GET /dashboard/ HTTP/1.1" 200 14727
+WARNING 2025-03-15 19:36:14,346 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:36:14,347 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:36:14,364 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:37:38,965 autoreload /Users/jg/owl/email_crm/accounts/views.py changed, reloading.
+INFO 2025-03-15 19:37:39,328 autoreload Watching for file changes with StatReloader
+INFO 2025-03-15 19:38:18,667 autoreload Watching for file changes with StatReloader
+INFO 2025-03-15 19:39:26,410 autoreload Watching for file changes with StatReloader
+INFO 2025-03-15 19:39:32,535 views Login attempt for user: jog
+INFO 2025-03-15 19:39:32,807 views Login successful for user: jog
+INFO 2025-03-15 19:39:32,811 basehttp "POST /accounts/login-jwt/ HTTP/1.1" 302 0
+INFO 2025-03-15 19:39:32,825 basehttp "GET /dashboard/ HTTP/1.1" 200 14727
+WARNING 2025-03-15 19:39:32,851 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:39:32,851 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:39:32,866 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:39:38,401 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:39:38,421 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:39:38,421 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:39:38,435 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:39:39,061 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:39:39,077 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:39:39,078 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:39:39,091 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:39:39,270 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:39:39,287 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:39:39,288 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:39:39,301 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:39:39,504 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:39:39,521 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:39:39,521 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:39:39,535 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:39:39,738 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:39:39,754 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:39:39,755 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:39:39,768 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:39:40,800 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:39:40,823 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:39:40,823 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:39:40,833 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:39:41,222 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:39:41,237 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:39:41,238 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:39:41,253 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:39:41,453 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:39:41,469 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:39:41,469 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:39:41,484 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:39:41,654 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:39:41,668 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:39:41,669 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:39:41,683 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:39:41,853 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:39:41,867 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:39:41,868 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:39:41,882 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:39:42,035 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:39:42,051 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:39:42,051 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:39:42,065 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:39:42,254 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:39:42,270 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:39:42,271 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:39:42,284 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:39:42,453 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:39:42,469 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:39:42,469 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:39:42,482 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:39:42,670 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:39:42,686 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:39:42,686 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:39:42,700 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:39:42,852 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:39:42,867 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:39:42,868 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:39:42,883 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:39:43,070 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:39:43,085 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:39:43,086 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:39:43,099 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:39:43,269 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:39:43,285 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:39:43,285 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:39:43,299 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:39:43,486 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:39:43,503 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:39:43,503 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:39:43,518 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:39:43,721 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:39:43,737 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:39:43,737 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:39:43,752 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:39:43,937 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:39:43,952 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:39:43,952 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:39:43,966 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:39:44,172 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:39:44,188 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:39:44,188 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:39:44,201 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:39:44,405 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:39:44,423 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:39:44,424 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:39:44,436 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:39:44,655 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:39:44,672 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:39:44,672 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:39:44,686 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:39:44,964 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:39:44,981 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:39:44,982 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:39:44,996 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:39:45,341 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:39:45,356 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:39:45,357 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:39:45,370 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+WARNING 2025-03-15 19:39:46,872 log Unauthorized: /emails/templates/
+WARNING 2025-03-15 19:39:46,873 basehttp "GET /emails/templates/ HTTP/1.1" 401 5221
+INFO 2025-03-15 19:39:46,887 basehttp "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2025-03-15 19:39:46,887 basehttp "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+INFO 2025-03-15 19:39:46,888 basehttp "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3597
+INFO 2025-03-15 19:39:46,891 basehttp "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1719
+INFO 2025-03-15 19:39:46,893 basehttp "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3385
+INFO 2025-03-15 19:39:46,894 basehttp "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+INFO 2025-03-15 19:39:46,894 basehttp "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2025-03-15 19:39:46,895 basehttp "GET /static/rest_framework/js/jquery-3.5.1.min.js HTTP/1.1" 304 0
+INFO 2025-03-15 19:39:46,895 basehttp "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+INFO 2025-03-15 19:39:46,895 basehttp "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+INFO 2025-03-15 19:39:46,917 basehttp "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+INFO 2025-03-15 19:40:02,411 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+WARNING 2025-03-15 19:40:02,437 log Unauthorized: /dashboard/data/
+WARNING 2025-03-15 19:40:02,438 basehttp "GET /dashboard/data/ HTTP/1.1" 401 58
+INFO 2025-03-15 19:40:02,489 basehttp "GET /accounts/login/ HTTP/1.1" 200 4954
+INFO 2025-03-15 19:41:24,286 autoreload /Users/jg/owl/email_crm/accounts/views.py changed, reloading.
+INFO 2025-03-15 19:41:24,655 autoreload Watching for file changes with StatReloader
+INFO 2025-03-15 19:41:31,928 autoreload /Users/jg/owl/email_crm/accounts/views.py changed, reloading.
+INFO 2025-03-15 19:41:32,192 autoreload Watching for file changes with StatReloader
+INFO 2025-03-15 19:41:38,396 autoreload /Users/jg/owl/email_crm/accounts/views.py changed, reloading.
+INFO 2025-03-15 19:41:38,689 autoreload Watching for file changes with StatReloader
+INFO 2025-03-15 19:41:54,113 autoreload /Users/jg/owl/email_crm/email_crm/settings.py changed, reloading.
+INFO 2025-03-15 19:41:54,382 autoreload Watching for file changes with StatReloader
+INFO 2025-03-15 19:42:06,749 autoreload /Users/jg/owl/email_crm/email_crm/settings.py changed, reloading.
+INFO 2025-03-15 19:42:07,021 autoreload Watching for file changes with StatReloader
+INFO 2025-03-15 19:42:18,165 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+INFO 2025-03-15 19:42:18,183 views Dashboard data requested by user: admin
+INFO 2025-03-15 19:42:18,192 views Dashboard data successfully retrieved for user: admin
+INFO 2025-03-15 19:42:18,193 basehttp "GET /dashboard/data/ HTTP/1.1" 200 129
+INFO 2025-03-15 19:42:23,727 basehttp "GET /emails/analytics/ HTTP/1.1" 200 5583
+INFO 2025-03-15 19:42:24,598 autoreload /Users/jg/owl/email_crm/accounts/views.py changed, reloading.
+INFO 2025-03-15 19:42:24,862 autoreload Watching for file changes with StatReloader
+WARNING 2025-03-15 19:42:28,358 log Not Found: /contacts/add/
+WARNING 2025-03-15 19:42:28,359 basehttp "GET /contacts/add/ HTTP/1.1" 404 3517
+WARNING 2025-03-15 19:42:31,310 log Not Found: /emails/templates/add/
+WARNING 2025-03-15 19:42:31,310 basehttp "GET /emails/templates/add/ HTTP/1.1" 404 3952
+WARNING 2025-03-15 19:42:36,813 log Not Found: /emails/
+WARNING 2025-03-15 19:42:36,813 basehttp "GET /emails/ HTTP/1.1" 404 3910
+INFO 2025-03-15 19:42:41,381 autoreload /Users/jg/owl/email_crm/accounts/urls.py changed, reloading.
+INFO 2025-03-15 19:42:41,661 autoreload Watching for file changes with StatReloader
+INFO 2025-03-15 19:42:41,816 views Dashboard data requested by user: admin
+INFO 2025-03-15 19:42:41,819 views Dashboard data successfully retrieved for user: admin
+INFO 2025-03-15 19:42:41,820 basehttp "GET /dashboard/data/ HTTP/1.1" 200 129
+INFO 2025-03-15 19:42:54,044 autoreload /Users/jg/owl/email_crm/email_crm/urls.py changed, reloading.
+INFO 2025-03-15 19:42:54,309 autoreload Watching for file changes with StatReloader
+INFO 2025-03-15 19:43:01,568 autoreload /Users/jg/owl/email_crm/email_crm/settings.py changed, reloading.
+INFO 2025-03-15 19:43:01,824 autoreload Watching for file changes with StatReloader
+WARNING 2025-03-15 19:43:05,756 log Not Found: /emails/
+WARNING 2025-03-15 19:43:05,756 basehttp "GET /emails/ HTTP/1.1" 404 3634
+INFO 2025-03-15 19:43:27,655 basehttp "GET /emails/analytics/ HTTP/1.1" 200 5583
+INFO 2025-03-15 19:43:52,085 autoreload /Users/jg/owl/email_crm/email_crm/settings.py changed, reloading.
+INFO 2025-03-15 19:43:52,412 autoreload Watching for file changes with StatReloader
+INFO 2025-03-15 19:44:15,494 basehttp "GET / HTTP/1.1" 200 8025
+INFO 2025-03-15 19:44:17,564 basehttp "GET /dashboard/ HTTP/1.1" 200 14236
+INFO 2025-03-15 19:44:17,583 views Dashboard data requested by user: admin
+INFO 2025-03-15 19:44:17,589 views Dashboard data successfully retrieved for user: admin
+INFO 2025-03-15 19:44:17,590 basehttp "GET /dashboard/data/ HTTP/1.1" 200 129
+INFO 2025-03-15 19:44:19,098 views Dashboard data requested by user: admin
+INFO 2025-03-15 19:44:19,103 views Dashboard data successfully retrieved for user: admin
+INFO 2025-03-15 19:44:19,105 basehttp "GET /dashboard/data/ HTTP/1.1" 200 129
+INFO 2025-03-15 19:44:21,014 basehttp "GET /accounts/logout/ HTTP/1.1" 302 0
+INFO 2025-03-15 19:44:21,031 basehttp "GET /accounts/login/ HTTP/1.1" 200 4612
+INFO 2025-03-15 19:44:25,259 views Login attempt for user: jog
+INFO 2025-03-15 19:44:25,530 views Login successful for user: jog
+INFO 2025-03-15 19:44:25,532 basehttp "POST /accounts/login-jwt/ HTTP/1.1" 302 0
+INFO 2025-03-15 19:44:25,545 basehttp "GET /dashboard/ HTTP/1.1" 200 14725
+INFO 2025-03-15 19:44:25,570 views Dashboard data requested by user: jog
+INFO 2025-03-15 19:44:25,577 views Dashboard data successfully retrieved for user: jog
+INFO 2025-03-15 19:44:25,578 basehttp "GET /dashboard/data/ HTTP/1.1" 200 129
+WARNING 2025-03-15 19:44:29,992 log Not Found: /emails/send/
+WARNING 2025-03-15 19:44:29,993 basehttp "GET /emails/send/ HTTP/1.1" 404 3649
+INFO 2025-03-15 19:48:24,104 basehttp "GET / HTTP/1.1" 200 8023
+INFO 2025-03-15 19:48:27,540 basehttp "GET /contacts/ HTTP/1.1" 200 10047
+INFO 2025-03-15 19:48:31,992 basehttp "GET /emails/templates/ HTTP/1.1" 200 9330
+INFO 2025-03-15 19:48:36,505 basehttp "GET /emails/templates/ HTTP/1.1" 200 9330
+INFO 2025-03-15 19:48:46,556 basehttp "GET /dashboard/ HTTP/1.1" 200 14234
+INFO 2025-03-15 19:48:46,578 views Dashboard data requested by user: jog
+INFO 2025-03-15 19:48:46,587 views Dashboard data successfully retrieved for user: jog
+INFO 2025-03-15 19:48:46,588 basehttp "GET /dashboard/data/ HTTP/1.1" 200 129
+INFO 2025-03-15 19:48:48,496 basehttp "GET /emails/analytics/ HTTP/1.1" 200 5581
+INFO 2025-03-15 19:48:59,986 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-03-15 19:49:00,319 autoreload Watching for file changes with StatReloader
+INFO 2025-03-15 19:49:09,642 autoreload /Users/jg/owl/email_crm/emails/urls.py changed, reloading.
+INFO 2025-03-15 19:49:09,903 autoreload Watching for file changes with StatReloader
+INFO 2025-03-15 19:49:53,978 autoreload /Users/jg/owl/email_crm/contacts/views.py changed, reloading.
+INFO 2025-03-15 19:49:54,344 autoreload Watching for file changes with StatReloader
+INFO 2025-03-15 19:49:59,577 autoreload /Users/jg/owl/email_crm/contacts/urls.py changed, reloading.
+INFO 2025-03-15 19:49:59,889 autoreload Watching for file changes with StatReloader
+INFO 2025-03-15 19:50:06,111 autoreload /Users/jg/owl/email_crm/email_crm/urls.py changed, reloading.
+INFO 2025-03-15 19:50:06,418 autoreload Watching for file changes with StatReloader
+INFO 2025-03-15 19:50:19,840 autoreload /Users/jg/owl/email_crm/email_crm/urls.py changed, reloading.
+INFO 2025-03-15 19:50:20,101 autoreload Watching for file changes with StatReloader
+INFO 2025-03-15 19:50:28,406 autoreload /Users/jg/owl/email_crm/email_crm/urls.py changed, reloading.
+INFO 2025-03-15 19:50:28,674 autoreload Watching for file changes with StatReloader
+INFO 2025-03-15 20:01:02,435 views Dashboard data requested by user: jog
+INFO 2025-03-15 20:01:02,442 views Dashboard data successfully retrieved for user: jog
+INFO 2025-03-15 20:01:02,444 basehttp "GET /dashboard/data/ HTTP/1.1" 200 129
+INFO 2025-03-15 20:01:03,700 basehttp "GET /contacts/ HTTP/1.1" 200 10047
+INFO 2025-03-15 21:49:21,686 autoreload Watching for file changes with StatReloader
+INFO 2025-03-15 21:49:33,942 basehttp "GET / HTTP/1.1" 200 8023
+INFO 2025-03-15 21:49:42,723 basehttp "GET /dashboard/ HTTP/1.1" 200 14234
+INFO 2025-03-15 21:49:42,741 views Dashboard data requested by user: jog
+INFO 2025-03-15 21:49:42,746 views Dashboard data successfully retrieved for user: jog
+INFO 2025-03-15 21:49:42,749 basehttp "GET /dashboard/data/ HTTP/1.1" 200 129
+WARNING 2025-03-15 21:49:44,072 log Not Found: /emails/
+WARNING 2025-03-15 21:49:44,072 basehttp "GET /emails/ HTTP/1.1" 404 4429
+WARNING 2025-03-15 21:49:56,018 log Not Found: /emails/compose
+WARNING 2025-03-15 21:49:56,019 basehttp "GET /emails/compose HTTP/1.1" 404 4450
+INFO 2025-03-15 21:50:10,683 basehttp "GET /emails/compose/0 HTTP/1.1" 301 0
+WARNING 2025-03-15 21:50:10,698 log Not Found: /emails/compose/0/
+WARNING 2025-03-15 21:50:10,699 basehttp "GET /emails/compose/0/ HTTP/1.1" 404 3805
+WARNING 2025-03-15 21:50:17,013 log Not Found: /emails/compose/
+WARNING 2025-03-15 21:50:17,014 basehttp "GET /emails/compose/ HTTP/1.1" 404 4453
+INFO 2025-03-16 00:04:11,980 views Login attempt for user: formuser
+INFO 2025-03-16 00:04:12,247 views Login successful for user: formuser
+INFO 2025-03-16 00:04:13,678 views Login attempt for user: formuser
+WARNING 2025-03-16 00:04:13,943 views Login failed for user: formuser
+WARNING 2025-03-16 00:04:14,535 log Forbidden: /accounts/profile/
+WARNING 2025-03-16 00:04:16,292 log Forbidden: /contacts/
+WARNING 2025-03-16 00:04:18,359 log Forbidden: /contacts/
+WARNING 2025-03-16 00:04:20,427 log Forbidden: /dashboard/data/
+WARNING 2025-03-16 00:04:22,190 log Forbidden: /emails/bulk-send/
+WARNING 2025-03-16 00:04:23,638 log Forbidden: /emails/templates/
+INFO 2025-03-16 00:10:51,613 views Login attempt for user: testuser
+INFO 2025-03-16 00:10:51,885 views Login successful for user: testuser
+INFO 2025-03-16 00:10:53,302 views Login attempt for user: testuser
+WARNING 2025-03-16 00:10:53,567 views Login failed for user: testuser
+INFO 2025-03-16 00:11:42,092 views Login attempt for user: testuser
+INFO 2025-03-16 00:11:42,362 views Login successful for user: testuser
+INFO 2025-03-16 00:11:42,637 views Login attempt for user: testuser
+INFO 2025-03-16 00:11:42,907 views Login successful for user: testuser
+INFO 2025-03-16 00:11:44,084 views Login attempt for user: testuser
+WARNING 2025-03-16 00:11:44,356 views Login failed for user: testuser
+INFO 2025-03-16 00:12:08,899 views Login attempt for user: testuser
+INFO 2025-03-16 00:12:09,172 views Login successful for user: testuser
+INFO 2025-03-16 00:12:09,448 views Login attempt for user: testuser
+INFO 2025-03-16 00:12:09,717 views Login successful for user: testuser
+INFO 2025-03-16 00:12:10,897 views Login attempt for user: testuser
+WARNING 2025-03-16 00:12:11,166 views Login failed for user: testuser
+INFO 2025-03-16 00:12:34,125 autoreload Watching for file changes with StatReloader
+INFO 2025-03-16 00:12:38,352 basehttp "GET / HTTP/1.1" 200 8023
+INFO 2025-03-16 00:12:39,896 basehttp "GET /dashboard/ HTTP/1.1" 200 14234
+INFO 2025-03-16 00:12:39,918 views Dashboard data requested by user: jog
+INFO 2025-03-16 00:12:39,922 views Dashboard data successfully retrieved for user: jog
+INFO 2025-03-16 00:12:39,924 basehttp "GET /dashboard/data/ HTTP/1.1" 200 129
+INFO 2025-03-16 00:12:43,444 basehttp "GET /contacts/ HTTP/1.1" 200 10047
+INFO 2025-03-16 00:12:43,457 basehttp "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3385
+INFO 2025-03-16 00:12:43,458 basehttp "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1719
+INFO 2025-03-16 00:12:43,458 basehttp "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+INFO 2025-03-16 00:12:43,458 basehttp "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3597
+INFO 2025-03-16 00:12:43,459 basehttp "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+INFO 2025-03-16 00:13:36,103 basehttp "POST /contacts/ HTTP/1.1" 201 10610
+INFO 2025-03-16 00:13:41,838 basehttp "GET /contacts/ HTTP/1.1" 200 10591
+INFO 2025-03-16 00:13:56,547 basehttp "GET /emails/templates/ HTTP/1.1" 200 9330
+INFO 2025-03-16 00:16:07,253 basehttp "GET /dashboard/ HTTP/1.1" 200 14234
+INFO 2025-03-16 00:16:07,273 views Dashboard data requested by user: jog
+INFO 2025-03-16 00:16:07,278 views Dashboard data successfully retrieved for user: jog
+INFO 2025-03-16 00:16:07,279 basehttp "GET /dashboard/data/ HTTP/1.1" 200 129
+WARNING 2025-03-16 00:16:12,287 log Not Found: /emails/send/
+WARNING 2025-03-16 00:16:12,287 basehttp "GET /emails/send/ HTTP/1.1" 404 4444
+WARNING 2025-03-16 00:16:23,305 log Not Found: /emails/compose/0/
+WARNING 2025-03-16 00:16:23,306 basehttp "GET /emails/compose/0/ HTTP/1.1" 404 3805
+INFO 2025-03-16 00:16:28,074 basehttp "GET /emails/compose/2 HTTP/1.1" 301 0
+INFO 2025-03-16 00:16:28,090 basehttp "GET /emails/compose/2/ HTTP/1.1" 200 5690
+INFO 2025-03-16 00:16:36,956 basehttp "POST /emails/preview/2/ HTTP/1.1" 200 4628
+INFO 2025-03-16 00:16:39,070 basehttp "POST /emails/send-confirmed/2/ HTTP/1.1" 302 0
+ERROR 2025-03-16 00:16:39,104 log Internal Server Error: /contacts/view/2/
+Traceback (most recent call last):
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/jg/owl/email_crm/contacts/views.py", line 105, in contact_detail_view
+    return render(request, 'contacts/contact_detail.html', {'contact': contact})
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'edit' not found. 'edit' is not a valid view function or pattern name.
+ERROR 2025-03-16 00:16:39,107 basehttp "GET /contacts/view/2/ HTTP/1.1" 500 156391
+INFO 2025-03-16 00:17:41,890 autoreload /Users/jg/owl/email_crm/contacts/views.py changed, reloading.
+INFO 2025-03-16 00:17:42,275 autoreload Watching for file changes with StatReloader
+INFO 2025-03-16 00:17:48,506 autoreload /Users/jg/owl/email_crm/contacts/urls.py changed, reloading.
+INFO 2025-03-16 00:17:48,772 autoreload Watching for file changes with StatReloader
+INFO 2025-03-16 00:17:49,910 autoreload /Users/jg/owl/email_crm/contacts/views.py changed, reloading.
+INFO 2025-03-16 00:17:50,173 autoreload Watching for file changes with StatReloader
+INFO 2025-03-16 00:18:29,578 autoreload Watching for file changes with StatReloader
+INFO 2025-03-16 00:18:38,161 basehttp "POST /emails/send-confirmed/2/ HTTP/1.1" 302 0
+INFO 2025-03-16 00:18:38,176 basehttp "GET /contacts/view/2/ HTTP/1.1" 200 8295
+INFO 2025-03-16 00:18:38,200 basehttp "GET /api/contacts/2/emails/ HTTP/1.1" 200 206
+INFO 2025-03-16 00:21:01,161 basehttp "GET /dashboard/ HTTP/1.1" 200 14234
+INFO 2025-03-16 00:21:01,180 views Dashboard data requested by user: jog
+INFO 2025-03-16 00:21:01,187 views Dashboard data successfully retrieved for user: jog
+INFO 2025-03-16 00:21:01,189 basehttp "GET /dashboard/data/ HTTP/1.1" 200 677
+INFO 2025-03-16 00:21:09,816 basehttp "GET /emails/analytics/ HTTP/1.1" 200 7841
+ERROR 2025-03-21 02:52:28,210 views Error sending email: Simulated email sending error
+WARNING 2025-03-21 02:53:57,751 log Forbidden: /emails/bulk-send/
+ERROR 2025-03-21 02:53:58,691 views Error sending email: Simulated email sending error
+WARNING 2025-03-21 02:54:50,952 log Forbidden: /emails/bulk-send/
+ERROR 2025-03-21 02:54:51,867 views Error sending email: Simulated email sending error
+WARNING 2025-03-21 02:56:54,525 log Forbidden: /emails/bulk-send/
+ERROR 2025-03-21 02:56:55,450 views Error sending email: Simulated email sending error
+INFO 2025-05-15 02:59:34,875 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 02:59:47,396 basehttp "GET / HTTP/1.1" 200 5960
+INFO 2025-05-15 02:59:47,464 basehttp "GET /static/js/api.js HTTP/1.1" 200 7144
+INFO 2025-05-15 02:59:47,464 basehttp "GET /static/css/style.css HTTP/1.1" 200 1149
+WARNING 2025-05-15 02:59:47,612 log Not Found: /apple-touch-icon.png
+WARNING 2025-05-15 02:59:47,612 log Not Found: /favicon.ico
+WARNING 2025-05-15 02:59:47,613 log Not Found: /favicon.ico
+WARNING 2025-05-15 02:59:47,614 log Not Found: /apple-touch-icon-precomposed.png
+WARNING 2025-05-15 02:59:47,614 basehttp "GET /apple-touch-icon.png HTTP/1.1" 404 2984
+WARNING 2025-05-15 02:59:47,614 log Not Found: /apple-touch-icon-precomposed.png
+WARNING 2025-05-15 02:59:47,614 basehttp "GET /favicon.ico HTTP/1.1" 404 2957
+WARNING 2025-05-15 02:59:47,615 basehttp "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3020
+WARNING 2025-05-15 02:59:47,615 basehttp "GET /favicon.ico HTTP/1.1" 404 2957
+WARNING 2025-05-15 02:59:47,615 basehttp "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3020
+WARNING 2025-05-15 02:59:47,676 log Not Found: /apple-touch-icon.png
+WARNING 2025-05-15 02:59:47,677 basehttp "GET /apple-touch-icon.png HTTP/1.1" 404 2984
+INFO 2025-05-15 02:59:50,578 basehttp "GET /accounts/login/ HTTP/1.1" 200 4101
+INFO 2025-05-15 03:00:00,700 basehttp "GET /accounts/register-form/ HTTP/1.1" 200 5885
+INFO 2025-05-15 03:00:22,853 views Registration request received: {'csrfmiddlewaretoken': '9ho2jVhx02CHJZzoE8YOGIGAdhNEl8dNgoxBHzDvrcvOIP7CubexRULsi5YnXPuZ', 'username': 'Marvin', 'email': 'marvin@marvinsmusicstudio.com', 'first_name': 'Marvin', 'last_name': 'Gruenbaum', 'password': 'mupzys-qowkoH-vigzo2', 'password2': 'mupzys-qowkoH-vigzo2'}
+INFO 2025-05-15 03:00:23,031 views User registered successfully: Marvin
+INFO 2025-05-15 03:00:23,031 views Redirecting to registration success page
+INFO 2025-05-15 03:00:23,032 basehttp "POST /accounts/register/ HTTP/1.1" 302 0
+INFO 2025-05-15 03:00:23,041 basehttp "GET /accounts/registration-success/Marvin/ HTTP/1.1" 200 4258
+INFO 2025-05-15 03:00:24,840 basehttp "GET /accounts/login/ HTTP/1.1" 200 4101
+INFO 2025-05-15 03:00:46,739 views Login attempt for user: Marvin
+INFO 2025-05-15 03:00:46,913 views Login successful for user: Marvin
+INFO 2025-05-15 03:00:46,914 basehttp "POST /accounts/login-jwt/ HTTP/1.1" 302 0
+INFO 2025-05-15 03:00:47,062 basehttp "GET /dashboard/ HTTP/1.1" 200 14731
+INFO 2025-05-15 03:00:47,082 views Dashboard data requested by user: Marvin
+INFO 2025-05-15 03:00:47,086 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-15 03:00:47,091 basehttp "GET /dashboard/data/ HTTP/1.1" 200 129
+WARNING 2025-05-15 03:00:56,875 log Not Found: /contacts/add/
+WARNING 2025-05-15 03:00:56,875 basehttp "GET /contacts/add/ HTTP/1.1" 404 4014
+INFO 2025-05-15 03:02:45,237 autoreload /Users/jg/owl/email_crm/contacts/views.py changed, reloading.
+INFO 2025-05-15 03:02:45,480 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 03:03:00,904 autoreload /Users/jg/owl/email_crm/contacts/forms.py changed, reloading.
+INFO 2025-05-15 03:03:01,071 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 03:03:34,853 autoreload /Users/jg/owl/email_crm/contacts/urls.py changed, reloading.
+INFO 2025-05-15 03:03:35,094 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 03:03:38,247 autoreload /Users/jg/owl/email_crm/contacts/urls.py changed, reloading.
+INFO 2025-05-15 03:03:38,415 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 03:03:46,946 basehttp "GET /contacts/add/ HTTP/1.1" 200 4569
+INFO 2025-05-15 03:04:14,093 basehttp "POST /contacts/add/ HTTP/1.1" 302 0
+INFO 2025-05-15 03:04:14,110 basehttp "GET /contacts/view/3/ HTTP/1.1" 200 8075
+INFO 2025-05-15 03:04:14,132 basehttp "GET /api/contacts/3/emails/ HTTP/1.1" 200 13
+INFO 2025-05-15 03:04:16,407 basehttp "GET /emails/compose/3/ HTTP/1.1" 200 5689
+INFO 2025-05-15 03:04:25,404 basehttp "POST /emails/preview/3/ HTTP/1.1" 200 4641
+INFO 2025-05-15 03:04:26,880 basehttp "POST /emails/send-confirmed/3/ HTTP/1.1" 302 0
+INFO 2025-05-15 03:04:26,891 basehttp "GET /contacts/view/3/ HTTP/1.1" 200 8082
+INFO 2025-05-15 03:04:26,919 basehttp "GET /api/contacts/3/emails/ HTTP/1.1" 200 110
+INFO 2025-05-15 03:04:54,823 basehttp "GET /dashboard/ HTTP/1.1" 200 14237
+INFO 2025-05-15 03:04:54,843 views Dashboard data requested by user: Marvin
+INFO 2025-05-15 03:04:54,848 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-15 03:04:54,851 basehttp "GET /dashboard/data/ HTTP/1.1" 200 413
+INFO 2025-05-15 03:05:01,876 basehttp "GET /emails/analytics/ HTTP/1.1" 200 6758
+INFO 2025-05-15 03:05:01,888 basehttp "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+INFO 2025-05-15 03:05:01,889 basehttp "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3385
+INFO 2025-05-15 03:05:01,891 basehttp "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+INFO 2025-05-15 03:05:01,891 basehttp "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2025-05-15 03:05:01,893 basehttp "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3597
+INFO 2025-05-15 03:05:01,893 basehttp "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1719
+INFO 2025-05-15 03:05:01,894 basehttp "GET /static/rest_framework/js/jquery-3.5.1.min.js HTTP/1.1" 200 89476
+INFO 2025-05-15 03:05:01,894 basehttp "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+INFO 2025-05-15 03:05:01,894 basehttp "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2025-05-15 03:05:01,894 basehttp "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+INFO 2025-05-15 03:05:01,908 basehttp "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+INFO 2025-05-15 03:05:16,456 basehttp "GET /dashboard/ HTTP/1.1" 200 14237
+INFO 2025-05-15 03:05:16,479 views Dashboard data requested by user: Marvin
+INFO 2025-05-15 03:05:16,484 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-15 03:05:16,486 basehttp "GET /dashboard/data/ HTTP/1.1" 200 413
+INFO 2025-05-15 03:05:19,076 views Dashboard data requested by user: Marvin
+INFO 2025-05-15 03:05:19,081 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-15 03:05:19,084 basehttp "GET /dashboard/data/ HTTP/1.1" 200 413
+INFO 2025-05-15 19:03:56,738 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 19:04:04,368 basehttp "GET / HTTP/1.1" 200 8026
+WARNING 2025-05-15 19:04:04,601 log Not Found: /apple-touch-icon-precomposed.png
+WARNING 2025-05-15 19:04:04,602 log Not Found: /favicon.ico
+WARNING 2025-05-15 19:04:04,602 basehttp "GET /favicon.ico HTTP/1.1" 404 2957
+WARNING 2025-05-15 19:04:04,602 log Not Found: /apple-touch-icon.png
+WARNING 2025-05-15 19:04:04,602 basehttp "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3020
+WARNING 2025-05-15 19:04:04,602 basehttp "GET /apple-touch-icon.png HTTP/1.1" 404 2984
+INFO 2025-05-15 19:04:06,229 basehttp "GET /dashboard/ HTTP/1.1" 200 14237
+INFO 2025-05-15 19:04:06,247 views Dashboard data requested by user: Marvin
+INFO 2025-05-15 19:04:06,252 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-15 19:04:06,256 basehttp "GET /dashboard/data/ HTTP/1.1" 200 413
+WARNING 2025-05-15 19:04:10,017 log Not Found: /emails/send/
+WARNING 2025-05-15 19:04:10,018 basehttp "GET /emails/send/ HTTP/1.1" 404 4444
+WARNING 2025-05-15 19:07:50,651 log Not Found: /emails/send/
+WARNING 2025-05-15 19:07:50,651 basehttp "GET /emails/send/ HTTP/1.1" 404 4444
+WARNING 2025-05-15 19:07:53,645 log Not Found: /apple-touch-icon-precomposed.png
+WARNING 2025-05-15 19:07:53,646 log Not Found: /favicon.ico
+WARNING 2025-05-15 19:07:53,647 log Not Found: /apple-touch-icon.png
+WARNING 2025-05-15 19:07:53,647 basehttp "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3020
+WARNING 2025-05-15 19:07:53,647 basehttp "GET /favicon.ico HTTP/1.1" 404 2957
+WARNING 2025-05-15 19:07:53,648 basehttp "GET /apple-touch-icon.png HTTP/1.1" 404 2984
+INFO 2025-05-15 19:07:55,214 basehttp "GET /dashboard/ HTTP/1.1" 200 14243
+INFO 2025-05-15 19:07:55,237 views Dashboard data requested by user: Marvin
+INFO 2025-05-15 19:07:55,242 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-15 19:07:55,245 basehttp "GET /dashboard/data/ HTTP/1.1" 200 413
+WARNING 2025-05-15 19:07:57,232 log Not Found: /emails/compose/
+WARNING 2025-05-15 19:07:57,232 basehttp "GET /emails/compose/ HTTP/1.1" 404 4453
+INFO 2025-05-15 19:09:48,506 autoreload /Users/jg/owl/email_crm/emails/urls.py changed, reloading.
+INFO 2025-05-15 19:09:48,779 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 19:09:54,973 autoreload /Users/jg/owl/email_crm/emails/urls.py changed, reloading.
+INFO 2025-05-15 19:09:55,134 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 19:09:58,214 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-15 19:09:58,384 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 19:09:59,487 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-15 19:09:59,642 autoreload Watching for file changes with StatReloader
+WARNING 2025-05-15 19:10:03,914 log Not Found: /emails/compose/
+WARNING 2025-05-15 19:10:03,914 basehttp "GET /emails/compose/ HTTP/1.1" 404 4645
+WARNING 2025-05-15 19:10:26,128 log Not Found: /emails/compose/
+WARNING 2025-05-15 19:10:26,129 basehttp "GET /emails/compose/ HTTP/1.1" 404 4645
+WARNING 2025-05-15 19:10:28,340 log Not Found: /favicon.ico
+WARNING 2025-05-15 19:10:28,341 log Not Found: /apple-touch-icon.png
+WARNING 2025-05-15 19:10:28,342 log Not Found: /apple-touch-icon-precomposed.png
+WARNING 2025-05-15 19:10:28,342 basehttp "GET /favicon.ico HTTP/1.1" 404 2957
+WARNING 2025-05-15 19:10:28,343 basehttp "GET /apple-touch-icon.png HTTP/1.1" 404 2984
+WARNING 2025-05-15 19:10:28,343 basehttp "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3020
+INFO 2025-05-15 19:10:29,297 basehttp "GET /dashboard/ HTTP/1.1" 200 14250
+INFO 2025-05-15 19:10:29,321 views Dashboard data requested by user: Marvin
+INFO 2025-05-15 19:10:29,326 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-15 19:10:29,328 basehttp "GET /dashboard/data/ HTTP/1.1" 200 413
+INFO 2025-05-15 19:10:30,515 basehttp "GET /emails/select-contact/ HTTP/1.1" 200 3778
+INFO 2025-05-15 19:10:38,472 basehttp "GET /dashboard/ HTTP/1.1" 200 14250
+INFO 2025-05-15 19:10:38,489 views Dashboard data requested by user: Marvin
+INFO 2025-05-15 19:10:38,494 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-15 19:10:38,496 basehttp "GET /dashboard/data/ HTTP/1.1" 200 413
+WARNING 2025-05-15 19:10:41,696 log Not Found: /emails/templates/add/
+WARNING 2025-05-15 19:10:41,697 basehttp "GET /emails/templates/add/ HTTP/1.1" 404 4663
+INFO 2025-05-15 19:10:46,856 basehttp "GET /contacts/add/ HTTP/1.1" 200 4569
+INFO 2025-05-15 19:10:50,773 basehttp "GET /emails/templates/ HTTP/1.1" 200 9333
+INFO 2025-05-15 19:10:50,784 basehttp "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3385
+INFO 2025-05-15 19:10:50,787 basehttp "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+INFO 2025-05-15 19:10:50,787 basehttp "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2025-05-15 19:10:50,788 basehttp "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2025-05-15 19:10:50,789 basehttp "GET /static/rest_framework/js/jquery-3.5.1.min.js HTTP/1.1" 200 89476
+INFO 2025-05-15 19:10:54,257 basehttp "GET /contacts/ HTTP/1.1" 200 10579
+INFO 2025-05-15 19:10:59,798 basehttp "GET /dashboard/ HTTP/1.1" 200 14250
+INFO 2025-05-15 19:10:59,818 views Dashboard data requested by user: Marvin
+INFO 2025-05-15 19:10:59,823 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-15 19:10:59,826 basehttp "GET /dashboard/data/ HTTP/1.1" 200 413
+INFO 2025-05-15 19:11:02,134 basehttp "GET /emails/analytics/ HTTP/1.1" 200 6758
+INFO 2025-05-15 19:17:29,704 autoreload /Users/jg/owl/email_crm/emails/urls.py changed, reloading.
+INFO 2025-05-15 19:17:29,977 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 19:17:36,163 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-15 19:17:36,360 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 19:17:42,568 autoreload /Users/jg/owl/email_crm/emails/urls.py changed, reloading.
+INFO 2025-05-15 19:17:42,751 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 19:17:58,139 basehttp "GET /dashboard/ HTTP/1.1" 200 14250
+INFO 2025-05-15 19:17:58,166 views Dashboard data requested by user: Marvin
+INFO 2025-05-15 19:17:58,170 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-15 19:17:58,172 basehttp "GET /dashboard/data/ HTTP/1.1" 200 413
+INFO 2025-05-15 19:18:00,609 basehttp "GET /emails/analytics/ HTTP/1.1" 200 6758
+INFO 2025-05-15 19:18:09,525 views Dashboard data requested by user: Marvin
+INFO 2025-05-15 19:18:09,531 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-15 19:18:09,534 basehttp "GET /dashboard/data/ HTTP/1.1" 200 413
+INFO 2025-05-15 19:23:00,191 basehttp "GET / HTTP/1.1" 200 8026
+WARNING 2025-05-15 19:23:00,269 log Not Found: /favicon.ico
+WARNING 2025-05-15 19:23:00,269 log Not Found: /apple-touch-icon-precomposed.png
+WARNING 2025-05-15 19:23:00,270 log Not Found: /apple-touch-icon.png
+WARNING 2025-05-15 19:23:00,270 basehttp "GET /favicon.ico HTTP/1.1" 404 2957
+WARNING 2025-05-15 19:23:00,270 basehttp "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3020
+WARNING 2025-05-15 19:23:00,270 basehttp "GET /apple-touch-icon.png HTTP/1.1" 404 2984
+INFO 2025-05-15 19:23:02,259 basehttp "GET /dashboard/ HTTP/1.1" 200 14260
+INFO 2025-05-15 19:23:02,277 views Dashboard data requested by user: Marvin
+INFO 2025-05-15 19:23:02,281 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-15 19:23:02,284 basehttp "GET /dashboard/data/ HTTP/1.1" 200 413
+INFO 2025-05-15 19:23:04,285 basehttp "GET /emails/analytics-dashboard/ HTTP/1.1" 200 16391
+INFO 2025-05-15 19:23:04,366 basehttp "GET /emails/analytics/ HTTP/1.1" 200 565
+INFO 2025-05-15 19:23:13,754 basehttp "GET /emails/analytics/ HTTP/1.1" 200 565
+INFO 2025-05-15 19:23:21,152 basehttp "GET /emails/analytics-dashboard/ HTTP/1.1" 200 23126
+INFO 2025-05-15 19:23:21,170 basehttp "GET /emails/analytics/ HTTP/1.1" 200 565
+INFO 2025-05-15 19:23:23,894 basehttp "GET /dashboard/ HTTP/1.1" 200 14260
+INFO 2025-05-15 19:23:23,912 views Dashboard data requested by user: Marvin
+INFO 2025-05-15 19:23:23,916 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-15 19:23:23,919 basehttp "GET /dashboard/data/ HTTP/1.1" 200 413
+INFO 2025-05-15 19:25:53,239 basehttp "GET /emails/analytics-dashboard/ HTTP/1.1" 200 29662
+INFO 2025-05-15 19:25:53,265 basehttp "GET /emails/analytics/ HTTP/1.1" 200 565
+INFO 2025-05-15 19:25:53,275 basehttp "GET /emails/analytics/ HTTP/1.1" 200 565
+INFO 2025-05-15 19:26:13,402 basehttp "GET /emails/analytics/ HTTP/1.1" 200 565
+INFO 2025-05-15 19:26:13,411 basehttp "GET /emails/analytics/ HTTP/1.1" 200 565
+INFO 2025-05-15 19:28:27,646 basehttp "GET /emails/analytics-dashboard/ HTTP/1.1" 200 29991
+INFO 2025-05-15 19:28:27,719 basehttp "GET /emails/analytics/ HTTP/1.1" 200 565
+INFO 2025-05-15 19:28:27,735 basehttp "GET /emails/analytics/ HTTP/1.1" 200 565
+INFO 2025-05-15 19:28:45,884 basehttp "GET /dashboard/ HTTP/1.1" 200 14260
+INFO 2025-05-15 19:28:45,937 views Dashboard data requested by user: Marvin
+INFO 2025-05-15 19:28:45,945 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-15 19:28:45,948 basehttp "GET /dashboard/data/ HTTP/1.1" 200 413
+INFO 2025-05-15 19:28:47,185 views Dashboard data requested by user: Marvin
+INFO 2025-05-15 19:28:47,192 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-15 19:28:47,197 basehttp "GET /dashboard/data/ HTTP/1.1" 200 413
+INFO 2025-05-15 19:28:50,290 basehttp "GET /emails/analytics-dashboard/ HTTP/1.1" 200 30034
+INFO 2025-05-15 19:28:50,351 basehttp "GET /emails/analytics/ HTTP/1.1" 200 565
+INFO 2025-05-15 19:28:50,367 basehttp "GET /emails/analytics/ HTTP/1.1" 200 565
+INFO 2025-05-15 19:29:00,056 basehttp "GET /emails/analytics/ HTTP/1.1" 200 565
+INFO 2025-05-15 19:29:00,073 basehttp "GET /emails/analytics/ HTTP/1.1" 200 565
+INFO 2025-05-15 19:29:57,448 basehttp "GET /dashboard/ HTTP/1.1" 200 14260
+INFO 2025-05-15 19:29:57,499 views Dashboard data requested by user: Marvin
+INFO 2025-05-15 19:29:57,506 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-15 19:29:57,509 basehttp "GET /dashboard/data/ HTTP/1.1" 200 413
+INFO 2025-05-15 19:29:59,751 basehttp "GET /emails/analytics-dashboard/ HTTP/1.1" 200 30075
+INFO 2025-05-15 19:29:59,813 basehttp "GET /emails/analytics/ HTTP/1.1" 200 565
+INFO 2025-05-15 19:29:59,832 basehttp "GET /emails/analytics/ HTTP/1.1" 200 565
+INFO 2025-05-15 19:30:04,336 basehttp "GET /emails/analytics/ HTTP/1.1" 200 565
+INFO 2025-05-15 19:30:04,350 basehttp "GET /emails/analytics/ HTTP/1.1" 200 565
+INFO 2025-05-15 19:31:56,669 basehttp "GET /emails/analytics-dashboard/ HTTP/1.1" 200 31734
+INFO 2025-05-15 19:31:56,717 basehttp "GET /emails/analytics/ HTTP/1.1" 200 565
+INFO 2025-05-15 19:31:56,740 basehttp "GET /emails/analytics/ HTTP/1.1" 200 565
+INFO 2025-05-15 19:32:01,317 basehttp "GET /dashboard/ HTTP/1.1" 200 14260
+INFO 2025-05-15 19:32:01,378 views Dashboard data requested by user: Marvin
+INFO 2025-05-15 19:32:01,387 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-15 19:32:01,390 basehttp "GET /dashboard/data/ HTTP/1.1" 200 413
+INFO 2025-05-15 19:32:03,523 basehttp "GET /emails/analytics-dashboard/ HTTP/1.1" 200 31734
+INFO 2025-05-15 19:32:03,583 basehttp "GET /emails/analytics/ HTTP/1.1" 200 565
+INFO 2025-05-15 19:32:03,603 basehttp "GET /emails/analytics/ HTTP/1.1" 200 565
+INFO 2025-05-15 19:32:06,922 basehttp "GET /emails/analytics/ HTTP/1.1" 200 565
+INFO 2025-05-15 19:32:06,934 basehttp "GET /emails/analytics/ HTTP/1.1" 200 565
+INFO 2025-05-15 19:34:05,258 basehttp "GET /dashboard/ HTTP/1.1" 200 14260
+INFO 2025-05-15 19:34:05,309 views Dashboard data requested by user: Marvin
+INFO 2025-05-15 19:34:05,314 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-15 19:34:05,317 basehttp "GET /dashboard/data/ HTTP/1.1" 200 413
+INFO 2025-05-15 19:34:08,613 basehttp "GET /emails/analytics-dashboard/ HTTP/1.1" 200 30720
+INFO 2025-05-15 19:34:08,675 basehttp "GET /emails/analytics/ HTTP/1.1" 200 565
+INFO 2025-05-15 19:34:22,521 basehttp "GET /emails/analytics/ HTTP/1.1" 200 565
+INFO 2025-05-15 19:34:55,531 basehttp "GET /contacts/ HTTP/1.1" 200 10579
+INFO 2025-05-15 19:35:07,051 basehttp "GET /contacts/ HTTP/1.1" 200 10579
+INFO 2025-05-15 20:24:00,607 basehttp "GET / HTTP/1.1" 200 8026
+WARNING 2025-05-15 20:24:00,657 log Not Found: /favicon.ico
+WARNING 2025-05-15 20:24:00,658 log Not Found: /apple-touch-icon.png
+WARNING 2025-05-15 20:24:00,659 log Not Found: /apple-touch-icon-precomposed.png
+WARNING 2025-05-15 20:24:00,659 basehttp "GET /favicon.ico HTTP/1.1" 404 2957
+WARNING 2025-05-15 20:24:00,660 basehttp "GET /apple-touch-icon.png HTTP/1.1" 404 2984
+WARNING 2025-05-15 20:24:00,660 basehttp "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3020
+INFO 2025-05-15 20:24:02,218 basehttp "GET /dashboard/ HTTP/1.1" 200 14260
+INFO 2025-05-15 20:24:02,239 views Dashboard data requested by user: Marvin
+INFO 2025-05-15 20:24:02,244 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-15 20:24:02,247 basehttp "GET /dashboard/data/ HTTP/1.1" 200 413
+INFO 2025-05-15 20:24:04,102 basehttp "GET /emails/analytics-dashboard/ HTTP/1.1" 200 30720
+INFO 2025-05-15 20:24:04,144 basehttp "GET /emails/analytics/ HTTP/1.1" 200 565
+INFO 2025-05-15 20:24:13,250 basehttp "GET /dashboard/ HTTP/1.1" 200 14260
+INFO 2025-05-15 20:24:13,272 views Dashboard data requested by user: Marvin
+INFO 2025-05-15 20:24:13,276 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-15 20:24:13,279 basehttp "GET /dashboard/data/ HTTP/1.1" 200 413
+INFO 2025-05-15 20:24:14,546 basehttp "GET /contacts/add/ HTTP/1.1" 200 4569
+INFO 2025-05-15 20:24:46,023 basehttp "POST /contacts/add/ HTTP/1.1" 302 0
+INFO 2025-05-15 20:24:46,036 basehttp "GET /contacts/view/4/ HTTP/1.1" 200 8108
+INFO 2025-05-15 20:24:46,058 basehttp "GET /api/contacts/4/emails/ HTTP/1.1" 200 13
+INFO 2025-05-15 20:24:49,449 basehttp "GET /emails/compose/4/ HTTP/1.1" 200 5707
+INFO 2025-05-15 20:24:56,115 basehttp "POST /emails/preview/4/ HTTP/1.1" 200 4655
+INFO 2025-05-15 20:24:57,948 basehttp "POST /emails/send-confirmed/4/ HTTP/1.1" 302 0
+INFO 2025-05-15 20:24:57,958 basehttp "GET /contacts/view/4/ HTTP/1.1" 200 8126
+INFO 2025-05-15 20:24:57,980 basehttp "GET /api/contacts/4/emails/ HTTP/1.1" 200 109
+INFO 2025-05-15 20:25:02,296 basehttp "GET /dashboard/ HTTP/1.1" 200 14260
+INFO 2025-05-15 20:25:02,319 views Dashboard data requested by user: Marvin
+INFO 2025-05-15 20:25:02,322 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-15 20:25:02,325 basehttp "GET /dashboard/data/ HTTP/1.1" 200 715
+INFO 2025-05-15 20:25:04,070 basehttp "GET /emails/analytics-dashboard/ HTTP/1.1" 200 30720
+INFO 2025-05-15 20:25:04,105 basehttp "GET /emails/analytics/ HTTP/1.1" 200 1009
+INFO 2025-05-15 20:28:04,447 basehttp "GET /dashboard/ HTTP/1.1" 200 14260
+INFO 2025-05-15 20:28:04,472 views Dashboard data requested by user: Marvin
+INFO 2025-05-15 20:28:04,476 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-15 20:28:04,479 basehttp "GET /dashboard/data/ HTTP/1.1" 200 715
+INFO 2025-05-15 20:28:05,335 basehttp "GET /contacts/ HTTP/1.1" 200 11117
+INFO 2025-05-16 04:56:42,492 autoreload /Users/jg/owl/email_crm/contacts/urls.py changed, reloading.
+INFO 2025-05-16 04:56:42,791 autoreload Watching for file changes with StatReloader
+INFO 2025-05-16 04:56:52,043 autoreload /Users/jg/owl/email_crm/contacts/urls.py changed, reloading.
+INFO 2025-05-16 04:56:52,236 autoreload Watching for file changes with StatReloader
+INFO 2025-05-16 04:56:58,455 autoreload /Users/jg/owl/email_crm/contacts/views.py changed, reloading.
+INFO 2025-05-16 04:56:58,633 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:50:21,680 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:52:50,033 autoreload /Users/jg/owl/email_crm/email_crm/settings.py changed, reloading.
+INFO 2025-05-17 00:52:50,218 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:52:53,363 autoreload /Users/jg/owl/email_crm/email_crm/settings.py changed, reloading.
+INFO 2025-05-17 00:52:53,542 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:53:04,832 autoreload /Users/jg/owl/email_crm/email_crm/settings.py changed, reloading.
+INFO 2025-05-17 00:53:04,992 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:53:08,120 autoreload /Users/jg/owl/email_crm/email_crm/settings.py changed, reloading.
+INFO 2025-05-17 00:53:08,296 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:53:10,399 autoreload /Users/jg/owl/email_crm/email_crm/settings.py changed, reloading.
+INFO 2025-05-17 00:53:10,585 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:53:14,743 autoreload /Users/jg/owl/email_crm/email_crm/settings.py changed, reloading.
+INFO 2025-05-17 00:53:14,922 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:53:29,229 autoreload /Users/jg/owl/email_crm/emails/models.py changed, reloading.
+INFO 2025-05-17 00:53:29,411 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:53:46,812 autoreload /Users/jg/owl/email_crm/email_crm/settings.py changed, reloading.
+INFO 2025-05-17 00:53:46,989 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:53:55,221 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 00:53:55,391 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:53:58,519 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 00:53:58,687 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:54:21,218 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 00:54:21,403 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:54:23,517 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 00:54:23,689 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:54:47,202 autoreload /Users/jg/owl/email_crm/emails/urls.py changed, reloading.
+INFO 2025-05-17 00:54:47,381 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:54:49,398 basehttp "GET / HTTP/1.1" 200 8026
+WARNING 2025-05-17 00:54:49,570 log Not Found: /apple-touch-icon.png
+WARNING 2025-05-17 00:54:49,571 log Not Found: /apple-touch-icon-precomposed.png
+WARNING 2025-05-17 00:54:49,571 log Not Found: /favicon.ico
+WARNING 2025-05-17 00:54:49,571 basehttp "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3020
+WARNING 2025-05-17 00:54:49,571 basehttp "GET /apple-touch-icon.png HTTP/1.1" 404 2984
+WARNING 2025-05-17 00:54:49,571 basehttp "GET /favicon.ico HTTP/1.1" 404 2957
+INFO 2025-05-17 00:54:52,538 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-17 00:54:52,555 views Dashboard data requested by user: Marvin
+INFO 2025-05-17 00:54:52,566 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-17 00:54:52,569 basehttp "GET /dashboard/data/ HTTP/1.1" 200 715
+INFO 2025-05-17 00:54:58,785 basehttp "GET /emails/analytics-dashboard/ HTTP/1.1" 200 30720
+INFO 2025-05-17 00:54:58,847 basehttp "GET /emails/analytics/ HTTP/1.1" 200 1009
+INFO 2025-05-17 00:55:04,877 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 00:55:05,170 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:55:09,334 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 00:55:09,532 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:55:38,171 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 00:55:38,452 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:55:40,598 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 00:55:40,787 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:55:44,985 autoreload /Users/jg/owl/email_crm/emails/urls.py changed, reloading.
+INFO 2025-05-17 00:55:45,177 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:55:46,285 autoreload /Users/jg/owl/email_crm/emails/urls.py changed, reloading.
+INFO 2025-05-17 00:55:46,462 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:56:09,967 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 00:56:10,313 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:56:15,487 autoreload /Users/jg/owl/email_crm/emails/utils.py changed, reloading.
+INFO 2025-05-17 00:56:15,674 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:56:16,782 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 00:56:16,951 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:56:18,052 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 00:56:18,219 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:56:22,377 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 00:56:22,553 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:56:24,661 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 00:56:24,824 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:56:28,972 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 00:56:29,163 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:56:30,272 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 00:56:30,432 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:56:34,574 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 00:56:34,731 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:56:40,930 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 00:56:41,105 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:56:47,302 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 00:56:47,475 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:56:57,729 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 00:56:57,890 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:57:13,258 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 00:57:13,439 autoreload Watching for file changes with StatReloader
+WARNING 2025-05-17 00:57:19,872 log Not Found: /emails/templates/add/
+WARNING 2025-05-17 00:57:19,873 basehttp "GET /emails/templates/add/ HTTP/1.1" 404 5256
+INFO 2025-05-17 00:57:24,351 basehttp "GET /contacts/list/ HTTP/1.1" 200 17268
+WARNING 2025-05-17 00:57:24,370 log Not Found: /api/contacts/
+WARNING 2025-05-17 00:57:24,370 basehttp "GET /api/contacts/ HTTP/1.1" 404 2963
+INFO 2025-05-17 00:57:25,981 basehttp "GET /contacts/list/ HTTP/1.1" 200 17268
+INFO 2025-05-17 00:57:25,998 basehttp "GET /static/css/style.css HTTP/1.1" 304 0
+INFO 2025-05-17 00:57:26,003 basehttp "GET /static/js/api.js HTTP/1.1" 200 8763
+WARNING 2025-05-17 00:57:26,008 log Not Found: /api/contacts/
+WARNING 2025-05-17 00:57:26,008 basehttp "GET /api/contacts/ HTTP/1.1" 404 2963
+INFO 2025-05-17 00:57:36,948 basehttp "GET /contacts/list/ HTTP/1.1" 200 17268
+INFO 2025-05-17 00:57:36,964 basehttp "GET /static/js/api.js HTTP/1.1" 304 0
+INFO 2025-05-17 00:57:36,965 basehttp "GET /static/css/style.css HTTP/1.1" 304 0
+WARNING 2025-05-17 00:57:36,974 log Not Found: /api/contacts/
+WARNING 2025-05-17 00:57:36,974 basehttp "GET /api/contacts/ HTTP/1.1" 404 2963
+INFO 2025-05-17 00:57:40,103 basehttp "GET /contacts/add/ HTTP/1.1" 200 4569
+INFO 2025-05-17 00:57:42,040 basehttp "GET /contacts/ HTTP/1.1" 200 11117
+INFO 2025-05-17 00:57:42,051 basehttp "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3385
+INFO 2025-05-17 00:57:42,052 basehttp "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+INFO 2025-05-17 00:57:42,055 basehttp "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2025-05-17 00:57:42,056 basehttp "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2025-05-17 00:57:42,056 basehttp "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3597
+INFO 2025-05-17 00:57:42,057 basehttp "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+INFO 2025-05-17 00:57:46,926 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-17 00:57:46,947 views Dashboard data requested by user: Marvin
+INFO 2025-05-17 00:57:46,953 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-17 00:57:46,956 basehttp "GET /dashboard/data/ HTTP/1.1" 200 715
+WARNING 2025-05-17 00:57:57,387 log Not Found: /emails/templates/add/
+WARNING 2025-05-17 00:57:57,388 basehttp "GET /emails/templates/add/ HTTP/1.1" 404 5256
+INFO 2025-05-17 00:58:01,323 basehttp "GET /emails/select-contact/ HTTP/1.1" 200 4250
+INFO 2025-05-17 00:58:04,425 basehttp "GET /emails/compose/3/ HTTP/1.1" 200 5689
+INFO 2025-05-17 00:58:14,924 basehttp "POST /emails/preview/3/ HTTP/1.1" 200 4629
+ERROR 2025-05-17 00:58:16,206 views Error sending email: No module named 'django_mailgun_mime'
+INFO 2025-05-17 00:58:16,207 basehttp "POST /emails/send-confirmed/3/ HTTP/1.1" 302 0
+INFO 2025-05-17 00:58:16,220 basehttp "GET /emails/compose/3/ HTTP/1.1" 200 6229
+INFO 2025-05-17 00:58:52,887 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 00:58:53,107 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:58:55,522 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 00:58:55,697 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:58:58,671 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-17 00:58:58,691 views Dashboard data requested by user: Marvin
+INFO 2025-05-17 00:58:58,699 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-17 00:58:58,701 basehttp "GET /dashboard/data/ HTTP/1.1" 200 836
+INFO 2025-05-17 00:59:00,779 basehttp "GET /emails/select-contact/ HTTP/1.1" 200 4250
+INFO 2025-05-17 00:59:02,209 basehttp "GET /emails/compose/3/ HTTP/1.1" 200 5689
+INFO 2025-05-17 00:59:10,656 basehttp "POST /emails/preview/3/ HTTP/1.1" 200 4619
+ERROR 2025-05-17 00:59:11,687 views Error sending email: No module named 'django_mailgun_mime.mail'
+INFO 2025-05-17 00:59:11,688 basehttp "POST /emails/send-confirmed/3/ HTTP/1.1" 302 0
+INFO 2025-05-17 00:59:11,698 basehttp "GET /emails/compose/3/ HTTP/1.1" 200 6234
+INFO 2025-05-17 00:59:36,048 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 00:59:39,699 basehttp "GET / HTTP/1.1" 200 8026
+WARNING 2025-05-17 00:59:39,745 log Not Found: /favicon.ico
+WARNING 2025-05-17 00:59:39,746 log Not Found: /apple-touch-icon.png
+WARNING 2025-05-17 00:59:39,746 log Not Found: /apple-touch-icon-precomposed.png
+WARNING 2025-05-17 00:59:39,746 basehttp "GET /favicon.ico HTTP/1.1" 404 2957
+WARNING 2025-05-17 00:59:39,747 basehttp "GET /apple-touch-icon.png HTTP/1.1" 404 2984
+WARNING 2025-05-17 00:59:39,747 basehttp "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3020
+INFO 2025-05-17 00:59:47,712 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-17 00:59:47,732 views Dashboard data requested by user: Marvin
+INFO 2025-05-17 00:59:47,740 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-17 00:59:47,743 basehttp "GET /dashboard/data/ HTTP/1.1" 200 957
+INFO 2025-05-17 00:59:57,378 basehttp "GET /emails/select-contact/ HTTP/1.1" 200 4250
+INFO 2025-05-17 00:59:58,835 basehttp "GET /emails/compose/3/ HTTP/1.1" 200 5689
+INFO 2025-05-17 01:00:07,169 basehttp "POST /emails/preview/3/ HTTP/1.1" 200 4639
+ERROR 2025-05-17 01:00:08,871 views Error sending email: No module named 'django_mailgun_mime.mail'
+INFO 2025-05-17 01:00:08,872 basehttp "POST /emails/send-confirmed/3/ HTTP/1.1" 302 0
+INFO 2025-05-17 01:00:08,879 basehttp "GET /emails/compose/3/ HTTP/1.1" 200 6234
+INFO 2025-05-17 01:00:37,896 basehttp - Broken pipe from ('127.0.0.1', 52379)
+INFO 2025-05-17 01:01:25,635 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 01:01:25,828 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 01:01:33,055 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 01:01:33,211 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 01:01:38,415 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 01:01:38,569 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 01:01:44,780 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 01:01:44,960 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 01:01:46,063 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 01:01:46,215 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 01:01:48,361 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 01:01:48,531 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 01:01:50,679 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 01:01:50,851 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 01:01:51,975 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 01:01:52,132 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 01:02:03,430 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 01:02:03,605 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 01:02:04,717 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-17 01:02:04,882 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 01:02:30,423 autoreload /Users/jg/owl/email_crm/email_crm/settings.py changed, reloading.
+INFO 2025-05-17 01:02:30,602 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 01:02:32,752 autoreload /Users/jg/owl/email_crm/email_crm/settings.py changed, reloading.
+INFO 2025-05-17 01:02:32,926 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 01:02:37,095 autoreload /Users/jg/owl/email_crm/email_crm/settings.py changed, reloading.
+INFO 2025-05-17 01:02:37,274 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 01:02:39,416 autoreload /Users/jg/owl/email_crm/email_crm/settings.py changed, reloading.
+INFO 2025-05-17 01:02:39,592 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 01:02:42,738 autoreload /Users/jg/owl/email_crm/emails/webhooks.py changed, reloading.
+INFO 2025-05-17 01:02:42,897 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 01:02:44,007 autoreload /Users/jg/owl/email_crm/emails/webhooks.py changed, reloading.
+INFO 2025-05-17 01:02:44,158 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 01:02:48,335 autoreload /Users/jg/owl/email_crm/emails/webhooks.py changed, reloading.
+INFO 2025-05-17 01:02:48,537 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 01:02:50,671 autoreload /Users/jg/owl/email_crm/emails/webhooks.py changed, reloading.
+INFO 2025-05-17 01:02:50,841 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 01:03:05,002 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-17 01:03:05,023 views Dashboard data requested by user: Marvin
+INFO 2025-05-17 01:03:05,028 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-17 01:03:05,031 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1082
+INFO 2025-05-17 01:03:08,043 basehttp "GET /emails/select-contact/ HTTP/1.1" 200 4250
+INFO 2025-05-17 01:03:09,662 basehttp "GET /emails/compose/4/ HTTP/1.1" 200 5707
+INFO 2025-05-17 01:03:11,564 basehttp "GET /contacts/view/4/ HTTP/1.1" 200 7608
+INFO 2025-05-17 01:03:11,586 basehttp "GET /api/contacts/4/emails/ HTTP/1.1" 200 109
+INFO 2025-05-17 01:03:14,673 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-17 01:03:14,695 views Dashboard data requested by user: Marvin
+INFO 2025-05-17 01:03:14,702 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-17 01:03:14,705 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1082
+INFO 2025-05-17 01:03:16,993 basehttp "GET /emails/select-contact/ HTTP/1.1" 200 4250
+INFO 2025-05-17 01:03:19,644 basehttp "GET /emails/compose/3/ HTTP/1.1" 200 5689
+INFO 2025-05-17 01:03:29,322 basehttp "POST /emails/preview/3/ HTTP/1.1" 200 4627
+INFO 2025-05-17 01:03:31,522 basehttp "POST /emails/send-confirmed/3/ HTTP/1.1" 302 0
+INFO 2025-05-17 01:03:31,533 basehttp "GET /contacts/view/3/ HTTP/1.1" 200 8082
+INFO 2025-05-17 01:03:31,555 basehttp "GET /api/contacts/3/emails/ HTTP/1.1" 200 502
+INFO 2025-05-17 01:05:16,238 basehttp "GET / HTTP/1.1" 200 8026
+WARNING 2025-05-17 01:05:16,312 log Not Found: /apple-touch-icon-precomposed.png
+WARNING 2025-05-17 01:05:16,313 log Not Found: /apple-touch-icon.png
+WARNING 2025-05-17 01:05:16,313 log Not Found: /favicon.ico
+WARNING 2025-05-17 01:05:16,313 basehttp "GET /favicon.ico HTTP/1.1" 404 2957
+WARNING 2025-05-17 01:05:16,314 basehttp "GET /apple-touch-icon.png HTTP/1.1" 404 2984
+WARNING 2025-05-17 01:05:16,314 basehttp "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3020
+INFO 2025-05-17 01:05:20,078 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-17 01:05:20,098 views Dashboard data requested by user: Marvin
+INFO 2025-05-17 01:05:20,105 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-17 01:05:20,108 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1240
+INFO 2025-05-17 01:05:23,108 basehttp "GET /emails/analytics-dashboard/ HTTP/1.1" 200 30720
+INFO 2025-05-17 01:05:23,155 basehttp "GET /emails/analytics/ HTTP/1.1" 200 2756
+INFO 2025-05-17 01:05:44,318 basehttp "GET /emails/analytics/ HTTP/1.1" 200 2756
+INFO 2025-05-17 01:05:51,326 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-17 01:05:51,345 views Dashboard data requested by user: Marvin
+INFO 2025-05-17 01:05:51,350 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-17 01:05:51,354 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1240
+INFO 2025-05-17 01:05:53,679 basehttp "GET /emails/templates/ HTTP/1.1" 200 9333
+INFO 2025-05-17 01:07:26,428 autoreload /Users/jg/owl/email_crm/email_crm/urls.py changed, reloading.
+INFO 2025-05-17 01:07:26,677 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 01:07:29,868 autoreload /Users/jg/owl/email_crm/email_crm/urls.py changed, reloading.
+INFO 2025-05-17 01:07:30,043 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 01:08:11,777 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-17 01:08:11,795 views Dashboard data requested by user: Marvin
+INFO 2025-05-17 01:08:11,802 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-17 01:08:11,804 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1240
+INFO 2025-05-17 01:08:12,647 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-17 01:08:12,666 views Dashboard data requested by user: Marvin
+INFO 2025-05-17 01:08:12,673 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-17 01:08:12,678 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1240
+INFO 2025-05-17 01:08:12,775 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-17 01:08:12,790 views Dashboard data requested by user: Marvin
+INFO 2025-05-17 01:08:12,795 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-17 01:08:12,797 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1240
+INFO 2025-05-17 01:08:16,326 views Dashboard data requested by user: Marvin
+INFO 2025-05-17 01:08:16,333 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-17 01:08:16,337 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1240
+INFO 2025-05-17 01:08:18,778 basehttp "GET /contacts/list/ HTTP/1.1" 200 18124
+INFO 2025-05-17 01:08:18,804 basehttp "GET /api/contacts/ HTTP/1.1" 200 447
+INFO 2025-05-17 01:08:22,940 basehttp "GET /contacts/view/3/ HTTP/1.1" 200 7575
+INFO 2025-05-17 01:08:22,964 basehttp "GET /api/contacts/3/emails/ HTTP/1.1" 200 502
+INFO 2025-05-17 01:08:27,883 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-17 01:08:27,901 views Dashboard data requested by user: Marvin
+INFO 2025-05-17 01:08:27,904 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-17 01:08:27,907 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1240
+INFO 2025-05-17 01:09:02,127 autoreload /Users/jg/owl/email_crm/email_crm/settings.py changed, reloading.
+INFO 2025-05-17 01:09:02,376 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 01:09:03,531 autoreload /Users/jg/owl/email_crm/email_crm/settings.py changed, reloading.
+INFO 2025-05-17 01:09:03,691 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 01:10:20,134 autoreload /Users/jg/owl/email_crm/email_crm/settings.py changed, reloading.
+INFO 2025-05-17 01:10:20,356 autoreload Watching for file changes with StatReloader
+INFO 2025-05-17 01:10:27,893 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-17 01:10:27,917 views Dashboard data requested by user: Marvin
+INFO 2025-05-17 01:10:27,924 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-17 01:10:27,926 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1240
+INFO 2025-05-17 01:10:29,208 views Dashboard data requested by user: Marvin
+INFO 2025-05-17 01:10:29,215 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-17 01:10:29,219 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1240
+INFO 2025-05-17 01:10:30,410 basehttp "GET /emails/select-contact/ HTTP/1.1" 200 4250
+INFO 2025-05-17 01:10:32,479 basehttp "GET /emails/compose/3/ HTTP/1.1" 200 5689
+INFO 2025-05-17 01:10:41,371 basehttp "POST /emails/preview/3/ HTTP/1.1" 200 4631
+INFO 2025-05-17 01:10:42,638 basehttp "POST /emails/send-confirmed/3/ HTTP/1.1" 302 0
+INFO 2025-05-17 01:10:42,652 basehttp "GET /contacts/view/3/ HTTP/1.1" 200 8082
+INFO 2025-05-17 01:10:42,674 basehttp "GET /api/contacts/3/emails/ HTTP/1.1" 200 599
+INFO 2025-05-17 01:10:49,872 basehttp "GET /contacts/ HTTP/1.1" 200 11117
+INFO 2025-05-17 01:10:52,710 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-17 01:10:52,730 views Dashboard data requested by user: Marvin
+INFO 2025-05-17 01:10:52,736 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-17 01:10:52,739 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+INFO 2025-05-18 02:48:00,621 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 02:48:14,288 basehttp "GET / HTTP/1.1" 200 8026
+INFO 2025-05-18 02:48:14,346 basehttp "GET /static/js/api.js HTTP/1.1" 200 8763
+WARNING 2025-05-18 02:48:14,383 log Not Found: /favicon.ico
+WARNING 2025-05-18 02:48:14,383 log Not Found: /apple-touch-icon-precomposed.png
+WARNING 2025-05-18 02:48:14,384 log Not Found: /apple-touch-icon.png
+WARNING 2025-05-18 02:48:14,384 basehttp "GET /favicon.ico HTTP/1.1" 404 3393
+WARNING 2025-05-18 02:48:14,384 basehttp "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3456
+WARNING 2025-05-18 02:48:14,384 basehttp "GET /apple-touch-icon.png HTTP/1.1" 404 3420
+INFO 2025-05-18 02:48:19,691 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-18 02:48:19,708 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 02:48:19,716 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 02:48:19,724 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+WARNING 2025-05-18 02:48:23,136 log Not Found: /emails/templates/add/
+WARNING 2025-05-18 02:48:23,137 basehttp "GET /emails/templates/add/ HTTP/1.1" 404 5692
+INFO 2025-05-18 02:48:53,933 basehttp "GET /emails/analytics-dashboard/ HTTP/1.1" 200 30720
+INFO 2025-05-18 02:48:53,973 basehttp "GET /emails/analytics/ HTTP/1.1" 200 3194
+INFO 2025-05-18 02:49:18,676 basehttp "GET /contacts/list/ HTTP/1.1" 200 18124
+INFO 2025-05-18 02:49:18,696 basehttp "GET /api/contacts/ HTTP/1.1" 200 447
+INFO 2025-05-18 02:49:24,096 basehttp "GET /emails/select-contact/ HTTP/1.1" 200 4250
+INFO 2025-05-18 02:49:28,034 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-18 02:49:28,055 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 02:49:28,060 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 02:49:28,063 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+ERROR 2025-05-18 02:49:33,584 log Internal Server Error: /contacts/add/
+Traceback (most recent call last):
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/jg/owl/email_crm/contacts/views.py", line 145, in contact_add_view
+    return render(request, 'contacts/contact_form.html', {'form': form, 'action': 'Add'})
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 196, in compile_nodelist
+    return parser.parse()
+           ~~~~~~~~~~~~^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 481, in parse
+    raise self.error(token, e)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 479, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 597, in compile_filter
+    return FilterExpression(token, self)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 693, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 603, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'add_class'
+ERROR 2025-05-18 02:49:33,588 basehttp "GET /contacts/add/ HTTP/1.1" 500 257029
+INFO 2025-05-18 02:50:55,947 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 02:51:05,208 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 02:51:18,380 basehttp "GET /contacts/add/ HTTP/1.1" 200 9042
+INFO 2025-05-18 02:51:29,964 basehttp "GET /contacts/ HTTP/1.1" 200 11117
+INFO 2025-05-18 02:51:29,975 basehttp "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2025-05-18 02:51:33,534 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-18 02:51:33,555 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 02:51:33,561 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 02:51:33,565 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+INFO 2025-05-18 03:03:38,804 basehttp "GET /contacts/list/ HTTP/1.1" 200 18124
+INFO 2025-05-18 03:03:38,826 basehttp "GET /api/contacts/ HTTP/1.1" 200 447
+INFO 2025-05-18 03:03:40,824 basehttp "GET /contacts/view/4/ HTTP/1.1" 200 7608
+INFO 2025-05-18 03:03:40,847 basehttp "GET /api/contacts/4/emails/ HTTP/1.1" 200 109
+INFO 2025-05-18 03:03:47,913 basehttp "GET /contacts/edit/4/ HTTP/1.1" 200 9549
+INFO 2025-05-18 03:03:50,291 basehttp "GET /contacts/list/ HTTP/1.1" 200 18124
+INFO 2025-05-18 03:03:50,313 basehttp "GET /api/contacts/ HTTP/1.1" 200 447
+INFO 2025-05-18 03:03:55,021 basehttp "GET /emails/compose/3/ HTTP/1.1" 200 5689
+INFO 2025-05-18 03:04:00,249 basehttp "GET /contacts/ HTTP/1.1" 200 11117
+INFO 2025-05-18 03:04:05,907 basehttp "GET /emails/templates/ HTTP/1.1" 200 9333
+INFO 2025-05-18 03:04:10,210 basehttp "GET /api/contacts/ HTTP/1.1" 200 447
+INFO 2025-05-18 03:04:11,983 basehttp "GET /api/contacts/4/emails/ HTTP/1.1" 200 109
+INFO 2025-05-18 03:04:13,576 basehttp "GET / HTTP/1.1" 200 8026
+WARNING 2025-05-18 03:04:13,622 log Not Found: /favicon.ico
+WARNING 2025-05-18 03:04:13,622 log Not Found: /apple-touch-icon-precomposed.png
+WARNING 2025-05-18 03:04:13,623 log Not Found: /apple-touch-icon.png
+WARNING 2025-05-18 03:04:13,624 basehttp "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3456
+WARNING 2025-05-18 03:04:13,624 basehttp "GET /apple-touch-icon.png HTTP/1.1" 404 3420
+WARNING 2025-05-18 03:04:13,624 basehttp "GET /favicon.ico HTTP/1.1" 404 3393
+WARNING 2025-05-18 03:04:20,114 log Method Not Allowed: /emails/bulk-send/
+WARNING 2025-05-18 03:04:20,115 basehttp "GET /emails/bulk-send/ HTTP/1.1" 405 5848
+WARNING 2025-05-18 03:04:38,105 log Bad Request: /emails/bulk-send/
+WARNING 2025-05-18 03:04:38,106 basehttp "POST /emails/bulk-send/ HTTP/1.1" 400 5894
+INFO 2025-05-18 03:30:22,254 basehttp "GET / HTTP/1.1" 200 8026
+WARNING 2025-05-18 03:30:22,366 log Not Found: /apple-touch-icon-precomposed.png
+WARNING 2025-05-18 03:30:22,367 log Not Found: /favicon.ico
+WARNING 2025-05-18 03:30:22,368 log Not Found: /apple-touch-icon.png
+WARNING 2025-05-18 03:30:22,369 basehttp "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3456
+WARNING 2025-05-18 03:30:22,369 basehttp "GET /apple-touch-icon.png HTTP/1.1" 404 3420
+WARNING 2025-05-18 03:30:22,369 basehttp "GET /favicon.ico HTTP/1.1" 404 3393
+INFO 2025-05-18 03:30:23,804 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-18 03:30:23,821 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 03:30:23,828 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 03:30:23,831 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+INFO 2025-05-18 03:30:26,551 basehttp "GET /contacts/list/ HTTP/1.1" 200 18124
+INFO 2025-05-18 03:30:26,573 basehttp "GET /api/contacts/ HTTP/1.1" 200 447
+INFO 2025-05-18 03:31:59,961 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-18 03:31:59,983 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 03:31:59,988 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 03:31:59,992 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+INFO 2025-05-18 03:32:05,029 basehttp "GET /emails/select-contact/ HTTP/1.1" 200 4250
+INFO 2025-05-18 03:32:07,845 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-18 03:32:07,865 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 03:32:07,871 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 03:32:07,875 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+INFO 2025-05-18 08:11:58,011 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:12:20,463 basehttp "GET / HTTP/1.1" 200 8026
+WARNING 2025-05-18 08:12:20,559 log Not Found: /apple-touch-icon-precomposed.png
+WARNING 2025-05-18 08:12:20,559 log Not Found: /favicon.ico
+WARNING 2025-05-18 08:12:20,560 log Not Found: /apple-touch-icon.png
+WARNING 2025-05-18 08:12:20,560 basehttp "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3456
+WARNING 2025-05-18 08:12:20,560 basehttp "GET /apple-touch-icon.png HTTP/1.1" 404 3420
+WARNING 2025-05-18 08:12:20,560 basehttp "GET /favicon.ico HTTP/1.1" 404 3393
+INFO 2025-05-18 08:12:22,390 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-18 08:12:22,407 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 08:12:22,415 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 08:12:22,424 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+INFO 2025-05-18 08:12:24,739 basehttp "GET /contacts/list/ HTTP/1.1" 200 18124
+INFO 2025-05-18 08:12:24,763 basehttp "GET /api/contacts/ HTTP/1.1" 200 447
+INFO 2025-05-18 08:12:29,151 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-18 08:12:29,171 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 08:12:29,180 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 08:12:29,183 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+ERROR 2025-05-18 08:16:32,132 log Internal Server Error: /contacts/list/
+Traceback (most recent call last):
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/jg/owl/email_crm/contacts/views.py", line 150, in contact_list_view
+    return render(request, 'contacts/contact_list.html')
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'bulk_compose' not found. 'bulk_compose' is not a valid view function or pattern name.
+ERROR 2025-05-18 08:16:32,135 basehttp "GET /contacts/list/ HTTP/1.1" 500 152048
+INFO 2025-05-18 08:17:25,606 autoreload /Users/jg/owl/email_crm/emails/urls.py changed, reloading.
+INFO 2025-05-18 08:17:25,789 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:17:27,926 autoreload /Users/jg/owl/email_crm/emails/urls.py changed, reloading.
+INFO 2025-05-18 08:17:28,101 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:19:31,562 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-18 08:19:31,744 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:20:19,769 autoreload /Users/jg/owl/email_crm/email_crm/settings.py changed, reloading.
+INFO 2025-05-18 08:20:19,945 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:20:22,090 autoreload /Users/jg/owl/email_crm/email_crm/settings.py changed, reloading.
+INFO 2025-05-18 08:20:22,268 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:20:27,478 autoreload /Users/jg/owl/email_crm/email_crm/settings.py changed, reloading.
+INFO 2025-05-18 08:20:27,661 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:21:24,251 basehttp "GET /emails/select-contact/ HTTP/1.1" 200 4250
+INFO 2025-05-18 08:21:24,266 basehttp "GET /static/js/api.js HTTP/1.1" 304 0
+INFO 2025-05-18 08:21:28,048 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-18 08:21:28,068 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 08:21:28,075 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 08:21:28,077 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+INFO 2025-05-18 08:21:34,448 basehttp "GET /emails/select-contact/ HTTP/1.1" 200 4250
+INFO 2025-05-18 08:21:35,589 basehttp "GET /emails/compose/4/ HTTP/1.1" 200 5707
+INFO 2025-05-18 08:21:39,995 basehttp "GET /contacts/ HTTP/1.1" 200 11117
+INFO 2025-05-18 08:21:42,998 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-18 08:21:43,019 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 08:21:43,024 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 08:21:43,026 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+INFO 2025-05-18 08:21:47,963 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 08:21:47,970 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 08:21:47,974 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+INFO 2025-05-18 08:21:52,313 basehttp "GET /contacts/list/ HTTP/1.1" 200 22375
+INFO 2025-05-18 08:21:52,336 basehttp "GET /api/contacts/ HTTP/1.1" 200 447
+INFO 2025-05-18 08:21:55,687 basehttp "GET /emails/select-contact/ HTTP/1.1" 200 4250
+INFO 2025-05-18 08:21:57,696 basehttp "GET /emails/compose/3/ HTTP/1.1" 200 5689
+INFO 2025-05-18 08:22:21,222 autoreload /Users/jg/owl/email_crm/email_crm/urls.py changed, reloading.
+INFO 2025-05-18 08:22:21,418 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:22:42,177 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-18 08:22:42,197 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 08:22:42,204 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 08:22:42,207 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+INFO 2025-05-18 08:23:01,407 basehttp "GET /contacts/ HTTP/1.1" 200 11117
+INFO 2025-05-18 08:23:03,570 basehttp "GET /contacts/ HTTP/1.1" 200 11117
+INFO 2025-05-18 08:23:07,103 basehttp "OPTIONS /contacts/ HTTP/1.1" 200 13114
+INFO 2025-05-18 08:23:34,747 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 08:23:34,753 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 08:23:34,756 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+INFO 2025-05-18 08:23:40,112 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-18 08:23:40,133 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 08:23:40,138 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 08:23:40,142 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+INFO 2025-05-18 08:23:41,993 basehttp "GET / HTTP/1.1" 200 8026
+WARNING 2025-05-18 08:23:42,042 log Not Found: /apple-touch-icon-precomposed.png
+WARNING 2025-05-18 08:23:42,043 log Not Found: /apple-touch-icon.png
+WARNING 2025-05-18 08:23:42,044 log Not Found: /favicon.ico
+WARNING 2025-05-18 08:23:42,044 basehttp "GET /apple-touch-icon.png HTTP/1.1" 404 3530
+WARNING 2025-05-18 08:23:42,044 basehttp "GET /favicon.ico HTTP/1.1" 404 3503
+WARNING 2025-05-18 08:23:42,044 basehttp "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3566
+INFO 2025-05-18 08:23:46,127 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-18 08:23:46,151 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 08:23:46,157 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 08:23:46,160 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+WARNING 2025-05-18 08:23:48,516 log Not Found: /apple-touch-icon-precomposed.png
+WARNING 2025-05-18 08:23:48,517 log Not Found: /favicon.ico
+WARNING 2025-05-18 08:23:48,518 log Not Found: /apple-touch-icon.png
+WARNING 2025-05-18 08:23:48,518 basehttp "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3566
+WARNING 2025-05-18 08:23:48,518 basehttp "GET /apple-touch-icon.png HTTP/1.1" 404 3530
+WARNING 2025-05-18 08:23:48,518 basehttp "GET /favicon.ico HTTP/1.1" 404 3503
+INFO 2025-05-18 08:23:58,495 basehttp "GET /dashboard/ HTTP/1.1" 200 14622
+INFO 2025-05-18 08:23:58,516 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 08:23:58,522 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 08:23:58,526 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+INFO 2025-05-18 08:24:25,309 autoreload /Users/jg/owl/email_crm/email_crm/urls.py changed, reloading.
+INFO 2025-05-18 08:24:25,532 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:26:24,236 autoreload /Users/jg/owl/email_crm/campaigns/urls.py changed, reloading.
+INFO 2025-05-18 08:26:24,429 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:26:52,013 autoreload /Users/jg/owl/email_crm/campaigns/urls.py changed, reloading.
+INFO 2025-05-18 08:26:52,196 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:26:59,417 autoreload /Users/jg/owl/email_crm/campaigns/views.py changed, reloading.
+INFO 2025-05-18 08:26:59,578 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:27:02,745 autoreload /Users/jg/owl/email_crm/campaigns/views.py changed, reloading.
+INFO 2025-05-18 08:27:02,924 autoreload Watching for file changes with StatReloader
+WARNING 2025-05-18 08:27:17,576 log Not Found: /apple-touch-icon-precomposed.png
+WARNING 2025-05-18 08:27:17,576 log Not Found: /favicon.ico
+WARNING 2025-05-18 08:27:17,577 basehttp "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3566
+WARNING 2025-05-18 08:27:17,578 log Not Found: /apple-touch-icon.png
+WARNING 2025-05-18 08:27:17,578 basehttp "GET /favicon.ico HTTP/1.1" 404 3503
+WARNING 2025-05-18 08:27:17,578 basehttp "GET /apple-touch-icon.png HTTP/1.1" 404 3530
+INFO 2025-05-18 08:27:19,218 basehttp "GET /dashboard/ HTTP/1.1" 200 19318
+INFO 2025-05-18 08:27:19,239 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 08:27:19,247 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 08:27:19,249 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+ERROR 2025-05-18 08:27:22,108 log Internal Server Error: /emails/bulk-compose/
+Traceback (most recent call last):
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/jg/owl/email_crm/emails/views.py", line 672, in bulk_compose_email_view
+    return render(request, 'emails/bulk_email/compose.html', {
+        'form': form,
+    ...<2 lines>...
+        'contact_ids': ','.join([str(contact.id) for contact in contacts])
+    })
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: emails/bulk_email/compose.html
+ERROR 2025-05-18 08:27:22,110 basehttp "GET /emails/bulk-compose/ HTTP/1.1" 500 87288
+INFO 2025-05-18 08:29:58,020 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-18 08:29:58,211 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:30:16,669 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-18 08:30:16,855 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:30:25,402 basehttp "GET /emails/bulk-compose/ HTTP/1.1" 200 7040
+INFO 2025-05-18 08:30:27,324 basehttp "GET /contacts/list/ HTTP/1.1" 200 22375
+INFO 2025-05-18 08:30:27,348 basehttp "GET /api/contacts/ HTTP/1.1" 200 447
+INFO 2025-05-18 08:30:34,416 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-18 08:30:34,611 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:30:39,041 basehttp "GET /emails/bulk-compose/ HTTP/1.1" 200 7040
+INFO 2025-05-18 08:32:36,444 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-18 08:32:36,707 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:32:59,284 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-18 08:32:59,470 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:33:01,609 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-18 08:33:01,790 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:33:22,311 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-18 08:33:22,500 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:33:28,712 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-18 08:33:28,868 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:33:39,144 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-18 08:33:39,330 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:33:43,517 autoreload /Users/jg/owl/email_crm/emails/views.py changed, reloading.
+INFO 2025-05-18 08:33:43,698 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:34:28,216 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:34:40,541 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:34:45,634 basehttp "GET /dashboard/ HTTP/1.1" 200 19512
+INFO 2025-05-18 08:34:45,658 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 08:34:45,664 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 08:34:45,666 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+ERROR 2025-05-18 08:34:50,342 log Internal Server Error: /campaigns/create/
+Traceback (most recent call last):
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/jg/owl/email_crm/campaigns/views.py", line 100, in campaign_create
+    return render(request, 'campaigns/campaign_form.html', {
+        'form': form,
+        'contacts': contacts,
+        'action': 'Create'
+    })
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: campaigns/campaign_form.html
+ERROR 2025-05-18 08:34:50,343 basehttp "GET /campaigns/create/ HTTP/1.1" 500 86585
+INFO 2025-05-18 08:34:54,687 basehttp "GET /contacts/list/?action=bulk_select HTTP/1.1" 200 24024
+INFO 2025-05-18 08:34:54,711 basehttp "GET /api/contacts/ HTTP/1.1" 200 447
+INFO 2025-05-18 08:35:03,669 basehttp "POST /emails/bulk-compose/ HTTP/1.1" 200 12178
+INFO 2025-05-18 08:35:53,306 basehttp "GET / HTTP/1.1" 200 8026
+WARNING 2025-05-18 08:35:53,348 log Not Found: /apple-touch-icon-precomposed.png
+WARNING 2025-05-18 08:35:53,349 log Not Found: /apple-touch-icon.png
+WARNING 2025-05-18 08:35:53,351 basehttp "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3566
+WARNING 2025-05-18 08:35:53,351 basehttp "GET /apple-touch-icon.png HTTP/1.1" 404 3530
+WARNING 2025-05-18 08:35:53,352 log Not Found: /favicon.ico
+WARNING 2025-05-18 08:35:53,352 basehttp "GET /favicon.ico HTTP/1.1" 404 3503
+INFO 2025-05-18 08:35:54,948 basehttp "GET /dashboard/ HTTP/1.1" 200 19512
+INFO 2025-05-18 08:35:54,969 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 08:35:54,975 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 08:35:54,978 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+ERROR 2025-05-18 08:35:56,832 log Internal Server Error: /campaigns/
+Traceback (most recent call last):
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/jg/owl/email_crm/campaigns/views.py", line 39, in campaign_list
+    return render(request, 'campaigns/campaign_list.html', {
+        'campaigns': campaigns
+    })
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: campaigns/campaign_list.html
+ERROR 2025-05-18 08:35:56,833 basehttp "GET /campaigns/ HTTP/1.1" 500 86052
+INFO 2025-05-18 08:37:33,611 basehttp "GET /campaigns/ HTTP/1.1" 200 6949
+ERROR 2025-05-18 08:37:35,185 log Internal Server Error: /campaigns/create/
+Traceback (most recent call last):
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/jg/owl/email_crm/campaigns/views.py", line 100, in campaign_create
+    return render(request, 'campaigns/campaign_form.html', {
+        'form': form,
+        'contacts': contacts,
+        'action': 'Create'
+    })
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: campaigns/campaign_form.html
+ERROR 2025-05-18 08:37:35,186 basehttp "GET /campaigns/create/ HTTP/1.1" 500 86585
+INFO 2025-05-18 08:39:26,482 basehttp "GET /campaigns/create/ HTTP/1.1" 200 22431
+INFO 2025-05-18 08:41:15,776 autoreload /Users/jg/owl/email_crm/campaigns/forms.py changed, reloading.
+INFO 2025-05-18 08:41:15,969 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:41:30,388 autoreload /Users/jg/owl/email_crm/campaigns/models.py changed, reloading.
+INFO 2025-05-18 08:41:30,576 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:42:23,874 autoreload /Users/jg/owl/email_crm/campaigns/models.py changed, reloading.
+INFO 2025-05-18 08:42:24,063 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:43:35,241 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:43:44,505 basehttp "GET /dashboard/ HTTP/1.1" 200 19512
+INFO 2025-05-18 08:43:44,535 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 08:43:44,538 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 08:43:44,539 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+ERROR 2025-05-18 08:43:48,423 log Internal Server Error: /campaigns/create/
+Traceback (most recent call last):
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 2199, in add_fields
+    join_info = self.setup_joins(
+        name.split(LOOKUP_SEP), opts, alias, allow_many=allow_m2m
+    )
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1867, in setup_joins
+    path, final_field, targets, rest = self.names_to_path(
+                                       ~~~~~~~~~~~~~~~~~~^
+        names[:pivot],
+        ^^^^^^^^^^^^^^
+    ...<2 lines>...
+        fail_on_missing=True,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1772, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'tags' into field. Choices are: campaign_contacts, company, contact_lists, created_at, email, id, name, notes, phone, position, received_emails, updated_at, user, user_id
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/jg/owl/email_crm/campaigns/views.py", line 154, in campaign_create
+    form = CampaignForm(request.user)
+  File "/Users/jg/owl/email_crm/campaigns/forms.py", line 42, in __init__
+    choices=[(tag, tag) for tag in Contact.objects.filter(user=user).values_list('tags', flat=True).distinct() if tag],
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1392, in values_list
+    clone = self._values(*_fields, **expressions)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1355, in _values
+    clone.query.set_values(fields)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 2502, in set_values
+    self.add_fields(field_names, True)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 2227, in add_fields
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'tags' into field. Choices are: campaign_contacts, company, contact_lists, created_at, email, id, name, notes, phone, position, received_emails, updated_at, user, user_id
+ERROR 2025-05-18 08:43:48,426 basehttp "GET /campaigns/create/ HTTP/1.1" 500 111744
+INFO 2025-05-18 08:44:13,291 basehttp "GET /campaigns/ HTTP/1.1" 200 6949
+ERROR 2025-05-18 08:44:15,180 log Internal Server Error: /campaigns/create/
+Traceback (most recent call last):
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 2199, in add_fields
+    join_info = self.setup_joins(
+        name.split(LOOKUP_SEP), opts, alias, allow_many=allow_m2m
+    )
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1867, in setup_joins
+    path, final_field, targets, rest = self.names_to_path(
+                                       ~~~~~~~~~~~~~~~~~~^
+        names[:pivot],
+        ^^^^^^^^^^^^^^
+    ...<2 lines>...
+        fail_on_missing=True,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1772, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'tags' into field. Choices are: campaign_contacts, company, contact_lists, created_at, email, id, name, notes, phone, position, received_emails, updated_at, user, user_id
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/jg/owl/email_crm/campaigns/views.py", line 154, in campaign_create
+    form = CampaignForm(request.user)
+  File "/Users/jg/owl/email_crm/campaigns/forms.py", line 42, in __init__
+    choices=[(tag, tag) for tag in Contact.objects.filter(user=user).values_list('tags', flat=True).distinct() if tag],
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1392, in values_list
+    clone = self._values(*_fields, **expressions)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1355, in _values
+    clone.query.set_values(fields)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 2502, in set_values
+    self.add_fields(field_names, True)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 2227, in add_fields
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'tags' into field. Choices are: campaign_contacts, company, contact_lists, created_at, email, id, name, notes, phone, position, received_emails, updated_at, user, user_id
+ERROR 2025-05-18 08:44:15,182 basehttp "GET /campaigns/create/ HTTP/1.1" 500 111744
+INFO 2025-05-18 08:45:02,399 autoreload /Users/jg/owl/email_crm/campaigns/forms.py changed, reloading.
+INFO 2025-05-18 08:45:02,570 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:45:18,034 autoreload /Users/jg/owl/email_crm/campaigns/views.py changed, reloading.
+INFO 2025-05-18 08:45:18,224 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:45:21,438 autoreload /Users/jg/owl/email_crm/campaigns/views.py changed, reloading.
+INFO 2025-05-18 08:45:21,635 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:45:58,514 autoreload /Users/jg/owl/email_crm/campaigns/views.py changed, reloading.
+INFO 2025-05-18 08:45:58,688 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:46:02,865 autoreload /Users/jg/owl/email_crm/campaigns/views.py changed, reloading.
+INFO 2025-05-18 08:46:03,044 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:46:09,127 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:46:23,242 basehttp "GET /campaigns/create/ HTTP/1.1" 200 25967
+INFO 2025-05-18 08:47:43,411 basehttp "GET /campaigns/ HTTP/1.1" 200 6949
+ERROR 2025-05-18 08:47:45,803 log Internal Server Error: /campaigns/lists/
+Traceback (most recent call last):
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/jg/owl/email_crm/campaigns/views.py", line 269, in list_list
+    return render(request, 'campaigns/list_list.html', {
+        'contact_lists': contact_lists
+    })
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/jg/owl/venv/lib/python3.13/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: campaigns/list_list.html
+ERROR 2025-05-18 08:47:45,805 basehttp "GET /campaigns/lists/ HTTP/1.1" 500 85884
+INFO 2025-05-18 08:50:47,226 basehttp "GET /campaigns/lists/ HTTP/1.1" 200 5682
+INFO 2025-05-18 08:50:50,440 basehttp "GET /campaigns/lists/create/ HTTP/1.1" 200 8739
+INFO 2025-05-18 08:50:57,366 basehttp "GET /dashboard/ HTTP/1.1" 200 19512
+INFO 2025-05-18 08:50:57,387 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 08:50:57,393 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 08:50:57,398 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+INFO 2025-05-18 08:51:00,845 basehttp "GET /emails/analytics-dashboard/ HTTP/1.1" 200 30720
+INFO 2025-05-18 08:51:00,890 basehttp "GET /emails/analytics/ HTTP/1.1" 200 3194
+INFO 2025-05-18 08:51:23,443 basehttp "GET /dashboard/ HTTP/1.1" 200 19512
+INFO 2025-05-18 08:51:23,471 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 08:51:23,476 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 08:51:23,481 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+INFO 2025-05-18 08:51:27,513 basehttp "GET /contacts/list/ HTTP/1.1" 200 24024
+INFO 2025-05-18 08:51:27,536 basehttp "GET /api/contacts/ HTTP/1.1" 200 447
+INFO 2025-05-18 08:51:34,878 basehttp "GET /dashboard/ HTTP/1.1" 200 19512
+INFO 2025-05-18 08:51:34,899 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 08:51:34,904 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 08:51:34,907 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+INFO 2025-05-18 08:51:36,865 basehttp "GET /campaigns/ HTTP/1.1" 200 6949
+INFO 2025-05-18 08:51:39,190 basehttp "GET /campaigns/create/ HTTP/1.1" 200 25967
+INFO 2025-05-18 08:52:12,914 basehttp "GET /campaigns/ HTTP/1.1" 200 6949
+INFO 2025-05-18 08:52:15,079 basehttp "GET /campaigns/lists/ HTTP/1.1" 200 5682
+INFO 2025-05-18 08:52:16,584 basehttp "GET /campaigns/lists/create/ HTTP/1.1" 200 8739
+INFO 2025-05-18 08:52:35,243 basehttp "POST /campaigns/lists/create/ HTTP/1.1" 302 0
+INFO 2025-05-18 08:52:35,250 basehttp "GET /campaigns/lists/1/ HTTP/1.1" 200 9171
+INFO 2025-05-18 08:52:41,666 basehttp "GET /campaigns/create/?list_id=1 HTTP/1.1" 200 26010
+INFO 2025-05-18 08:53:04,727 basehttp "POST /campaigns/create/?list_id=1 HTTP/1.1" 302 0
+INFO 2025-05-18 08:53:04,740 basehttp "GET /campaigns/1/ HTTP/1.1" 200 13444
+INFO 2025-05-18 08:53:29,112 basehttp "GET /campaigns/ HTTP/1.1" 200 9632
+INFO 2025-05-18 08:53:32,829 basehttp "GET /campaigns/1/ HTTP/1.1" 200 12914
+INFO 2025-05-18 08:53:36,973 basehttp "GET /dashboard/ HTTP/1.1" 200 19512
+INFO 2025-05-18 08:53:36,996 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 08:53:37,001 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 08:53:37,004 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+INFO 2025-05-18 08:53:49,645 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:54:01,995 basehttp "GET /campaigns/ HTTP/1.1" 200 9632
+INFO 2025-05-18 08:54:06,223 basehttp "GET /campaigns/create/ HTTP/1.1" 200 26010
+INFO 2025-05-18 08:54:28,683 basehttp "POST /campaigns/create/ HTTP/1.1" 302 0
+INFO 2025-05-18 08:54:28,695 basehttp "GET /campaigns/2/ HTTP/1.1" 200 13448
+INFO 2025-05-18 08:54:32,000 basehttp "GET /campaigns/2/edit/ HTTP/1.1" 200 26088
+INFO 2025-05-18 08:59:03,525 autoreload /Users/jg/owl/email_crm/campaigns/urls.py changed, reloading.
+INFO 2025-05-18 08:59:03,722 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:59:20,125 autoreload /Users/jg/owl/email_crm/campaigns/views.py changed, reloading.
+INFO 2025-05-18 08:59:20,306 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:59:21,429 autoreload /Users/jg/owl/email_crm/campaigns/views.py changed, reloading.
+INFO 2025-05-18 08:59:21,594 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:59:42,183 autoreload /Users/jg/owl/email_crm/campaigns/views.py changed, reloading.
+INFO 2025-05-18 08:59:42,337 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:59:43,468 autoreload /Users/jg/owl/email_crm/campaigns/views.py changed, reloading.
+INFO 2025-05-18 08:59:43,631 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 08:59:59,075 autoreload /Users/jg/owl/email_crm/campaigns/views.py changed, reloading.
+INFO 2025-05-18 08:59:59,258 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 09:00:09,188 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 09:00:25,926 autoreload /Users/jg/owl/email_crm/campaigns/views.py changed, reloading.
+INFO 2025-05-18 09:00:26,106 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 09:00:32,053 basehttp "GET /dashboard/ HTTP/1.1" 200 19512
+INFO 2025-05-18 09:00:32,072 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 09:00:32,080 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 09:00:32,083 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+INFO 2025-05-18 09:00:34,950 basehttp "GET /campaigns/create/ HTTP/1.1" 200 28049
+INFO 2025-05-18 09:00:52,820 basehttp "POST /campaigns/api/filter-contacts/ HTTP/1.1" 200 72
+INFO 2025-05-18 09:00:55,903 basehttp "POST /campaigns/api/filter-contacts/ HTTP/1.1" 200 73
+INFO 2025-05-18 09:01:00,376 basehttp "POST /campaigns/create/ HTTP/1.1" 302 0
+INFO 2025-05-18 09:01:00,389 basehttp "GET /campaigns/3/ HTTP/1.1" 200 13449
+INFO 2025-05-18 21:37:35,194 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 21:37:46,780 basehttp "GET / HTTP/1.1" 200 8026
+INFO 2025-05-18 21:37:46,805 basehttp "GET /static/js/api.js HTTP/1.1" 200 9741
+WARNING 2025-05-18 21:37:46,874 log Not Found: /apple-touch-icon-precomposed.png
+WARNING 2025-05-18 21:37:46,874 log Not Found: /favicon.ico
+WARNING 2025-05-18 21:37:46,875 log Not Found: /apple-touch-icon.png
+WARNING 2025-05-18 21:37:46,875 basehttp "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3566
+WARNING 2025-05-18 21:37:46,875 basehttp "GET /favicon.ico HTTP/1.1" 404 3503
+WARNING 2025-05-18 21:37:46,875 basehttp "GET /apple-touch-icon.png HTTP/1.1" 404 3530
+INFO 2025-05-18 21:37:48,382 basehttp "GET /dashboard/ HTTP/1.1" 200 19512
+INFO 2025-05-18 21:37:48,399 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 21:37:48,407 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 21:37:48,412 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+INFO 2025-05-18 21:37:48,428 basehttp "GET /campaigns/api/recent/ HTTP/1.1" 200 462
+INFO 2025-05-18 21:37:51,953 basehttp "GET /campaigns/3/ HTTP/1.1" 200 12918
+INFO 2025-05-18 21:37:54,640 basehttp "GET /campaigns/ HTTP/1.1" 200 15728
+INFO 2025-05-18 21:38:04,031 basehttp "GET /campaigns/3/ HTTP/1.1" 200 12918
+INFO 2025-05-18 21:40:55,956 autoreload /Users/jg/owl/email_crm/campaigns/forms.py changed, reloading.
+INFO 2025-05-18 21:40:56,147 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 21:41:53,510 autoreload /Users/jg/owl/email_crm/campaigns/views.py changed, reloading.
+INFO 2025-05-18 21:41:53,660 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 21:42:25,490 autoreload /Users/jg/owl/email_crm/campaigns/views.py changed, reloading.
+INFO 2025-05-18 21:42:25,672 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 21:42:32,940 basehttp "GET /campaigns/ HTTP/1.1" 200 15728
+INFO 2025-05-18 21:42:39,946 basehttp "GET /dashboard/ HTTP/1.1" 200 19512
+INFO 2025-05-18 21:42:39,967 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 21:42:39,973 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 21:42:39,979 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+INFO 2025-05-18 21:42:39,986 basehttp "GET /campaigns/api/recent/ HTTP/1.1" 200 462
+INFO 2025-05-18 21:42:44,398 basehttp "GET /contacts/list/?action=bulk_select HTTP/1.1" 200 24024
+INFO 2025-05-18 21:42:44,425 basehttp "GET /api/contacts/ HTTP/1.1" 200 447
+INFO 2025-05-18 21:42:53,629 basehttp "POST /emails/bulk-compose/ HTTP/1.1" 200 12178
+INFO 2025-05-18 21:42:59,586 basehttp "GET / HTTP/1.1" 200 8026
+WARNING 2025-05-18 21:42:59,627 log Not Found: /apple-touch-icon.png
+WARNING 2025-05-18 21:42:59,627 log Not Found: /apple-touch-icon-precomposed.png
+WARNING 2025-05-18 21:42:59,628 basehttp "GET /apple-touch-icon.png HTTP/1.1" 404 3530
+WARNING 2025-05-18 21:42:59,628 log Not Found: /favicon.ico
+WARNING 2025-05-18 21:42:59,629 basehttp "GET /favicon.ico HTTP/1.1" 404 3503
+WARNING 2025-05-18 21:42:59,629 basehttp "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3566
+INFO 2025-05-18 21:45:05,549 basehttp "GET /dashboard/ HTTP/1.1" 200 19512
+INFO 2025-05-18 21:45:05,569 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 21:45:05,573 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 21:45:05,576 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+INFO 2025-05-18 21:45:05,583 basehttp "GET /campaigns/api/recent/ HTTP/1.1" 200 462
+INFO 2025-05-18 21:45:09,720 basehttp "GET /campaigns/ HTTP/1.1" 200 15728
+INFO 2025-05-18 21:45:11,519 basehttp "GET /campaigns/2/ HTTP/1.1" 200 12958
+INFO 2025-05-18 21:45:17,145 basehttp "GET /campaigns/ HTTP/1.1" 200 15728
+INFO 2025-05-18 21:45:20,030 basehttp "GET /campaigns/2/ HTTP/1.1" 200 12958
+INFO 2025-05-18 21:45:21,939 basehttp "GET /emails/bulk-send-confirmed/?campaign_id=2 HTTP/1.1" 302 0
+INFO 2025-05-18 21:45:21,951 basehttp "GET /contacts/list/ HTTP/1.1" 200 24834
+INFO 2025-05-18 21:45:21,972 basehttp "GET /api/contacts/ HTTP/1.1" 200 447
+INFO 2025-05-18 21:54:45,664 autoreload Watching for file changes with StatReloader
+INFO 2025-05-18 21:55:13,131 basehttp "GET / HTTP/1.1" 200 8026
+WARNING 2025-05-18 21:55:13,202 log Not Found: /favicon.ico
+WARNING 2025-05-18 21:55:13,202 basehttp "GET /favicon.ico HTTP/1.1" 404 3503
+WARNING 2025-05-18 21:55:13,203 log Not Found: /apple-touch-icon-precomposed.png
+WARNING 2025-05-18 21:55:13,203 log Not Found: /apple-touch-icon.png
+WARNING 2025-05-18 21:55:13,204 basehttp "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3566
+WARNING 2025-05-18 21:55:13,204 basehttp "GET /apple-touch-icon.png HTTP/1.1" 404 3530
+INFO 2025-05-18 21:55:14,367 basehttp "GET /dashboard/ HTTP/1.1" 200 19512
+INFO 2025-05-18 21:55:14,383 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 21:55:14,390 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 21:55:14,393 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1388
+INFO 2025-05-18 21:55:14,409 basehttp "GET /campaigns/api/recent/ HTTP/1.1" 200 462
+INFO 2025-05-18 21:55:16,816 basehttp "GET /campaigns/ HTTP/1.1" 200 15728
+INFO 2025-05-18 21:55:19,016 basehttp "GET /campaigns/1/ HTTP/1.1" 200 12957
+INFO 2025-05-18 21:55:20,501 basehttp "GET /emails/bulk-send-confirmed/?campaign_id=1 HTTP/1.1" 200 6941
+INFO 2025-05-18 21:55:29,145 basehttp "POST /emails/bulk-send-confirmed/?campaign_id=1 HTTP/1.1" 302 0
+INFO 2025-05-18 21:55:29,158 basehttp "GET /campaigns/1/ HTTP/1.1" 200 13458
+INFO 2025-05-18 21:55:41,241 basehttp "GET /campaigns/ HTTP/1.1" 200 16127
+INFO 2025-05-18 21:55:44,734 basehttp "GET / HTTP/1.1" 200 8026
+WARNING 2025-05-18 21:55:44,771 log Not Found: /apple-touch-icon-precomposed.png
+WARNING 2025-05-18 21:55:44,772 log Not Found: /apple-touch-icon.png
+WARNING 2025-05-18 21:55:44,773 basehttp "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3566
+WARNING 2025-05-18 21:55:44,773 log Not Found: /favicon.ico
+WARNING 2025-05-18 21:55:44,774 basehttp "GET /apple-touch-icon.png HTTP/1.1" 404 3530
+WARNING 2025-05-18 21:55:44,774 basehttp "GET /favicon.ico HTTP/1.1" 404 3503
+INFO 2025-05-18 21:55:46,937 basehttp "GET /dashboard/ HTTP/1.1" 200 19512
+INFO 2025-05-18 21:55:46,956 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 21:55:46,962 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 21:55:46,966 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1548
+INFO 2025-05-18 21:55:46,973 basehttp "GET /campaigns/api/recent/ HTTP/1.1" 200 491
+INFO 2025-05-18 21:55:50,327 basehttp "GET /emails/analytics-dashboard/ HTTP/1.1" 200 30720
+INFO 2025-05-18 21:55:50,368 basehttp "GET /emails/analytics/ HTTP/1.1" 200 3633
+INFO 2025-05-18 21:56:02,875 basehttp "GET /dashboard/ HTTP/1.1" 200 19512
+INFO 2025-05-18 21:56:02,897 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 21:56:02,902 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 21:56:02,905 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1548
+INFO 2025-05-18 21:56:02,914 basehttp "GET /campaigns/api/recent/ HTTP/1.1" 200 491
+INFO 2025-05-18 21:56:05,044 basehttp "GET /contacts/list/ HTTP/1.1" 200 24024
+INFO 2025-05-18 21:56:05,067 basehttp "GET /api/contacts/ HTTP/1.1" 200 447
+INFO 2025-05-18 21:56:10,996 basehttp "GET /emails/compose/4/ HTTP/1.1" 200 5707
+INFO 2025-05-18 21:56:17,996 basehttp "GET /emails/select-contact/ HTTP/1.1" 200 4250
+INFO 2025-05-18 21:56:20,609 basehttp "GET /dashboard/ HTTP/1.1" 200 19512
+INFO 2025-05-18 21:56:20,630 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 21:56:20,635 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 21:56:20,639 basehttp "GET /dashboard/data/ HTTP/1.1" 200 1548
+INFO 2025-05-18 21:56:20,648 basehttp "GET /campaigns/api/recent/ HTTP/1.1" 200 491
+INFO 2025-05-18 21:56:22,832 basehttp "GET /contacts/list/?action=bulk_select HTTP/1.1" 200 24024
+INFO 2025-05-18 21:56:22,855 basehttp "GET /api/contacts/ HTTP/1.1" 200 447
+INFO 2025-05-18 21:56:28,926 basehttp "POST /emails/bulk-compose/ HTTP/1.1" 200 12178
+INFO 2025-05-18 21:56:48,200 basehttp "POST /emails/bulk-compose/ HTTP/1.1" 302 0
+INFO 2025-05-18 21:56:48,211 basehttp "GET /emails/bulk-send-confirmed/ HTTP/1.1" 200 7582
+INFO 2025-05-18 21:56:51,257 basehttp "POST /emails/bulk-send-confirmed/ HTTP/1.1" 302 0
+INFO 2025-05-18 21:56:51,269 basehttp "GET /campaigns/4/ HTTP/1.1" 200 14641
+INFO 2025-05-18 21:56:55,016 basehttp "GET /campaigns/ HTTP/1.1" 200 19570
+INFO 2025-05-18 21:57:04,710 basehttp "GET /contacts/ HTTP/1.1" 200 11117
+INFO 2025-05-18 21:57:09,813 basehttp "GET /emails/templates/ HTTP/1.1" 200 9669
+INFO 2025-05-18 21:57:15,691 basehttp "GET /dashboard/ HTTP/1.1" 200 19512
+INFO 2025-05-18 21:57:15,712 views Dashboard data requested by user: Marvin
+INFO 2025-05-18 21:57:15,717 views Dashboard data successfully retrieved for user: Marvin
+INFO 2025-05-18 21:57:15,723 basehttp "GET /dashboard/data/ HTTP/1.1" 200 2060
+INFO 2025-05-18 21:57:15,731 basehttp "GET /campaigns/api/recent/ HTTP/1.1" 200 663
+WARNING 2025-05-18 21:57:18,194 log Not Found: /emails/templates/add/
+WARNING 2025-05-18 21:57:18,195 basehttp "GET /emails/templates/add/ HTTP/1.1" 404 6188
+INFO 2025-05-18 21:58:50,336 basehttp "GET /campaigns/ HTTP/1.1" 200 19570
+INFO 2025-05-18 21:58:51,575 basehttp "GET /campaigns/1/ HTTP/1.1" 200 13058
+INFO 2025-05-18 21:59:04,375 basehttp "GET / HTTP/1.1" 200 8026
+WARNING 2025-05-18 21:59:04,413 log Not Found: /apple-touch-icon-precomposed.png
+WARNING 2025-05-18 21:59:04,415 basehttp "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3566
+WARNING 2025-05-18 21:59:04,418 log Not Found: /apple-touch-icon.png
+WARNING 2025-05-18 21:59:04,419 log Not Found: /favicon.ico
+WARNING 2025-05-18 21:59:04,419 basehttp "GET /apple-touch-icon.png HTTP/1.1" 404 3530
+WARNING 2025-05-18 21:59:04,419 basehttp "GET /favicon.ico HTTP/1.1" 404 3503

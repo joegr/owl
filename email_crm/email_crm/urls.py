@@ -18,24 +18,26 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from django.views.generic import TemplateView, RedirectView
-from django.views.decorators.csrf import csrf_exempt
+from contacts import views as contacts_views
 
 urlpatterns = [
     # Homepage and admin
     path('', TemplateView.as_view(template_name='home/index.html'), name='home'),
     path('admin/', admin.site.urls),
     
-    # JWT Authentication endpoints
-    path('api/token/', csrf_exempt(TokenObtainPairView.as_view()), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    
     # App endpoints
     path('accounts/', include('accounts.urls')),
     path('contacts/', include('contacts.urls')),
     path('emails/', include('emails.urls')),
     path('dashboard/', include('dashboard.urls')),
+    path('campaigns/', include('campaigns.urls')),
+    
+    # API endpoints
+    path('api/contacts/', contacts_views.ContactListCreateView.as_view(), name='api-contacts'),
+    path('api/contacts/<int:pk>/', contacts_views.ContactDetailView.as_view(), name='api-contact-detail'),
+    path('api/contacts/search/', contacts_views.ContactSearchView.as_view(), name='api-contact-search'),
+    path('api/contacts/<int:contact_id>/emails/', contacts_views.contact_emails_view, name='api-contact-emails'),
 ]
 
 # Serve media files in development

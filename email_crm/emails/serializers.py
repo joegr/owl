@@ -20,8 +20,8 @@ class SentEmailSerializer(serializers.ModelSerializer):
     class Meta:
         model = SentEmail
         fields = ['id', 'contact', 'template', 'template_name', 'subject', 'body', 
-                  'sent_at', 'opened', 'opened_at', 'clicked', 'clicked_at']
-        read_only_fields = ['id', 'sent_at', 'opened', 'opened_at', 'clicked', 'clicked_at']
+                  'sent_at', 'scheduled_time', 'opened', 'opened_at', 'clicked', 'clicked_at']
+        read_only_fields = ['id', 'sent_at', 'scheduled_time', 'opened', 'opened_at', 'clicked', 'clicked_at']
     
     def get_template_name(self, obj):
         if obj.template:

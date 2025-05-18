@@ -1,0 +1,311 @@
+{% extends 'base.html' %}
+{% load form_filters %}
+
+{% block title %}Bulk Email - Email CRM{% endblock %}
+
+{% block extra_css %}
+<style>
+    .recipient-list {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    
+    .template-preview {
+        border: 1px solid #dee2e6;
+        border-radius: 0.25rem;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .template-selector {
+        margin-bottom: 1.5rem;
+    }
+    
+    .template-selector .card {
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    
+    .template-selector .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .template-selector .card.selected {
+        border-color: #0d6efd;
+        background-color: rgba(13, 110, 253, 0.05);
+    }
+    
+    #editor-container {
+        height: 300px;
+        margin-bottom: 1rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h2>Bulk Email</h2>
+            <p class="text-muted">Send an email to multiple contacts at once</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+            <a href="{% url 'contacts:list' %}" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i> Back to Contacts
+            </a>
+        </div>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if contact_count == 0 %}
+        <div class="alert alert-warning">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            No contacts selected. Please go back to the <a href="{% url 'contacts:list' %}">contacts page</a> and select contacts first.
+        </div>
+    {% else %}
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Compose Email</h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" id="email-form">
+                            {% csrf_token %}
+                            <input type="hidden" name="contact_ids" id="contact-ids" value="{{ contact_ids }}">
+                            
+                            <div class="mb-3">
+                                <label for="{{ form.email_template.id_for_label }}" class="form-label">Use Template (Optional)</label>
+                                {{ form.email_template|add_class:"form-select" }}
+                                <div class="form-text">Select an existing template or create a new one below.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="{{ form.subject.id_for_label }}" class="form-label">Subject *</label>
+                                {{ form.subject|add_class:"form-control" }}
+                                {% if form.subject.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.subject.errors }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="{{ form.body.id_for_label }}" class="form-label">Message *</label>
+                                {{ form.body|add_class:"form-control" }}
+                                {% if form.body.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.body.errors }}
+                                    </div>
+                                {% endif %}
+                                <div class="form-text">
+                                    <strong>Personalization Tags:</strong>
+                                    <code>{{name}}</code>, <code>{{email}}</code>, <code>{{company}}</code>, <code>{{position}}</code>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4 border-top pt-3">
+                                <div class="form-check mb-3">
+                                    {{ form.save_as_template|add_class:"form-check-input" }}
+                                    <label for="{{ form.save_as_template.id_for_label }}" class="form-check-label">
+                                        Save as a template for future use
+                                    </label>
+                                </div>
+                                
+                                <div id="template-fields" class="ms-4 mb-3" style="display: none;">
+                                    <div class="mb-3">
+                                        <label for="{{ form.template_name.id_for_label }}" class="form-label">Template Name</label>
+                                        {{ form.template_name|add_class:"form-control" }}
+                                        {% if form.template_name.errors %}
+                                            <div class="invalid-feedback d-block">
+                                                {{ form.template_name.errors }}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                
+                                <div class="form-check mb-3">
+                                    {{ form.create_campaign|add_class:"form-check-input" }}
+                                    <label for="{{ form.create_campaign.id_for_label }}" class="form-check-label">
+                                        Create as a campaign for tracking
+                                    </label>
+                                </div>
+                                
+                                <div id="campaign-fields" class="ms-4 mb-3" style="display: none;">
+                                    <div class="mb-3">
+                                        <label for="{{ form.campaign_name.id_for_label }}" class="form-label">Campaign Name</label>
+                                        {{ form.campaign_name|add_class:"form-control" }}
+                                        {% if form.campaign_name.errors %}
+                                            <div class="invalid-feedback d-block">
+                                                {{ form.campaign_name.errors }}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4 d-flex justify-content-between">
+                                <a href="{% url 'contacts:list' %}" class="btn btn-outline-secondary">
+                                    <i class="bi bi-x-circle"></i> Cancel
+                                </a>
+                                
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="bi bi-envelope"></i> Send to {{ contact_count }} Contacts
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Recipients ({{ contact_count }})</h5>
+                        <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#recipientsModal">
+                            <i class="bi bi-eye"></i> View All
+                        </button>
+                    </div>
+                    <div class="card-body recipient-list">
+                        <ul class="list-group list-group-flush">
+                            {% for contact in contacts|slice:":5" %}
+                                <li class="list-group-item px-0">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="fw-bold">{{ contact.name }}</span>
+                                            <br>
+                                            <small class="text-muted">{{ contact.email }}</small>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                            
+                            {% if contact_count > 5 %}
+                                <li class="list-group-item px-0 text-center">
+                                    <button type="button" class="btn btn-sm btn-link" data-bs-toggle="modal" data-bs-target="#recipientsModal">
+                                        View all {{ contact_count }} recipients
+                                    </button>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card shadow-sm">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Help</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text small">
+                            <i class="bi bi-info-circle text-primary me-2"></i>
+                            <strong>Personalization:</strong> Use tags like <code>{{name}}</code> to personalize your message.
+                        </p>
+                        <p class="card-text small">
+                            <i class="bi bi-lightning-charge text-warning me-2"></i>
+                            <strong>Campaigns:</strong> Create a campaign to track opens, clicks, and responses.
+                        </p>
+                        <p class="card-text small">
+                            <i class="bi bi-clock text-info me-2"></i>
+                            <strong>Templates:</strong> Save your email as a template for future use.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+<!-- Recipients Modal -->
+<div class="modal fade" id="recipientsModal" tabindex="-1" aria-labelledby="recipientsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="recipientsModalLabel">Email Recipients ({{ contact_count }})</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Company</th>
+                                <th>Position</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for contact in contacts %}
+                                <tr>
+                                    <td>{{ contact.name }}</td>
+                                    <td>{{ contact.email }}</td>
+                                    <td>{{ contact.company|default:"-" }}</td>
+                                    <td>{{ contact.position|default:"-" }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Setup template selector
+        const templateSelect = document.getElementById('{{ form.email_template.id_for_label }}');
+        templateSelect.addEventListener('change', function() {
+            if (this.value) {
+                // If a template is selected, load its content via AJAX
+                fetch(`/api/templates/${this.value}/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('{{ form.subject.id_for_label }}').value = data.subject;
+                        document.getElementById('{{ form.body.id_for_label }}').value = data.body;
+                    })
+                    .catch(error => console.error('Error loading template:', error));
+            }
+        });
+        
+        // Handle save as template checkbox
+        const saveTemplateCheckbox = document.getElementById('{{ form.save_as_template.id_for_label }}');
+        const templateFields = document.getElementById('template-fields');
+        
+        saveTemplateCheckbox.addEventListener('change', function() {
+            templateFields.style.display = this.checked ? 'block' : 'none';
+        });
+        
+        // Handle create campaign checkbox
+        const createCampaignCheckbox = document.getElementById('{{ form.create_campaign.id_for_label }}');
+        const campaignFields = document.getElementById('campaign-fields');
+        
+        createCampaignCheckbox.addEventListener('change', function() {
+            campaignFields.style.display = this.checked ? 'block' : 'none';
+        });
+        
+        // Show fields if checkboxes are already checked (e.g., form validation failed)
+        if (saveTemplateCheckbox.checked) {
+            templateFields.style.display = 'block';
+        }
+        
+        if (createCampaignCheckbox.checked) {
+            campaignFields.style.display = 'block';
+        }
+    });
+</script>
+{% endblock %} 

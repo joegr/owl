@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Lists - Email CRM{% endblock %}
+
+{% block extra_css %}
+<style>
+    .list-card {
+        transition: transform 0.2s ease;
+    }
+    .list-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .search-container {
+        position: relative;
+    }
+    .search-icon {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        color: #6c757d;
+    }
+    .search-input {
+        padding-left: 35px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h2>Contact Lists</h2>
+            <p class="text-muted">Manage your contact lists for campaigns</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+            <a href="{% url 'campaigns:list_create' %}" class="btn btn-primary">
+                <i class="bi bi-plus-lg"></i> Create Contact List
+            </a>
+            <a href="{% url 'campaigns:list' %}" class="btn btn-outline-secondary ms-2">
+                <i class="bi bi-arrow-left"></i> Back to Campaigns
+            </a>
+        </div>
+    </div>
+
+    <!-- Search and Filter -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="search-container">
+                <span class="search-icon">
+                    <i class="bi bi-search"></i>
+                </span>
+                <input type="text" id="list-search" class="form-control search-input" placeholder="Search contact lists...">
+            </div>
+        </div>
+    </div>
+
+    <!-- Message alerts -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Contact Lists -->
+    {% if contact_lists %}
+        <div class="row">
+            {% for contact_list in contact_lists %}
+                <div class="col-md-6 col-lg-4 mb-4 list-item">
+                    <div class="card list-card h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <h5 class="card-title mb-0">{{ contact_list.name }}</h5>
+                                <div class="dropdown">
+                                    <button class="btn btn-sm btn-link text-muted" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li><a class="dropdown-item" href="{% url 'campaigns:list_detail' contact_list.id %}"><i class="bi bi-eye me-2"></i>View</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'campaigns:list_edit' contact_list.id %}"><i class="bi bi-pencil me-2"></i>Edit</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            <a class="dropdown-item text-danger" href="{% url 'campaigns:list_delete' contact_list.id %}">
+                                                <i class="bi bi-trash me-2"></i>Delete
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <p class="card-text text-muted mb-2">
+                                {% if contact_list.description %}
+                                    {{ contact_list.description|truncatechars:100 }}
+                                {% else %}
+                                    <em>No description</em>
+                                {% endif %}
+                            </p>
+
+                            <div class="d-flex align-items-center">
+                                <span class="badge bg-info me-2">{{ contact_list.contact_count }} contacts</span>
+                                <small class="text-muted">Created {{ contact_list.created_at|date:"M d, Y" }}</small>
+                            </div>
+                            
+                            <div class="mt-3">
+                                <a href="{% url 'campaigns:list_detail' contact_list.id %}" class="btn btn-sm btn-outline-primary">
+                                    <i class="bi bi-eye"></i> View Contacts
+                                </a>
+                                <a href="{% url 'campaigns:create' %}?list_id={{ contact_list.id }}" class="btn btn-sm btn-outline-success">
+                                    <i class="bi bi-envelope"></i> Send Campaign
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="text-center py-5">
+            <i class="bi bi-people" style="font-size: 3rem; color: #dee2e6;"></i>
+            <h5 class="mt-3">No contact lists found</h5>
+            <p class="text-muted">Start by creating your first contact list</p>
+            <a href="{% url 'campaigns:list_create' %}" class="btn btn-primary mt-2">
+                <i class="bi bi-plus-lg"></i> Create Contact List
+            </a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Set up search functionality
+    const searchInput = document.getElementById('list-search');
+    
+    searchInput.addEventListener('input', function() {
+        const searchValue = this.value.toLowerCase();
+        
+        // Get all list items
+        const listItems = document.querySelectorAll('.list-item');
+        
+        listItems.forEach(item => {
+            const name = item.querySelector('.card-title').textContent.toLowerCase();
+            const description = item.querySelector('.card-text').textContent.toLowerCase();
+            
+            // Show or hide based on search match
+            if (name.includes(searchValue) || description.includes(searchValue)) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+{% endblock %} 

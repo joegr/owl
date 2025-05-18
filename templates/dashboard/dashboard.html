@@ -151,23 +151,81 @@
                         </a>
                     </div>
                     <div class="col-md-3 mb-3">
+                        <a href="{% url 'contacts:list' %}" class="btn btn-outline-primary w-100 p-3">
+                            <i class="bi bi-people"></i><br>
+                            View Contacts
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
                         <a href="/emails/templates/add/" class="btn btn-outline-success w-100 p-3">
                             <i class="bi bi-file-earmark-plus"></i><br>
                             Create Template
                         </a>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <a href="/emails/send/" class="btn btn-outline-info w-100 p-3">
+                        <a href="{% url 'emails:select_contact' %}" class="btn btn-outline-info w-100 p-3">
                             <i class="bi bi-envelope"></i><br>
-                            Send Email
+                            Compose Email
                         </a>
                     </div>
+                </div>
+                <div class="row mt-3">
                     <div class="col-md-3 mb-3">
-                        <a href="/emails/analytics/" class="btn btn-outline-secondary w-100 p-3">
+                        <a href="{% url 'emails:analytics_dashboard' %}" class="btn btn-outline-secondary w-100 p-3">
                             <i class="bi bi-graph-up"></i><br>
                             View Analytics
                         </a>
                     </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="{% url 'campaigns:list' %}" class="btn btn-outline-primary w-100 p-3">
+                            <i class="bi bi-megaphone"></i><br>
+                            Campaigns
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="{% url 'campaigns:create' %}" class="btn btn-outline-success w-100 p-3">
+                            <i class="bi bi-megaphone-fill"></i><br>
+                            Create Campaign
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <button onclick="goToBulkSend()" class="btn btn-outline-danger w-100 p-3">
+                            <i class="bi bi-envelope-fill"></i><br>
+                            Bulk Send
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Campaigns Section -->
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Recent Campaigns</h5>
+                <a href="{% url 'campaigns:list' %}" class="btn btn-sm btn-outline-primary">View All</a>
+            </div>
+            <div class="card-body">
+                <div class="table-container">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Template</th>
+                                <th>Created</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-campaigns">
+                            <tr>
+                                <td colspan="5" class="text-center">Loading...</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -217,10 +275,33 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Update recent activities
                 updateRecentActivities(data.recent_activities);
+                
+                // Load campaigns data
+                loadCampaignsData();
             }
         } catch (error) {
             console.error('Error loading dashboard data:', error);
             showApiError('Error loading dashboard data', { error: error.message });
+        }
+    }
+    
+    async function loadCampaignsData() {
+        try {
+            console.log('Fetching campaigns data...');
+            const result = await API.campaigns.getRecent();
+            
+            // Check for errors
+            if (result.error) {
+                console.error('Error loading campaigns data:', result.error);
+                return;
+            }
+            
+            const campaigns = result.data;
+            if (campaigns) {
+                updateRecentCampaigns(campaigns);
+            }
+        } catch (error) {
+            console.error('Error loading campaigns data:', error);
         }
     }
     
@@ -315,6 +396,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 case 'template_updated':
                     icon = 'bi-file-earmark-text';
                     break;
+                case 'campaign_created':
+                    icon = 'bi-megaphone';
+                    break;
+                case 'campaign_sent':
+                    icon = 'bi-megaphone-fill';
+                    break;
             }
             
             item.innerHTML = `
@@ -330,6 +417,54 @@ document.addEventListener('DOMContentLoaded', function() {
             activitiesContainer.appendChild(item);
         });
     }
+    
+    // Function to update recent campaigns table
+    function updateRecentCampaigns(campaigns) {
+        const campaignsContainer = document.getElementById('recent-campaigns');
+        
+        if (!campaigns || campaigns.length === 0) {
+            campaignsContainer.innerHTML = '<tr><td colspan="5" class="text-center">No campaigns found</td></tr>';
+            return;
+        }
+        
+        campaignsContainer.innerHTML = '';
+        
+        campaigns.forEach(campaign => {
+            const row = document.createElement('tr');
+            
+            // Format date
+            const createdDate = new Date(campaign.created_at);
+            const formattedDate = createdDate.toLocaleDateString();
+            
+            // Campaign status
+            let statusBadge = '<span class="badge bg-secondary">Draft</span>';
+            if (campaign.is_sent) {
+                statusBadge = '<span class="badge bg-success">Sent</span>';
+            } else if (campaign.scheduled_at) {
+                statusBadge = '<span class="badge bg-info">Scheduled</span>';
+            }
+            
+            row.innerHTML = `
+                <td>${campaign.name}</td>
+                <td>${campaign.template_name || 'None'}</td>
+                <td>${formattedDate}</td>
+                <td>${statusBadge}</td>
+                <td>
+                    <a href="/campaigns/${campaign.id}/" class="btn btn-sm btn-outline-primary">
+                        <i class="bi bi-eye"></i>
+                    </a>
+                </td>
+            `;
+            
+            campaignsContainer.appendChild(row);
+        });
+    }
 });
+
+// Function to go to bulk send page
+function goToBulkSend() {
+    // Redirect to contacts page with bulk selection flag
+    window.location.href = '{% url "contacts:list" %}?action=bulk_select';
+}
 </script>
 {% endblock %} 

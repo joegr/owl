@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}Compose Email - Email CRM{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col">
+            <h2>Compose Email to {{ contact.name }}</h2>
+            <p class="text-muted">{{ contact.email }}</p>
+        </div>
+    </div>
+    
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form method="post" action="{% url 'emails:preview_email' contact.id %}">
+                {% csrf_token %}
+                
+                <div class="mb-3">
+                    <label for="template_select" class="form-label">Use Template (Optional)</label>
+                    <select id="template_select" name="template_id" class="form-select">
+                        <option value="">No template</option>
+                        {% for template in templates %}
+                        <option value="{{ template.id }}">{{ template.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="subject" class="form-label">Subject</label>
+                    <input type="text" id="subject" name="subject" class="form-control" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="body" class="form-label">Message</label>
+                    <textarea id="body" name="body" class="form-control" rows="10" required></textarea>
+                    <div class="form-text">
+                        Available variables: {{name}}, {{email}}, {{company}}, {{position}}
+                    </div>
+                </div>
+                
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'contacts:view' contact.id %}" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left"></i> Back to Contact
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        Preview Email <i class="bi bi-arrow-right"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle template selection
+    const templateSelect = document.getElementById('template_select');
+    const subjectField = document.getElementById('subject');
+    const bodyField = document.getElementById('body');
+    
+    // Store the templates data
+    const templates = {
+        {% for template in templates %}
+        "{{ template.id }}": {
+            "subject": "{{ template.subject|escapejs }}",
+            "body": "{{ template.body|escapejs }}"
+        },
+        {% endfor %}
+    };
+    
+    templateSelect.addEventListener('change', function() {
+        const templateId = this.value;
+        
+        if (templateId && templates[templateId]) {
+            // Fill in the form with template data
+            subjectField.value = templates[templateId].subject;
+            bodyField.value = templates[templateId].body;
+        } else {
+            // Clear the form if "No template" is selected
+            subjectField.value = '';
+            bodyField.value = '';
+        }
+    });
+});
+</script>
+{% endblock %} 
